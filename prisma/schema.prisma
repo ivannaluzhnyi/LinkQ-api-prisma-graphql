@@ -1,11 +1,77 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+}
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
+model account {
+  id        Int       @id
+  is_active Boolean
+  email     String    @unique
+  roles     Json
+  password  String
+  firstname String?
+  lastname  String?
+  birthdate DateTime?
+  created   DateTime
+  updated   DateTime
+}
+
+model address {
+  id       Int       @id
+  street   String
+  zipcode  String
+  city     String
+  country  String
+  floor    Int?
+  room     Int?
+  property property?
+}
+
+model doctrine_migration_versions {
+  version        String    @id
+  executed_at    DateTime?
+  execution_time Int?
+}
+
+model feature {
+  id        Int       @id
+  size      Int
+  rooms     Int
+  bedrooms  Int
+  bathrooms Int
+  garages   Int
+  property  property?
+}
+
+model greeting {
+  id   Int    @id
+  name String
+}
+
+model media {
+  id          Int       @id
+  property_id Int?
+  filename    String
+  extension   String
+  uri         String
+  created     DateTime
+  updated     DateTime
+  property    property? @relation(fields: [property_id], references: [id])
+
+  @@index([property_id], name: "idx_6a2ca10c549213ec")
+}
+
+model property {
+  id          Int     @id
+  address_id  Int     @unique
+  features_id Int     @unique
+  title       String
+  description String
+  address     address @relation(fields: [address_id], references: [id])
+  feature     feature @relation(fields: [features_id], references: [id])
+  media       media[]
 }
