@@ -1,0 +1,11 @@
+stages:
+  - build
+  - test
+  - deploy
+
+build-api:
+  stage: build
+  image: node:latest
+  script:
+    - npm install
+    - npm run build
