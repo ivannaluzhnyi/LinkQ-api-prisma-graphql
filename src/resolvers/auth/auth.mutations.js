@@ -20,9 +20,9 @@ async function signup(_, args, context, info) {
 }
 
 async function login(parent, { email, password }, ctx, info) {
-    const user = await ctx.prisma.query.user(
+    const user = await ctx.prisma.query.account(
         { where: { email } },
-        "{ id name email password }"
+        "{ id email password }"
     );
 
     if (!user) {

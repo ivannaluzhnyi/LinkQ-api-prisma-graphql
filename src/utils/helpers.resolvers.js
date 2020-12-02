@@ -1,6 +1,4 @@
-const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
 const { AuthError } = require("./error");
 
 async function getUser(ctx) {
@@ -8,12 +6,16 @@ async function getUser(ctx) {
     if (Authorization && Authorization !== "null") {
         const token = Authorization;
         const { userId } = jwt.verify(token, APP_SECRET);
-        const user = await ctx.prisma.query.user(
+        const user = await ctx.prisma.query.account(
             { where: { id: userId } },
-            "{ id name email role posts { id content } }"
+            "{ id email role }"
         );
         return user;
     } else {
         throw new AuthError();
     }
 }
+
+module.exports = {
+    getUser,
+};
