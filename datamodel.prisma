@@ -1,4 +1,4 @@
-type Account @db(name: "account") {
+type Account {
   id: Int! @id
   application: [Application]
   birthdate: DateTime
@@ -15,7 +15,7 @@ type Account @db(name: "account") {
   updated: DateTime!
 }
 
-type Address @db(name: "address") {
+type Address  {
   id: Int! @id
   city: String!
   country: String!
@@ -26,71 +26,71 @@ type Address @db(name: "address") {
   zipcode: String!
 }
 
-type Application @db(name: "application") {
+type Application {
   id: Int! @id
-  buyer: Account! @db(name: "buyer_id")
+  buyer: [Account]!
   contract: Contract!
   created: DateTime!
   offer: Float!
-  property: Property! @db(name: "property_id")
+  property: [Property]!
   updated: DateTime!
 }
 
-type Contract @db(name: "contract") {
+type Contract{
   id: Int! @id
-  application: Application! @db(name: "application_id") @unique
+  application: [Application]!
   created: DateTime!
   price: Float!
   updated: DateTime!
 }
 
-type DoctrineMigrationVersion @db(name: "doctrine_migration_versions") {
+type DoctrineMigrationVersion {
   version: ID! @id
   executedAt: DateTime @db(name: "executed_at")
   executionTime: Int @db(name: "execution_time")
 }
 
-type Feature @db(name: "feature") {
+type Feature {
   id: Int! @id
   bathrooms: Int!
   bedrooms: Int!
   garages: Int!
-  property: Property!
+  property: [Property]!
   rooms: Int!
   size: Int!
 }
 
-type Greeting @db(name: "greeting") {
+type Greeting {
   id: Int! @id
   name: String!
 }
 
-type Guarantor @db(name: "guarantor") {
+type Guarantor{
   id: Int! @id
-  firstName: String! @db(name: "first_name")
-  lastName: String! @db(name: "last_name")
+  firstName: String! 
+  lastName: String!
   relation: String!
   salary: Float!
-  userRelated: Account! @db(name: "user_related_id")
+  userRelated: [Account]!
 }
 
-type Media @db(name: "media") {
+type Media  {
   id: Int! @id
   created: DateTime!
   extension: String!
   filename: String!
-  property: Property @db(name: "property_id")
+  property: [Property]
   updated: DateTime!
   uri: String!
 }
 
-type Property @db(name: "property") {
+type Property{
   id: Int! @id
-  address: Address! @db(name: "address_id") @unique
+  address: [Address]! 
   application: [Application]
   description: String!
-  features: Feature! @db(name: "features_id") @unique
+  features: [Feature]! 
   media: [Media]
   title: String!
-  userRelated: Account @db(name: "user_related_id")
+  userRelated: [Account]
 }

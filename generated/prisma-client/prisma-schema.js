@@ -43,19 +43,19 @@ input AccountCreateInput {
   updated: DateTime!
 }
 
-input AccountCreateOneWithoutApplicationInput {
-  create: AccountCreateWithoutApplicationInput
-  connect: AccountWhereUniqueInput
+input AccountCreateManyWithoutApplicationInput {
+  create: [AccountCreateWithoutApplicationInput!]
+  connect: [AccountWhereUniqueInput!]
 }
 
-input AccountCreateOneWithoutGuarantorInput {
-  create: AccountCreateWithoutGuarantorInput
-  connect: AccountWhereUniqueInput
+input AccountCreateManyWithoutGuarantorInput {
+  create: [AccountCreateWithoutGuarantorInput!]
+  connect: [AccountWhereUniqueInput!]
 }
 
-input AccountCreateOneWithoutPropertyInput {
-  create: AccountCreateWithoutPropertyInput
-  connect: AccountWhereUniqueInput
+input AccountCreateManyWithoutPropertyInput {
+  create: [AccountCreateWithoutPropertyInput!]
+  connect: [AccountWhereUniqueInput!]
 }
 
 input AccountCreateWithoutApplicationInput {
@@ -150,6 +150,110 @@ type AccountPreviousValues {
   updated: DateTime!
 }
 
+input AccountScalarWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  birthdate: DateTime
+  birthdate_not: DateTime
+  birthdate_in: [DateTime!]
+  birthdate_not_in: [DateTime!]
+  birthdate_lt: DateTime
+  birthdate_lte: DateTime
+  birthdate_gt: DateTime
+  birthdate_gte: DateTime
+  created: DateTime
+  created_not: DateTime
+  created_in: [DateTime!]
+  created_not_in: [DateTime!]
+  created_lt: DateTime
+  created_lte: DateTime
+  created_gt: DateTime
+  created_gte: DateTime
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  firstname: String
+  firstname_not: String
+  firstname_in: [String!]
+  firstname_not_in: [String!]
+  firstname_lt: String
+  firstname_lte: String
+  firstname_gt: String
+  firstname_gte: String
+  firstname_contains: String
+  firstname_not_contains: String
+  firstname_starts_with: String
+  firstname_not_starts_with: String
+  firstname_ends_with: String
+  firstname_not_ends_with: String
+  isActive: Boolean
+  isActive_not: Boolean
+  lastname: String
+  lastname_not: String
+  lastname_in: [String!]
+  lastname_not_in: [String!]
+  lastname_lt: String
+  lastname_lte: String
+  lastname_gt: String
+  lastname_gte: String
+  lastname_contains: String
+  lastname_not_contains: String
+  lastname_starts_with: String
+  lastname_not_starts_with: String
+  lastname_ends_with: String
+  lastname_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  salary: Float
+  salary_not: Float
+  salary_in: [Float!]
+  salary_not_in: [Float!]
+  salary_lt: Float
+  salary_lte: Float
+  salary_gt: Float
+  salary_gte: Float
+  updated: DateTime
+  updated_not: DateTime
+  updated_in: [DateTime!]
+  updated_not_in: [DateTime!]
+  updated_lt: DateTime
+  updated_lte: DateTime
+  updated_gt: DateTime
+  updated_gte: DateTime
+  AND: [AccountScalarWhereInput!]
+  OR: [AccountScalarWhereInput!]
+  NOT: [AccountScalarWhereInput!]
+}
+
 type AccountSubscriptionPayload {
   mutation: MutationType!
   node: Account
@@ -184,6 +288,19 @@ input AccountUpdateInput {
   updated: DateTime
 }
 
+input AccountUpdateManyDataInput {
+  birthdate: DateTime
+  created: DateTime
+  email: String
+  firstname: String
+  isActive: Boolean
+  lastname: String
+  password: String
+  roles: Json
+  salary: Float
+  updated: DateTime
+}
+
 input AccountUpdateManyMutationInput {
   birthdate: DateTime
   created: DateTime
@@ -197,27 +314,45 @@ input AccountUpdateManyMutationInput {
   updated: DateTime
 }
 
-input AccountUpdateOneRequiredWithoutApplicationInput {
-  create: AccountCreateWithoutApplicationInput
-  update: AccountUpdateWithoutApplicationDataInput
-  upsert: AccountUpsertWithoutApplicationInput
-  connect: AccountWhereUniqueInput
+input AccountUpdateManyWithoutApplicationInput {
+  create: [AccountCreateWithoutApplicationInput!]
+  delete: [AccountWhereUniqueInput!]
+  connect: [AccountWhereUniqueInput!]
+  set: [AccountWhereUniqueInput!]
+  disconnect: [AccountWhereUniqueInput!]
+  update: [AccountUpdateWithWhereUniqueWithoutApplicationInput!]
+  upsert: [AccountUpsertWithWhereUniqueWithoutApplicationInput!]
+  deleteMany: [AccountScalarWhereInput!]
+  updateMany: [AccountUpdateManyWithWhereNestedInput!]
 }
 
-input AccountUpdateOneRequiredWithoutGuarantorInput {
-  create: AccountCreateWithoutGuarantorInput
-  update: AccountUpdateWithoutGuarantorDataInput
-  upsert: AccountUpsertWithoutGuarantorInput
-  connect: AccountWhereUniqueInput
+input AccountUpdateManyWithoutGuarantorInput {
+  create: [AccountCreateWithoutGuarantorInput!]
+  delete: [AccountWhereUniqueInput!]
+  connect: [AccountWhereUniqueInput!]
+  set: [AccountWhereUniqueInput!]
+  disconnect: [AccountWhereUniqueInput!]
+  update: [AccountUpdateWithWhereUniqueWithoutGuarantorInput!]
+  upsert: [AccountUpsertWithWhereUniqueWithoutGuarantorInput!]
+  deleteMany: [AccountScalarWhereInput!]
+  updateMany: [AccountUpdateManyWithWhereNestedInput!]
 }
 
-input AccountUpdateOneWithoutPropertyInput {
-  create: AccountCreateWithoutPropertyInput
-  update: AccountUpdateWithoutPropertyDataInput
-  upsert: AccountUpsertWithoutPropertyInput
-  delete: Boolean
-  disconnect: Boolean
-  connect: AccountWhereUniqueInput
+input AccountUpdateManyWithoutPropertyInput {
+  create: [AccountCreateWithoutPropertyInput!]
+  delete: [AccountWhereUniqueInput!]
+  connect: [AccountWhereUniqueInput!]
+  set: [AccountWhereUniqueInput!]
+  disconnect: [AccountWhereUniqueInput!]
+  update: [AccountUpdateWithWhereUniqueWithoutPropertyInput!]
+  upsert: [AccountUpsertWithWhereUniqueWithoutPropertyInput!]
+  deleteMany: [AccountScalarWhereInput!]
+  updateMany: [AccountUpdateManyWithWhereNestedInput!]
+}
+
+input AccountUpdateManyWithWhereNestedInput {
+  where: AccountScalarWhereInput!
+  data: AccountUpdateManyDataInput!
 }
 
 input AccountUpdateWithoutApplicationDataInput {
@@ -265,17 +400,35 @@ input AccountUpdateWithoutPropertyDataInput {
   updated: DateTime
 }
 
-input AccountUpsertWithoutApplicationInput {
+input AccountUpdateWithWhereUniqueWithoutApplicationInput {
+  where: AccountWhereUniqueInput!
+  data: AccountUpdateWithoutApplicationDataInput!
+}
+
+input AccountUpdateWithWhereUniqueWithoutGuarantorInput {
+  where: AccountWhereUniqueInput!
+  data: AccountUpdateWithoutGuarantorDataInput!
+}
+
+input AccountUpdateWithWhereUniqueWithoutPropertyInput {
+  where: AccountWhereUniqueInput!
+  data: AccountUpdateWithoutPropertyDataInput!
+}
+
+input AccountUpsertWithWhereUniqueWithoutApplicationInput {
+  where: AccountWhereUniqueInput!
   update: AccountUpdateWithoutApplicationDataInput!
   create: AccountCreateWithoutApplicationInput!
 }
 
-input AccountUpsertWithoutGuarantorInput {
+input AccountUpsertWithWhereUniqueWithoutGuarantorInput {
+  where: AccountWhereUniqueInput!
   update: AccountUpdateWithoutGuarantorDataInput!
   create: AccountCreateWithoutGuarantorInput!
 }
 
-input AccountUpsertWithoutPropertyInput {
+input AccountUpsertWithWhereUniqueWithoutPropertyInput {
+  where: AccountWhereUniqueInput!
   update: AccountUpdateWithoutPropertyDataInput!
   create: AccountCreateWithoutPropertyInput!
 }
@@ -426,9 +579,9 @@ input AddressCreateInput {
   zipcode: String!
 }
 
-input AddressCreateOneWithoutPropertyInput {
-  create: AddressCreateWithoutPropertyInput
-  connect: AddressWhereUniqueInput
+input AddressCreateManyWithoutPropertyInput {
+  create: [AddressCreateWithoutPropertyInput!]
+  connect: [AddressWhereUniqueInput!]
 }
 
 input AddressCreateWithoutPropertyInput {
@@ -473,6 +626,92 @@ type AddressPreviousValues {
   zipcode: String!
 }
 
+input AddressScalarWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  city: String
+  city_not: String
+  city_in: [String!]
+  city_not_in: [String!]
+  city_lt: String
+  city_lte: String
+  city_gt: String
+  city_gte: String
+  city_contains: String
+  city_not_contains: String
+  city_starts_with: String
+  city_not_starts_with: String
+  city_ends_with: String
+  city_not_ends_with: String
+  country: String
+  country_not: String
+  country_in: [String!]
+  country_not_in: [String!]
+  country_lt: String
+  country_lte: String
+  country_gt: String
+  country_gte: String
+  country_contains: String
+  country_not_contains: String
+  country_starts_with: String
+  country_not_starts_with: String
+  country_ends_with: String
+  country_not_ends_with: String
+  floor: Int
+  floor_not: Int
+  floor_in: [Int!]
+  floor_not_in: [Int!]
+  floor_lt: Int
+  floor_lte: Int
+  floor_gt: Int
+  floor_gte: Int
+  room: Int
+  room_not: Int
+  room_in: [Int!]
+  room_not_in: [Int!]
+  room_lt: Int
+  room_lte: Int
+  room_gt: Int
+  room_gte: Int
+  street: String
+  street_not: String
+  street_in: [String!]
+  street_not_in: [String!]
+  street_lt: String
+  street_lte: String
+  street_gt: String
+  street_gte: String
+  street_contains: String
+  street_not_contains: String
+  street_starts_with: String
+  street_not_starts_with: String
+  street_ends_with: String
+  street_not_ends_with: String
+  zipcode: String
+  zipcode_not: String
+  zipcode_in: [String!]
+  zipcode_not_in: [String!]
+  zipcode_lt: String
+  zipcode_lte: String
+  zipcode_gt: String
+  zipcode_gte: String
+  zipcode_contains: String
+  zipcode_not_contains: String
+  zipcode_starts_with: String
+  zipcode_not_starts_with: String
+  zipcode_ends_with: String
+  zipcode_not_ends_with: String
+  AND: [AddressScalarWhereInput!]
+  OR: [AddressScalarWhereInput!]
+  NOT: [AddressScalarWhereInput!]
+}
+
 type AddressSubscriptionPayload {
   mutation: MutationType!
   node: Address
@@ -501,6 +740,15 @@ input AddressUpdateInput {
   zipcode: String
 }
 
+input AddressUpdateManyDataInput {
+  city: String
+  country: String
+  floor: Int
+  room: Int
+  street: String
+  zipcode: String
+}
+
 input AddressUpdateManyMutationInput {
   city: String
   country: String
@@ -510,11 +758,21 @@ input AddressUpdateManyMutationInput {
   zipcode: String
 }
 
-input AddressUpdateOneRequiredWithoutPropertyInput {
-  create: AddressCreateWithoutPropertyInput
-  update: AddressUpdateWithoutPropertyDataInput
-  upsert: AddressUpsertWithoutPropertyInput
-  connect: AddressWhereUniqueInput
+input AddressUpdateManyWithoutPropertyInput {
+  create: [AddressCreateWithoutPropertyInput!]
+  delete: [AddressWhereUniqueInput!]
+  connect: [AddressWhereUniqueInput!]
+  set: [AddressWhereUniqueInput!]
+  disconnect: [AddressWhereUniqueInput!]
+  update: [AddressUpdateWithWhereUniqueWithoutPropertyInput!]
+  upsert: [AddressUpsertWithWhereUniqueWithoutPropertyInput!]
+  deleteMany: [AddressScalarWhereInput!]
+  updateMany: [AddressUpdateManyWithWhereNestedInput!]
+}
+
+input AddressUpdateManyWithWhereNestedInput {
+  where: AddressScalarWhereInput!
+  data: AddressUpdateManyDataInput!
 }
 
 input AddressUpdateWithoutPropertyDataInput {
@@ -526,7 +784,13 @@ input AddressUpdateWithoutPropertyDataInput {
   zipcode: String
 }
 
-input AddressUpsertWithoutPropertyInput {
+input AddressUpdateWithWhereUniqueWithoutPropertyInput {
+  where: AddressWhereUniqueInput!
+  data: AddressUpdateWithoutPropertyDataInput!
+}
+
+input AddressUpsertWithWhereUniqueWithoutPropertyInput {
+  where: AddressWhereUniqueInput!
   update: AddressUpdateWithoutPropertyDataInput!
   create: AddressCreateWithoutPropertyInput!
 }
@@ -664,11 +928,11 @@ type AggregateProperty {
 
 type Application {
   id: Int!
-  buyer: Account!
+  buyer(where: AccountWhereInput, orderBy: AccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Account!]
   contract: Contract!
   created: DateTime!
   offer: Float!
-  property: Property!
+  property(where: PropertyWhereInput, orderBy: PropertyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Property!]
   updated: DateTime!
 }
 
@@ -680,11 +944,11 @@ type ApplicationConnection {
 
 input ApplicationCreateInput {
   id: Int
-  buyer: AccountCreateOneWithoutApplicationInput!
+  buyer: AccountCreateManyWithoutApplicationInput
   contract: ContractCreateOneWithoutApplicationInput!
   created: DateTime!
   offer: Float!
-  property: PropertyCreateOneWithoutApplicationInput!
+  property: PropertyCreateManyWithoutApplicationInput
   updated: DateTime!
 }
 
@@ -693,14 +957,14 @@ input ApplicationCreateManyWithoutBuyerInput {
   connect: [ApplicationWhereUniqueInput!]
 }
 
-input ApplicationCreateManyWithoutPropertyInput {
-  create: [ApplicationCreateWithoutPropertyInput!]
+input ApplicationCreateManyWithoutContractInput {
+  create: [ApplicationCreateWithoutContractInput!]
   connect: [ApplicationWhereUniqueInput!]
 }
 
-input ApplicationCreateOneWithoutContractInput {
-  create: ApplicationCreateWithoutContractInput
-  connect: ApplicationWhereUniqueInput
+input ApplicationCreateManyWithoutPropertyInput {
+  create: [ApplicationCreateWithoutPropertyInput!]
+  connect: [ApplicationWhereUniqueInput!]
 }
 
 input ApplicationCreateWithoutBuyerInput {
@@ -708,22 +972,22 @@ input ApplicationCreateWithoutBuyerInput {
   contract: ContractCreateOneWithoutApplicationInput!
   created: DateTime!
   offer: Float!
-  property: PropertyCreateOneWithoutApplicationInput!
+  property: PropertyCreateManyWithoutApplicationInput
   updated: DateTime!
 }
 
 input ApplicationCreateWithoutContractInput {
   id: Int
-  buyer: AccountCreateOneWithoutApplicationInput!
+  buyer: AccountCreateManyWithoutApplicationInput
   created: DateTime!
   offer: Float!
-  property: PropertyCreateOneWithoutApplicationInput!
+  property: PropertyCreateManyWithoutApplicationInput
   updated: DateTime!
 }
 
 input ApplicationCreateWithoutPropertyInput {
   id: Int
-  buyer: AccountCreateOneWithoutApplicationInput!
+  buyer: AccountCreateManyWithoutApplicationInput
   contract: ContractCreateOneWithoutApplicationInput!
   created: DateTime!
   offer: Float!
@@ -810,11 +1074,11 @@ input ApplicationSubscriptionWhereInput {
 }
 
 input ApplicationUpdateInput {
-  buyer: AccountUpdateOneRequiredWithoutApplicationInput
+  buyer: AccountUpdateManyWithoutApplicationInput
   contract: ContractUpdateOneRequiredWithoutApplicationInput
   created: DateTime
   offer: Float
-  property: PropertyUpdateOneRequiredWithoutApplicationInput
+  property: PropertyUpdateManyWithoutApplicationInput
   updated: DateTime
 }
 
@@ -842,6 +1106,18 @@ input ApplicationUpdateManyWithoutBuyerInput {
   updateMany: [ApplicationUpdateManyWithWhereNestedInput!]
 }
 
+input ApplicationUpdateManyWithoutContractInput {
+  create: [ApplicationCreateWithoutContractInput!]
+  delete: [ApplicationWhereUniqueInput!]
+  connect: [ApplicationWhereUniqueInput!]
+  set: [ApplicationWhereUniqueInput!]
+  disconnect: [ApplicationWhereUniqueInput!]
+  update: [ApplicationUpdateWithWhereUniqueWithoutContractInput!]
+  upsert: [ApplicationUpsertWithWhereUniqueWithoutContractInput!]
+  deleteMany: [ApplicationScalarWhereInput!]
+  updateMany: [ApplicationUpdateManyWithWhereNestedInput!]
+}
+
 input ApplicationUpdateManyWithoutPropertyInput {
   create: [ApplicationCreateWithoutPropertyInput!]
   delete: [ApplicationWhereUniqueInput!]
@@ -859,31 +1135,24 @@ input ApplicationUpdateManyWithWhereNestedInput {
   data: ApplicationUpdateManyDataInput!
 }
 
-input ApplicationUpdateOneRequiredWithoutContractInput {
-  create: ApplicationCreateWithoutContractInput
-  update: ApplicationUpdateWithoutContractDataInput
-  upsert: ApplicationUpsertWithoutContractInput
-  connect: ApplicationWhereUniqueInput
-}
-
 input ApplicationUpdateWithoutBuyerDataInput {
   contract: ContractUpdateOneRequiredWithoutApplicationInput
   created: DateTime
   offer: Float
-  property: PropertyUpdateOneRequiredWithoutApplicationInput
+  property: PropertyUpdateManyWithoutApplicationInput
   updated: DateTime
 }
 
 input ApplicationUpdateWithoutContractDataInput {
-  buyer: AccountUpdateOneRequiredWithoutApplicationInput
+  buyer: AccountUpdateManyWithoutApplicationInput
   created: DateTime
   offer: Float
-  property: PropertyUpdateOneRequiredWithoutApplicationInput
+  property: PropertyUpdateManyWithoutApplicationInput
   updated: DateTime
 }
 
 input ApplicationUpdateWithoutPropertyDataInput {
-  buyer: AccountUpdateOneRequiredWithoutApplicationInput
+  buyer: AccountUpdateManyWithoutApplicationInput
   contract: ContractUpdateOneRequiredWithoutApplicationInput
   created: DateTime
   offer: Float
@@ -895,20 +1164,26 @@ input ApplicationUpdateWithWhereUniqueWithoutBuyerInput {
   data: ApplicationUpdateWithoutBuyerDataInput!
 }
 
+input ApplicationUpdateWithWhereUniqueWithoutContractInput {
+  where: ApplicationWhereUniqueInput!
+  data: ApplicationUpdateWithoutContractDataInput!
+}
+
 input ApplicationUpdateWithWhereUniqueWithoutPropertyInput {
   where: ApplicationWhereUniqueInput!
   data: ApplicationUpdateWithoutPropertyDataInput!
-}
-
-input ApplicationUpsertWithoutContractInput {
-  update: ApplicationUpdateWithoutContractDataInput!
-  create: ApplicationCreateWithoutContractInput!
 }
 
 input ApplicationUpsertWithWhereUniqueWithoutBuyerInput {
   where: ApplicationWhereUniqueInput!
   update: ApplicationUpdateWithoutBuyerDataInput!
   create: ApplicationCreateWithoutBuyerInput!
+}
+
+input ApplicationUpsertWithWhereUniqueWithoutContractInput {
+  where: ApplicationWhereUniqueInput!
+  update: ApplicationUpdateWithoutContractDataInput!
+  create: ApplicationCreateWithoutContractInput!
 }
 
 input ApplicationUpsertWithWhereUniqueWithoutPropertyInput {
@@ -926,7 +1201,9 @@ input ApplicationWhereInput {
   id_lte: Int
   id_gt: Int
   id_gte: Int
-  buyer: AccountWhereInput
+  buyer_every: AccountWhereInput
+  buyer_some: AccountWhereInput
+  buyer_none: AccountWhereInput
   contract: ContractWhereInput
   created: DateTime
   created_not: DateTime
@@ -944,7 +1221,9 @@ input ApplicationWhereInput {
   offer_lte: Float
   offer_gt: Float
   offer_gte: Float
-  property: PropertyWhereInput
+  property_every: PropertyWhereInput
+  property_some: PropertyWhereInput
+  property_none: PropertyWhereInput
   updated: DateTime
   updated_not: DateTime
   updated_in: [DateTime!]
@@ -968,7 +1247,7 @@ type BatchPayload {
 
 type Contract {
   id: Int!
-  application: Application!
+  application(where: ApplicationWhereInput, orderBy: ApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Application!]
   created: DateTime!
   price: Float!
   updated: DateTime!
@@ -982,7 +1261,7 @@ type ContractConnection {
 
 input ContractCreateInput {
   id: Int
-  application: ApplicationCreateOneWithoutContractInput!
+  application: ApplicationCreateManyWithoutContractInput
   created: DateTime!
   price: Float!
   updated: DateTime!
@@ -1042,7 +1321,7 @@ input ContractSubscriptionWhereInput {
 }
 
 input ContractUpdateInput {
-  application: ApplicationUpdateOneRequiredWithoutContractInput
+  application: ApplicationUpdateManyWithoutContractInput
   created: DateTime
   price: Float
   updated: DateTime
@@ -1081,7 +1360,9 @@ input ContractWhereInput {
   id_lte: Int
   id_gt: Int
   id_gte: Int
-  application: ApplicationWhereInput
+  application_every: ApplicationWhereInput
+  application_some: ApplicationWhereInput
+  application_none: ApplicationWhereInput
   created: DateTime
   created_not: DateTime
   created_in: [DateTime!]
@@ -1228,7 +1509,7 @@ type Feature {
   bathrooms: Int!
   bedrooms: Int!
   garages: Int!
-  property: Property!
+  property(where: PropertyWhereInput, orderBy: PropertyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Property!]
   rooms: Int!
   size: Int!
 }
@@ -1244,14 +1525,14 @@ input FeatureCreateInput {
   bathrooms: Int!
   bedrooms: Int!
   garages: Int!
-  property: PropertyCreateOneWithoutFeaturesInput!
+  property: PropertyCreateManyWithoutFeaturesInput
   rooms: Int!
   size: Int!
 }
 
-input FeatureCreateOneWithoutPropertyInput {
-  create: FeatureCreateWithoutPropertyInput
-  connect: FeatureWhereUniqueInput
+input FeatureCreateManyWithoutPropertyInput {
+  create: [FeatureCreateWithoutPropertyInput!]
+  connect: [FeatureWhereUniqueInput!]
 }
 
 input FeatureCreateWithoutPropertyInput {
@@ -1292,6 +1573,60 @@ type FeaturePreviousValues {
   size: Int!
 }
 
+input FeatureScalarWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  bathrooms: Int
+  bathrooms_not: Int
+  bathrooms_in: [Int!]
+  bathrooms_not_in: [Int!]
+  bathrooms_lt: Int
+  bathrooms_lte: Int
+  bathrooms_gt: Int
+  bathrooms_gte: Int
+  bedrooms: Int
+  bedrooms_not: Int
+  bedrooms_in: [Int!]
+  bedrooms_not_in: [Int!]
+  bedrooms_lt: Int
+  bedrooms_lte: Int
+  bedrooms_gt: Int
+  bedrooms_gte: Int
+  garages: Int
+  garages_not: Int
+  garages_in: [Int!]
+  garages_not_in: [Int!]
+  garages_lt: Int
+  garages_lte: Int
+  garages_gt: Int
+  garages_gte: Int
+  rooms: Int
+  rooms_not: Int
+  rooms_in: [Int!]
+  rooms_not_in: [Int!]
+  rooms_lt: Int
+  rooms_lte: Int
+  rooms_gt: Int
+  rooms_gte: Int
+  size: Int
+  size_not: Int
+  size_in: [Int!]
+  size_not_in: [Int!]
+  size_lt: Int
+  size_lte: Int
+  size_gt: Int
+  size_gte: Int
+  AND: [FeatureScalarWhereInput!]
+  OR: [FeatureScalarWhereInput!]
+  NOT: [FeatureScalarWhereInput!]
+}
+
 type FeatureSubscriptionPayload {
   mutation: MutationType!
   node: Feature
@@ -1314,7 +1649,15 @@ input FeatureUpdateInput {
   bathrooms: Int
   bedrooms: Int
   garages: Int
-  property: PropertyUpdateOneRequiredWithoutFeaturesInput
+  property: PropertyUpdateManyWithoutFeaturesInput
+  rooms: Int
+  size: Int
+}
+
+input FeatureUpdateManyDataInput {
+  bathrooms: Int
+  bedrooms: Int
+  garages: Int
   rooms: Int
   size: Int
 }
@@ -1327,11 +1670,21 @@ input FeatureUpdateManyMutationInput {
   size: Int
 }
 
-input FeatureUpdateOneRequiredWithoutPropertyInput {
-  create: FeatureCreateWithoutPropertyInput
-  update: FeatureUpdateWithoutPropertyDataInput
-  upsert: FeatureUpsertWithoutPropertyInput
-  connect: FeatureWhereUniqueInput
+input FeatureUpdateManyWithoutPropertyInput {
+  create: [FeatureCreateWithoutPropertyInput!]
+  delete: [FeatureWhereUniqueInput!]
+  connect: [FeatureWhereUniqueInput!]
+  set: [FeatureWhereUniqueInput!]
+  disconnect: [FeatureWhereUniqueInput!]
+  update: [FeatureUpdateWithWhereUniqueWithoutPropertyInput!]
+  upsert: [FeatureUpsertWithWhereUniqueWithoutPropertyInput!]
+  deleteMany: [FeatureScalarWhereInput!]
+  updateMany: [FeatureUpdateManyWithWhereNestedInput!]
+}
+
+input FeatureUpdateManyWithWhereNestedInput {
+  where: FeatureScalarWhereInput!
+  data: FeatureUpdateManyDataInput!
 }
 
 input FeatureUpdateWithoutPropertyDataInput {
@@ -1342,7 +1695,13 @@ input FeatureUpdateWithoutPropertyDataInput {
   size: Int
 }
 
-input FeatureUpsertWithoutPropertyInput {
+input FeatureUpdateWithWhereUniqueWithoutPropertyInput {
+  where: FeatureWhereUniqueInput!
+  data: FeatureUpdateWithoutPropertyDataInput!
+}
+
+input FeatureUpsertWithWhereUniqueWithoutPropertyInput {
+  where: FeatureWhereUniqueInput!
   update: FeatureUpdateWithoutPropertyDataInput!
   create: FeatureCreateWithoutPropertyInput!
 }
@@ -1380,7 +1739,9 @@ input FeatureWhereInput {
   garages_lte: Int
   garages_gt: Int
   garages_gte: Int
-  property: PropertyWhereInput
+  property_every: PropertyWhereInput
+  property_some: PropertyWhereInput
+  property_none: PropertyWhereInput
   rooms: Int
   rooms_not: Int
   rooms_in: [Int!]
@@ -1503,7 +1864,7 @@ type Guarantor {
   lastName: String!
   relation: String!
   salary: Float!
-  userRelated: Account!
+  userRelated(where: AccountWhereInput, orderBy: AccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Account!]
 }
 
 type GuarantorConnection {
@@ -1518,7 +1879,7 @@ input GuarantorCreateInput {
   lastName: String!
   relation: String!
   salary: Float!
-  userRelated: AccountCreateOneWithoutGuarantorInput!
+  userRelated: AccountCreateManyWithoutGuarantorInput
 }
 
 input GuarantorCreateManyWithoutUserRelatedInput {
@@ -1647,7 +2008,7 @@ input GuarantorUpdateInput {
   lastName: String
   relation: String
   salary: Float
-  userRelated: AccountUpdateOneRequiredWithoutGuarantorInput
+  userRelated: AccountUpdateManyWithoutGuarantorInput
 }
 
 input GuarantorUpdateManyDataInput {
@@ -1758,7 +2119,9 @@ input GuarantorWhereInput {
   salary_lte: Float
   salary_gt: Float
   salary_gte: Float
-  userRelated: AccountWhereInput
+  userRelated_every: AccountWhereInput
+  userRelated_some: AccountWhereInput
+  userRelated_none: AccountWhereInput
   AND: [GuarantorWhereInput!]
   OR: [GuarantorWhereInput!]
   NOT: [GuarantorWhereInput!]
@@ -1777,7 +2140,7 @@ type Media {
   created: DateTime!
   extension: String!
   filename: String!
-  property: Property
+  property(where: PropertyWhereInput, orderBy: PropertyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Property!]
   updated: DateTime!
   uri: String!
 }
@@ -1793,7 +2156,7 @@ input MediaCreateInput {
   created: DateTime!
   extension: String!
   filename: String!
-  property: PropertyCreateOneWithoutMediaInput
+  property: PropertyCreateManyWithoutMediaInput
   updated: DateTime!
   uri: String!
 }
@@ -1935,7 +2298,7 @@ input MediaUpdateInput {
   created: DateTime
   extension: String
   filename: String
-  property: PropertyUpdateOneWithoutMediaInput
+  property: PropertyUpdateManyWithoutMediaInput
   updated: DateTime
   uri: String
 }
@@ -2037,7 +2400,9 @@ input MediaWhereInput {
   filename_not_starts_with: String
   filename_ends_with: String
   filename_not_ends_with: String
-  property: PropertyWhereInput
+  property_every: PropertyWhereInput
+  property_some: PropertyWhereInput
+  property_none: PropertyWhereInput
   updated: DateTime
   updated_not: DateTime
   updated_in: [DateTime!]
@@ -2151,13 +2516,13 @@ type PageInfo {
 
 type Property {
   id: Int!
-  address: Address!
+  address(where: AddressWhereInput, orderBy: AddressOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Address!]
   application(where: ApplicationWhereInput, orderBy: ApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Application!]
   description: String!
-  features: Feature!
+  features(where: FeatureWhereInput, orderBy: FeatureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Feature!]
   media(where: MediaWhereInput, orderBy: MediaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Media!]
   title: String!
-  userRelated: Account
+  userRelated(where: AccountWhereInput, orderBy: AccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Account!]
 }
 
 type PropertyConnection {
@@ -2168,13 +2533,28 @@ type PropertyConnection {
 
 input PropertyCreateInput {
   id: Int
-  address: AddressCreateOneWithoutPropertyInput!
+  address: AddressCreateManyWithoutPropertyInput
   application: ApplicationCreateManyWithoutPropertyInput
   description: String!
-  features: FeatureCreateOneWithoutPropertyInput!
+  features: FeatureCreateManyWithoutPropertyInput
   media: MediaCreateManyWithoutPropertyInput
   title: String!
-  userRelated: AccountCreateOneWithoutPropertyInput
+  userRelated: AccountCreateManyWithoutPropertyInput
+}
+
+input PropertyCreateManyWithoutApplicationInput {
+  create: [PropertyCreateWithoutApplicationInput!]
+  connect: [PropertyWhereUniqueInput!]
+}
+
+input PropertyCreateManyWithoutFeaturesInput {
+  create: [PropertyCreateWithoutFeaturesInput!]
+  connect: [PropertyWhereUniqueInput!]
+}
+
+input PropertyCreateManyWithoutMediaInput {
+  create: [PropertyCreateWithoutMediaInput!]
+  connect: [PropertyWhereUniqueInput!]
 }
 
 input PropertyCreateManyWithoutUserRelatedInput {
@@ -2187,67 +2567,52 @@ input PropertyCreateOneWithoutAddressInput {
   connect: PropertyWhereUniqueInput
 }
 
-input PropertyCreateOneWithoutApplicationInput {
-  create: PropertyCreateWithoutApplicationInput
-  connect: PropertyWhereUniqueInput
-}
-
-input PropertyCreateOneWithoutFeaturesInput {
-  create: PropertyCreateWithoutFeaturesInput
-  connect: PropertyWhereUniqueInput
-}
-
-input PropertyCreateOneWithoutMediaInput {
-  create: PropertyCreateWithoutMediaInput
-  connect: PropertyWhereUniqueInput
-}
-
 input PropertyCreateWithoutAddressInput {
   id: Int
   application: ApplicationCreateManyWithoutPropertyInput
   description: String!
-  features: FeatureCreateOneWithoutPropertyInput!
+  features: FeatureCreateManyWithoutPropertyInput
   media: MediaCreateManyWithoutPropertyInput
   title: String!
-  userRelated: AccountCreateOneWithoutPropertyInput
+  userRelated: AccountCreateManyWithoutPropertyInput
 }
 
 input PropertyCreateWithoutApplicationInput {
   id: Int
-  address: AddressCreateOneWithoutPropertyInput!
+  address: AddressCreateManyWithoutPropertyInput
   description: String!
-  features: FeatureCreateOneWithoutPropertyInput!
+  features: FeatureCreateManyWithoutPropertyInput
   media: MediaCreateManyWithoutPropertyInput
   title: String!
-  userRelated: AccountCreateOneWithoutPropertyInput
+  userRelated: AccountCreateManyWithoutPropertyInput
 }
 
 input PropertyCreateWithoutFeaturesInput {
   id: Int
-  address: AddressCreateOneWithoutPropertyInput!
+  address: AddressCreateManyWithoutPropertyInput
   application: ApplicationCreateManyWithoutPropertyInput
   description: String!
   media: MediaCreateManyWithoutPropertyInput
   title: String!
-  userRelated: AccountCreateOneWithoutPropertyInput
+  userRelated: AccountCreateManyWithoutPropertyInput
 }
 
 input PropertyCreateWithoutMediaInput {
   id: Int
-  address: AddressCreateOneWithoutPropertyInput!
+  address: AddressCreateManyWithoutPropertyInput
   application: ApplicationCreateManyWithoutPropertyInput
   description: String!
-  features: FeatureCreateOneWithoutPropertyInput!
+  features: FeatureCreateManyWithoutPropertyInput
   title: String!
-  userRelated: AccountCreateOneWithoutPropertyInput
+  userRelated: AccountCreateManyWithoutPropertyInput
 }
 
 input PropertyCreateWithoutUserRelatedInput {
   id: Int
-  address: AddressCreateOneWithoutPropertyInput!
+  address: AddressCreateManyWithoutPropertyInput
   application: ApplicationCreateManyWithoutPropertyInput
   description: String!
-  features: FeatureCreateOneWithoutPropertyInput!
+  features: FeatureCreateManyWithoutPropertyInput
   media: MediaCreateManyWithoutPropertyInput
   title: String!
 }
@@ -2333,13 +2698,13 @@ input PropertySubscriptionWhereInput {
 }
 
 input PropertyUpdateInput {
-  address: AddressUpdateOneRequiredWithoutPropertyInput
+  address: AddressUpdateManyWithoutPropertyInput
   application: ApplicationUpdateManyWithoutPropertyInput
   description: String
-  features: FeatureUpdateOneRequiredWithoutPropertyInput
+  features: FeatureUpdateManyWithoutPropertyInput
   media: MediaUpdateManyWithoutPropertyInput
   title: String
-  userRelated: AccountUpdateOneWithoutPropertyInput
+  userRelated: AccountUpdateManyWithoutPropertyInput
 }
 
 input PropertyUpdateManyDataInput {
@@ -2350,6 +2715,42 @@ input PropertyUpdateManyDataInput {
 input PropertyUpdateManyMutationInput {
   description: String
   title: String
+}
+
+input PropertyUpdateManyWithoutApplicationInput {
+  create: [PropertyCreateWithoutApplicationInput!]
+  delete: [PropertyWhereUniqueInput!]
+  connect: [PropertyWhereUniqueInput!]
+  set: [PropertyWhereUniqueInput!]
+  disconnect: [PropertyWhereUniqueInput!]
+  update: [PropertyUpdateWithWhereUniqueWithoutApplicationInput!]
+  upsert: [PropertyUpsertWithWhereUniqueWithoutApplicationInput!]
+  deleteMany: [PropertyScalarWhereInput!]
+  updateMany: [PropertyUpdateManyWithWhereNestedInput!]
+}
+
+input PropertyUpdateManyWithoutFeaturesInput {
+  create: [PropertyCreateWithoutFeaturesInput!]
+  delete: [PropertyWhereUniqueInput!]
+  connect: [PropertyWhereUniqueInput!]
+  set: [PropertyWhereUniqueInput!]
+  disconnect: [PropertyWhereUniqueInput!]
+  update: [PropertyUpdateWithWhereUniqueWithoutFeaturesInput!]
+  upsert: [PropertyUpsertWithWhereUniqueWithoutFeaturesInput!]
+  deleteMany: [PropertyScalarWhereInput!]
+  updateMany: [PropertyUpdateManyWithWhereNestedInput!]
+}
+
+input PropertyUpdateManyWithoutMediaInput {
+  create: [PropertyCreateWithoutMediaInput!]
+  delete: [PropertyWhereUniqueInput!]
+  connect: [PropertyWhereUniqueInput!]
+  set: [PropertyWhereUniqueInput!]
+  disconnect: [PropertyWhereUniqueInput!]
+  update: [PropertyUpdateWithWhereUniqueWithoutMediaInput!]
+  upsert: [PropertyUpsertWithWhereUniqueWithoutMediaInput!]
+  deleteMany: [PropertyScalarWhereInput!]
+  updateMany: [PropertyUpdateManyWithWhereNestedInput!]
 }
 
 input PropertyUpdateManyWithoutUserRelatedInput {
@@ -2376,72 +2777,64 @@ input PropertyUpdateOneRequiredWithoutAddressInput {
   connect: PropertyWhereUniqueInput
 }
 
-input PropertyUpdateOneRequiredWithoutApplicationInput {
-  create: PropertyCreateWithoutApplicationInput
-  update: PropertyUpdateWithoutApplicationDataInput
-  upsert: PropertyUpsertWithoutApplicationInput
-  connect: PropertyWhereUniqueInput
-}
-
-input PropertyUpdateOneRequiredWithoutFeaturesInput {
-  create: PropertyCreateWithoutFeaturesInput
-  update: PropertyUpdateWithoutFeaturesDataInput
-  upsert: PropertyUpsertWithoutFeaturesInput
-  connect: PropertyWhereUniqueInput
-}
-
-input PropertyUpdateOneWithoutMediaInput {
-  create: PropertyCreateWithoutMediaInput
-  update: PropertyUpdateWithoutMediaDataInput
-  upsert: PropertyUpsertWithoutMediaInput
-  delete: Boolean
-  disconnect: Boolean
-  connect: PropertyWhereUniqueInput
-}
-
 input PropertyUpdateWithoutAddressDataInput {
   application: ApplicationUpdateManyWithoutPropertyInput
   description: String
-  features: FeatureUpdateOneRequiredWithoutPropertyInput
+  features: FeatureUpdateManyWithoutPropertyInput
   media: MediaUpdateManyWithoutPropertyInput
   title: String
-  userRelated: AccountUpdateOneWithoutPropertyInput
+  userRelated: AccountUpdateManyWithoutPropertyInput
 }
 
 input PropertyUpdateWithoutApplicationDataInput {
-  address: AddressUpdateOneRequiredWithoutPropertyInput
+  address: AddressUpdateManyWithoutPropertyInput
   description: String
-  features: FeatureUpdateOneRequiredWithoutPropertyInput
+  features: FeatureUpdateManyWithoutPropertyInput
   media: MediaUpdateManyWithoutPropertyInput
   title: String
-  userRelated: AccountUpdateOneWithoutPropertyInput
+  userRelated: AccountUpdateManyWithoutPropertyInput
 }
 
 input PropertyUpdateWithoutFeaturesDataInput {
-  address: AddressUpdateOneRequiredWithoutPropertyInput
+  address: AddressUpdateManyWithoutPropertyInput
   application: ApplicationUpdateManyWithoutPropertyInput
   description: String
   media: MediaUpdateManyWithoutPropertyInput
   title: String
-  userRelated: AccountUpdateOneWithoutPropertyInput
+  userRelated: AccountUpdateManyWithoutPropertyInput
 }
 
 input PropertyUpdateWithoutMediaDataInput {
-  address: AddressUpdateOneRequiredWithoutPropertyInput
+  address: AddressUpdateManyWithoutPropertyInput
   application: ApplicationUpdateManyWithoutPropertyInput
   description: String
-  features: FeatureUpdateOneRequiredWithoutPropertyInput
+  features: FeatureUpdateManyWithoutPropertyInput
   title: String
-  userRelated: AccountUpdateOneWithoutPropertyInput
+  userRelated: AccountUpdateManyWithoutPropertyInput
 }
 
 input PropertyUpdateWithoutUserRelatedDataInput {
-  address: AddressUpdateOneRequiredWithoutPropertyInput
+  address: AddressUpdateManyWithoutPropertyInput
   application: ApplicationUpdateManyWithoutPropertyInput
   description: String
-  features: FeatureUpdateOneRequiredWithoutPropertyInput
+  features: FeatureUpdateManyWithoutPropertyInput
   media: MediaUpdateManyWithoutPropertyInput
   title: String
+}
+
+input PropertyUpdateWithWhereUniqueWithoutApplicationInput {
+  where: PropertyWhereUniqueInput!
+  data: PropertyUpdateWithoutApplicationDataInput!
+}
+
+input PropertyUpdateWithWhereUniqueWithoutFeaturesInput {
+  where: PropertyWhereUniqueInput!
+  data: PropertyUpdateWithoutFeaturesDataInput!
+}
+
+input PropertyUpdateWithWhereUniqueWithoutMediaInput {
+  where: PropertyWhereUniqueInput!
+  data: PropertyUpdateWithoutMediaDataInput!
 }
 
 input PropertyUpdateWithWhereUniqueWithoutUserRelatedInput {
@@ -2454,17 +2847,20 @@ input PropertyUpsertWithoutAddressInput {
   create: PropertyCreateWithoutAddressInput!
 }
 
-input PropertyUpsertWithoutApplicationInput {
+input PropertyUpsertWithWhereUniqueWithoutApplicationInput {
+  where: PropertyWhereUniqueInput!
   update: PropertyUpdateWithoutApplicationDataInput!
   create: PropertyCreateWithoutApplicationInput!
 }
 
-input PropertyUpsertWithoutFeaturesInput {
+input PropertyUpsertWithWhereUniqueWithoutFeaturesInput {
+  where: PropertyWhereUniqueInput!
   update: PropertyUpdateWithoutFeaturesDataInput!
   create: PropertyCreateWithoutFeaturesInput!
 }
 
-input PropertyUpsertWithoutMediaInput {
+input PropertyUpsertWithWhereUniqueWithoutMediaInput {
+  where: PropertyWhereUniqueInput!
   update: PropertyUpdateWithoutMediaDataInput!
   create: PropertyCreateWithoutMediaInput!
 }
@@ -2484,7 +2880,9 @@ input PropertyWhereInput {
   id_lte: Int
   id_gt: Int
   id_gte: Int
-  address: AddressWhereInput
+  address_every: AddressWhereInput
+  address_some: AddressWhereInput
+  address_none: AddressWhereInput
   application_every: ApplicationWhereInput
   application_some: ApplicationWhereInput
   application_none: ApplicationWhereInput
@@ -2502,7 +2900,9 @@ input PropertyWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
-  features: FeatureWhereInput
+  features_every: FeatureWhereInput
+  features_some: FeatureWhereInput
+  features_none: FeatureWhereInput
   media_every: MediaWhereInput
   media_some: MediaWhereInput
   media_none: MediaWhereInput
@@ -2520,7 +2920,9 @@ input PropertyWhereInput {
   title_not_starts_with: String
   title_ends_with: String
   title_not_ends_with: String
-  userRelated: AccountWhereInput
+  userRelated_every: AccountWhereInput
+  userRelated_some: AccountWhereInput
+  userRelated_none: AccountWhereInput
   AND: [PropertyWhereInput!]
   OR: [PropertyWhereInput!]
   NOT: [PropertyWhereInput!]
