@@ -3,35 +3,2133 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregatePost {
+/* GraphQL */ `type Account {
+  id: Int!
+  application(where: ApplicationWhereInput, orderBy: ApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Application!]
+  birthdate: DateTime
+  created: DateTime!
+  email: String!
+  firstname: String
+  guarantor(where: GuarantorWhereInput, orderBy: GuarantorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Guarantor!]
+  isActive: Boolean!
+  lastname: String
+  password: String!
+  property(where: PropertyWhereInput, orderBy: PropertyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Property!]
+  roles: Json!
+  salary: Float
+  updated: DateTime!
+}
+
+type AccountConnection {
+  pageInfo: PageInfo!
+  edges: [AccountEdge]!
+  aggregate: AggregateAccount!
+}
+
+input AccountCreateInput {
+  id: Int
+  application: ApplicationCreateManyWithoutBuyerInput
+  birthdate: DateTime
+  created: DateTime!
+  email: String!
+  firstname: String
+  guarantor: GuarantorCreateManyWithoutUserRelatedInput
+  isActive: Boolean!
+  lastname: String
+  password: String!
+  property: PropertyCreateManyWithoutUserRelatedInput
+  roles: Json!
+  salary: Float
+  updated: DateTime!
+}
+
+input AccountCreateOneWithoutApplicationInput {
+  create: AccountCreateWithoutApplicationInput
+  connect: AccountWhereUniqueInput
+}
+
+input AccountCreateOneWithoutGuarantorInput {
+  create: AccountCreateWithoutGuarantorInput
+  connect: AccountWhereUniqueInput
+}
+
+input AccountCreateOneWithoutPropertyInput {
+  create: AccountCreateWithoutPropertyInput
+  connect: AccountWhereUniqueInput
+}
+
+input AccountCreateWithoutApplicationInput {
+  id: Int
+  birthdate: DateTime
+  created: DateTime!
+  email: String!
+  firstname: String
+  guarantor: GuarantorCreateManyWithoutUserRelatedInput
+  isActive: Boolean!
+  lastname: String
+  password: String!
+  property: PropertyCreateManyWithoutUserRelatedInput
+  roles: Json!
+  salary: Float
+  updated: DateTime!
+}
+
+input AccountCreateWithoutGuarantorInput {
+  id: Int
+  application: ApplicationCreateManyWithoutBuyerInput
+  birthdate: DateTime
+  created: DateTime!
+  email: String!
+  firstname: String
+  isActive: Boolean!
+  lastname: String
+  password: String!
+  property: PropertyCreateManyWithoutUserRelatedInput
+  roles: Json!
+  salary: Float
+  updated: DateTime!
+}
+
+input AccountCreateWithoutPropertyInput {
+  id: Int
+  application: ApplicationCreateManyWithoutBuyerInput
+  birthdate: DateTime
+  created: DateTime!
+  email: String!
+  firstname: String
+  guarantor: GuarantorCreateManyWithoutUserRelatedInput
+  isActive: Boolean!
+  lastname: String
+  password: String!
+  roles: Json!
+  salary: Float
+  updated: DateTime!
+}
+
+type AccountEdge {
+  node: Account!
+  cursor: String!
+}
+
+enum AccountOrderByInput {
+  id_ASC
+  id_DESC
+  birthdate_ASC
+  birthdate_DESC
+  created_ASC
+  created_DESC
+  email_ASC
+  email_DESC
+  firstname_ASC
+  firstname_DESC
+  isActive_ASC
+  isActive_DESC
+  lastname_ASC
+  lastname_DESC
+  password_ASC
+  password_DESC
+  roles_ASC
+  roles_DESC
+  salary_ASC
+  salary_DESC
+  updated_ASC
+  updated_DESC
+}
+
+type AccountPreviousValues {
+  id: Int!
+  birthdate: DateTime
+  created: DateTime!
+  email: String!
+  firstname: String
+  isActive: Boolean!
+  lastname: String
+  password: String!
+  roles: Json!
+  salary: Float
+  updated: DateTime!
+}
+
+type AccountSubscriptionPayload {
+  mutation: MutationType!
+  node: Account
+  updatedFields: [String!]
+  previousValues: AccountPreviousValues
+}
+
+input AccountSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: AccountWhereInput
+  AND: [AccountSubscriptionWhereInput!]
+  OR: [AccountSubscriptionWhereInput!]
+  NOT: [AccountSubscriptionWhereInput!]
+}
+
+input AccountUpdateInput {
+  application: ApplicationUpdateManyWithoutBuyerInput
+  birthdate: DateTime
+  created: DateTime
+  email: String
+  firstname: String
+  guarantor: GuarantorUpdateManyWithoutUserRelatedInput
+  isActive: Boolean
+  lastname: String
+  password: String
+  property: PropertyUpdateManyWithoutUserRelatedInput
+  roles: Json
+  salary: Float
+  updated: DateTime
+}
+
+input AccountUpdateManyMutationInput {
+  birthdate: DateTime
+  created: DateTime
+  email: String
+  firstname: String
+  isActive: Boolean
+  lastname: String
+  password: String
+  roles: Json
+  salary: Float
+  updated: DateTime
+}
+
+input AccountUpdateOneRequiredWithoutApplicationInput {
+  create: AccountCreateWithoutApplicationInput
+  update: AccountUpdateWithoutApplicationDataInput
+  upsert: AccountUpsertWithoutApplicationInput
+  connect: AccountWhereUniqueInput
+}
+
+input AccountUpdateOneRequiredWithoutGuarantorInput {
+  create: AccountCreateWithoutGuarantorInput
+  update: AccountUpdateWithoutGuarantorDataInput
+  upsert: AccountUpsertWithoutGuarantorInput
+  connect: AccountWhereUniqueInput
+}
+
+input AccountUpdateOneWithoutPropertyInput {
+  create: AccountCreateWithoutPropertyInput
+  update: AccountUpdateWithoutPropertyDataInput
+  upsert: AccountUpsertWithoutPropertyInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: AccountWhereUniqueInput
+}
+
+input AccountUpdateWithoutApplicationDataInput {
+  birthdate: DateTime
+  created: DateTime
+  email: String
+  firstname: String
+  guarantor: GuarantorUpdateManyWithoutUserRelatedInput
+  isActive: Boolean
+  lastname: String
+  password: String
+  property: PropertyUpdateManyWithoutUserRelatedInput
+  roles: Json
+  salary: Float
+  updated: DateTime
+}
+
+input AccountUpdateWithoutGuarantorDataInput {
+  application: ApplicationUpdateManyWithoutBuyerInput
+  birthdate: DateTime
+  created: DateTime
+  email: String
+  firstname: String
+  isActive: Boolean
+  lastname: String
+  password: String
+  property: PropertyUpdateManyWithoutUserRelatedInput
+  roles: Json
+  salary: Float
+  updated: DateTime
+}
+
+input AccountUpdateWithoutPropertyDataInput {
+  application: ApplicationUpdateManyWithoutBuyerInput
+  birthdate: DateTime
+  created: DateTime
+  email: String
+  firstname: String
+  guarantor: GuarantorUpdateManyWithoutUserRelatedInput
+  isActive: Boolean
+  lastname: String
+  password: String
+  roles: Json
+  salary: Float
+  updated: DateTime
+}
+
+input AccountUpsertWithoutApplicationInput {
+  update: AccountUpdateWithoutApplicationDataInput!
+  create: AccountCreateWithoutApplicationInput!
+}
+
+input AccountUpsertWithoutGuarantorInput {
+  update: AccountUpdateWithoutGuarantorDataInput!
+  create: AccountCreateWithoutGuarantorInput!
+}
+
+input AccountUpsertWithoutPropertyInput {
+  update: AccountUpdateWithoutPropertyDataInput!
+  create: AccountCreateWithoutPropertyInput!
+}
+
+input AccountWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  application_every: ApplicationWhereInput
+  application_some: ApplicationWhereInput
+  application_none: ApplicationWhereInput
+  birthdate: DateTime
+  birthdate_not: DateTime
+  birthdate_in: [DateTime!]
+  birthdate_not_in: [DateTime!]
+  birthdate_lt: DateTime
+  birthdate_lte: DateTime
+  birthdate_gt: DateTime
+  birthdate_gte: DateTime
+  created: DateTime
+  created_not: DateTime
+  created_in: [DateTime!]
+  created_not_in: [DateTime!]
+  created_lt: DateTime
+  created_lte: DateTime
+  created_gt: DateTime
+  created_gte: DateTime
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  firstname: String
+  firstname_not: String
+  firstname_in: [String!]
+  firstname_not_in: [String!]
+  firstname_lt: String
+  firstname_lte: String
+  firstname_gt: String
+  firstname_gte: String
+  firstname_contains: String
+  firstname_not_contains: String
+  firstname_starts_with: String
+  firstname_not_starts_with: String
+  firstname_ends_with: String
+  firstname_not_ends_with: String
+  guarantor_every: GuarantorWhereInput
+  guarantor_some: GuarantorWhereInput
+  guarantor_none: GuarantorWhereInput
+  isActive: Boolean
+  isActive_not: Boolean
+  lastname: String
+  lastname_not: String
+  lastname_in: [String!]
+  lastname_not_in: [String!]
+  lastname_lt: String
+  lastname_lte: String
+  lastname_gt: String
+  lastname_gte: String
+  lastname_contains: String
+  lastname_not_contains: String
+  lastname_starts_with: String
+  lastname_not_starts_with: String
+  lastname_ends_with: String
+  lastname_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  property_every: PropertyWhereInput
+  property_some: PropertyWhereInput
+  property_none: PropertyWhereInput
+  salary: Float
+  salary_not: Float
+  salary_in: [Float!]
+  salary_not_in: [Float!]
+  salary_lt: Float
+  salary_lte: Float
+  salary_gt: Float
+  salary_gte: Float
+  updated: DateTime
+  updated_not: DateTime
+  updated_in: [DateTime!]
+  updated_not_in: [DateTime!]
+  updated_lt: DateTime
+  updated_lte: DateTime
+  updated_gt: DateTime
+  updated_gte: DateTime
+  AND: [AccountWhereInput!]
+  OR: [AccountWhereInput!]
+  NOT: [AccountWhereInput!]
+}
+
+input AccountWhereUniqueInput {
+  id: Int
+  email: String
+}
+
+type Address {
+  id: Int!
+  city: String!
+  country: String!
+  floor: Int
+  property: Property!
+  room: Int
+  street: String!
+  zipcode: String!
+}
+
+type AddressConnection {
+  pageInfo: PageInfo!
+  edges: [AddressEdge]!
+  aggregate: AggregateAddress!
+}
+
+input AddressCreateInput {
+  id: Int
+  city: String!
+  country: String!
+  floor: Int
+  property: PropertyCreateOneWithoutAddressInput!
+  room: Int
+  street: String!
+  zipcode: String!
+}
+
+input AddressCreateOneWithoutPropertyInput {
+  create: AddressCreateWithoutPropertyInput
+  connect: AddressWhereUniqueInput
+}
+
+input AddressCreateWithoutPropertyInput {
+  id: Int
+  city: String!
+  country: String!
+  floor: Int
+  room: Int
+  street: String!
+  zipcode: String!
+}
+
+type AddressEdge {
+  node: Address!
+  cursor: String!
+}
+
+enum AddressOrderByInput {
+  id_ASC
+  id_DESC
+  city_ASC
+  city_DESC
+  country_ASC
+  country_DESC
+  floor_ASC
+  floor_DESC
+  room_ASC
+  room_DESC
+  street_ASC
+  street_DESC
+  zipcode_ASC
+  zipcode_DESC
+}
+
+type AddressPreviousValues {
+  id: Int!
+  city: String!
+  country: String!
+  floor: Int
+  room: Int
+  street: String!
+  zipcode: String!
+}
+
+type AddressSubscriptionPayload {
+  mutation: MutationType!
+  node: Address
+  updatedFields: [String!]
+  previousValues: AddressPreviousValues
+}
+
+input AddressSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: AddressWhereInput
+  AND: [AddressSubscriptionWhereInput!]
+  OR: [AddressSubscriptionWhereInput!]
+  NOT: [AddressSubscriptionWhereInput!]
+}
+
+input AddressUpdateInput {
+  city: String
+  country: String
+  floor: Int
+  property: PropertyUpdateOneRequiredWithoutAddressInput
+  room: Int
+  street: String
+  zipcode: String
+}
+
+input AddressUpdateManyMutationInput {
+  city: String
+  country: String
+  floor: Int
+  room: Int
+  street: String
+  zipcode: String
+}
+
+input AddressUpdateOneRequiredWithoutPropertyInput {
+  create: AddressCreateWithoutPropertyInput
+  update: AddressUpdateWithoutPropertyDataInput
+  upsert: AddressUpsertWithoutPropertyInput
+  connect: AddressWhereUniqueInput
+}
+
+input AddressUpdateWithoutPropertyDataInput {
+  city: String
+  country: String
+  floor: Int
+  room: Int
+  street: String
+  zipcode: String
+}
+
+input AddressUpsertWithoutPropertyInput {
+  update: AddressUpdateWithoutPropertyDataInput!
+  create: AddressCreateWithoutPropertyInput!
+}
+
+input AddressWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  city: String
+  city_not: String
+  city_in: [String!]
+  city_not_in: [String!]
+  city_lt: String
+  city_lte: String
+  city_gt: String
+  city_gte: String
+  city_contains: String
+  city_not_contains: String
+  city_starts_with: String
+  city_not_starts_with: String
+  city_ends_with: String
+  city_not_ends_with: String
+  country: String
+  country_not: String
+  country_in: [String!]
+  country_not_in: [String!]
+  country_lt: String
+  country_lte: String
+  country_gt: String
+  country_gte: String
+  country_contains: String
+  country_not_contains: String
+  country_starts_with: String
+  country_not_starts_with: String
+  country_ends_with: String
+  country_not_ends_with: String
+  floor: Int
+  floor_not: Int
+  floor_in: [Int!]
+  floor_not_in: [Int!]
+  floor_lt: Int
+  floor_lte: Int
+  floor_gt: Int
+  floor_gte: Int
+  property: PropertyWhereInput
+  room: Int
+  room_not: Int
+  room_in: [Int!]
+  room_not_in: [Int!]
+  room_lt: Int
+  room_lte: Int
+  room_gt: Int
+  room_gte: Int
+  street: String
+  street_not: String
+  street_in: [String!]
+  street_not_in: [String!]
+  street_lt: String
+  street_lte: String
+  street_gt: String
+  street_gte: String
+  street_contains: String
+  street_not_contains: String
+  street_starts_with: String
+  street_not_starts_with: String
+  street_ends_with: String
+  street_not_ends_with: String
+  zipcode: String
+  zipcode_not: String
+  zipcode_in: [String!]
+  zipcode_not_in: [String!]
+  zipcode_lt: String
+  zipcode_lte: String
+  zipcode_gt: String
+  zipcode_gte: String
+  zipcode_contains: String
+  zipcode_not_contains: String
+  zipcode_starts_with: String
+  zipcode_not_starts_with: String
+  zipcode_ends_with: String
+  zipcode_not_ends_with: String
+  AND: [AddressWhereInput!]
+  OR: [AddressWhereInput!]
+  NOT: [AddressWhereInput!]
+}
+
+input AddressWhereUniqueInput {
+  id: Int
+}
+
+type AggregateAccount {
   count: Int!
 }
 
-type AggregateUser {
+type AggregateAddress {
   count: Int!
+}
+
+type AggregateApplication {
+  count: Int!
+}
+
+type AggregateContract {
+  count: Int!
+}
+
+type AggregateDoctrineMigrationVersion {
+  count: Int!
+}
+
+type AggregateFeature {
+  count: Int!
+}
+
+type AggregateGreeting {
+  count: Int!
+}
+
+type AggregateGuarantor {
+  count: Int!
+}
+
+type AggregateMedia {
+  count: Int!
+}
+
+type AggregateProperty {
+  count: Int!
+}
+
+type Application {
+  id: Int!
+  buyer: Account!
+  contract: Contract!
+  created: DateTime!
+  offer: Float!
+  property: Property!
+  updated: DateTime!
+}
+
+type ApplicationConnection {
+  pageInfo: PageInfo!
+  edges: [ApplicationEdge]!
+  aggregate: AggregateApplication!
+}
+
+input ApplicationCreateInput {
+  id: Int
+  buyer: AccountCreateOneWithoutApplicationInput!
+  contract: ContractCreateOneWithoutApplicationInput!
+  created: DateTime!
+  offer: Float!
+  property: PropertyCreateOneWithoutApplicationInput!
+  updated: DateTime!
+}
+
+input ApplicationCreateManyWithoutBuyerInput {
+  create: [ApplicationCreateWithoutBuyerInput!]
+  connect: [ApplicationWhereUniqueInput!]
+}
+
+input ApplicationCreateManyWithoutPropertyInput {
+  create: [ApplicationCreateWithoutPropertyInput!]
+  connect: [ApplicationWhereUniqueInput!]
+}
+
+input ApplicationCreateOneWithoutContractInput {
+  create: ApplicationCreateWithoutContractInput
+  connect: ApplicationWhereUniqueInput
+}
+
+input ApplicationCreateWithoutBuyerInput {
+  id: Int
+  contract: ContractCreateOneWithoutApplicationInput!
+  created: DateTime!
+  offer: Float!
+  property: PropertyCreateOneWithoutApplicationInput!
+  updated: DateTime!
+}
+
+input ApplicationCreateWithoutContractInput {
+  id: Int
+  buyer: AccountCreateOneWithoutApplicationInput!
+  created: DateTime!
+  offer: Float!
+  property: PropertyCreateOneWithoutApplicationInput!
+  updated: DateTime!
+}
+
+input ApplicationCreateWithoutPropertyInput {
+  id: Int
+  buyer: AccountCreateOneWithoutApplicationInput!
+  contract: ContractCreateOneWithoutApplicationInput!
+  created: DateTime!
+  offer: Float!
+  updated: DateTime!
+}
+
+type ApplicationEdge {
+  node: Application!
+  cursor: String!
+}
+
+enum ApplicationOrderByInput {
+  id_ASC
+  id_DESC
+  created_ASC
+  created_DESC
+  offer_ASC
+  offer_DESC
+  updated_ASC
+  updated_DESC
+}
+
+type ApplicationPreviousValues {
+  id: Int!
+  created: DateTime!
+  offer: Float!
+  updated: DateTime!
+}
+
+input ApplicationScalarWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  created: DateTime
+  created_not: DateTime
+  created_in: [DateTime!]
+  created_not_in: [DateTime!]
+  created_lt: DateTime
+  created_lte: DateTime
+  created_gt: DateTime
+  created_gte: DateTime
+  offer: Float
+  offer_not: Float
+  offer_in: [Float!]
+  offer_not_in: [Float!]
+  offer_lt: Float
+  offer_lte: Float
+  offer_gt: Float
+  offer_gte: Float
+  updated: DateTime
+  updated_not: DateTime
+  updated_in: [DateTime!]
+  updated_not_in: [DateTime!]
+  updated_lt: DateTime
+  updated_lte: DateTime
+  updated_gt: DateTime
+  updated_gte: DateTime
+  AND: [ApplicationScalarWhereInput!]
+  OR: [ApplicationScalarWhereInput!]
+  NOT: [ApplicationScalarWhereInput!]
+}
+
+type ApplicationSubscriptionPayload {
+  mutation: MutationType!
+  node: Application
+  updatedFields: [String!]
+  previousValues: ApplicationPreviousValues
+}
+
+input ApplicationSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ApplicationWhereInput
+  AND: [ApplicationSubscriptionWhereInput!]
+  OR: [ApplicationSubscriptionWhereInput!]
+  NOT: [ApplicationSubscriptionWhereInput!]
+}
+
+input ApplicationUpdateInput {
+  buyer: AccountUpdateOneRequiredWithoutApplicationInput
+  contract: ContractUpdateOneRequiredWithoutApplicationInput
+  created: DateTime
+  offer: Float
+  property: PropertyUpdateOneRequiredWithoutApplicationInput
+  updated: DateTime
+}
+
+input ApplicationUpdateManyDataInput {
+  created: DateTime
+  offer: Float
+  updated: DateTime
+}
+
+input ApplicationUpdateManyMutationInput {
+  created: DateTime
+  offer: Float
+  updated: DateTime
+}
+
+input ApplicationUpdateManyWithoutBuyerInput {
+  create: [ApplicationCreateWithoutBuyerInput!]
+  delete: [ApplicationWhereUniqueInput!]
+  connect: [ApplicationWhereUniqueInput!]
+  set: [ApplicationWhereUniqueInput!]
+  disconnect: [ApplicationWhereUniqueInput!]
+  update: [ApplicationUpdateWithWhereUniqueWithoutBuyerInput!]
+  upsert: [ApplicationUpsertWithWhereUniqueWithoutBuyerInput!]
+  deleteMany: [ApplicationScalarWhereInput!]
+  updateMany: [ApplicationUpdateManyWithWhereNestedInput!]
+}
+
+input ApplicationUpdateManyWithoutPropertyInput {
+  create: [ApplicationCreateWithoutPropertyInput!]
+  delete: [ApplicationWhereUniqueInput!]
+  connect: [ApplicationWhereUniqueInput!]
+  set: [ApplicationWhereUniqueInput!]
+  disconnect: [ApplicationWhereUniqueInput!]
+  update: [ApplicationUpdateWithWhereUniqueWithoutPropertyInput!]
+  upsert: [ApplicationUpsertWithWhereUniqueWithoutPropertyInput!]
+  deleteMany: [ApplicationScalarWhereInput!]
+  updateMany: [ApplicationUpdateManyWithWhereNestedInput!]
+}
+
+input ApplicationUpdateManyWithWhereNestedInput {
+  where: ApplicationScalarWhereInput!
+  data: ApplicationUpdateManyDataInput!
+}
+
+input ApplicationUpdateOneRequiredWithoutContractInput {
+  create: ApplicationCreateWithoutContractInput
+  update: ApplicationUpdateWithoutContractDataInput
+  upsert: ApplicationUpsertWithoutContractInput
+  connect: ApplicationWhereUniqueInput
+}
+
+input ApplicationUpdateWithoutBuyerDataInput {
+  contract: ContractUpdateOneRequiredWithoutApplicationInput
+  created: DateTime
+  offer: Float
+  property: PropertyUpdateOneRequiredWithoutApplicationInput
+  updated: DateTime
+}
+
+input ApplicationUpdateWithoutContractDataInput {
+  buyer: AccountUpdateOneRequiredWithoutApplicationInput
+  created: DateTime
+  offer: Float
+  property: PropertyUpdateOneRequiredWithoutApplicationInput
+  updated: DateTime
+}
+
+input ApplicationUpdateWithoutPropertyDataInput {
+  buyer: AccountUpdateOneRequiredWithoutApplicationInput
+  contract: ContractUpdateOneRequiredWithoutApplicationInput
+  created: DateTime
+  offer: Float
+  updated: DateTime
+}
+
+input ApplicationUpdateWithWhereUniqueWithoutBuyerInput {
+  where: ApplicationWhereUniqueInput!
+  data: ApplicationUpdateWithoutBuyerDataInput!
+}
+
+input ApplicationUpdateWithWhereUniqueWithoutPropertyInput {
+  where: ApplicationWhereUniqueInput!
+  data: ApplicationUpdateWithoutPropertyDataInput!
+}
+
+input ApplicationUpsertWithoutContractInput {
+  update: ApplicationUpdateWithoutContractDataInput!
+  create: ApplicationCreateWithoutContractInput!
+}
+
+input ApplicationUpsertWithWhereUniqueWithoutBuyerInput {
+  where: ApplicationWhereUniqueInput!
+  update: ApplicationUpdateWithoutBuyerDataInput!
+  create: ApplicationCreateWithoutBuyerInput!
+}
+
+input ApplicationUpsertWithWhereUniqueWithoutPropertyInput {
+  where: ApplicationWhereUniqueInput!
+  update: ApplicationUpdateWithoutPropertyDataInput!
+  create: ApplicationCreateWithoutPropertyInput!
+}
+
+input ApplicationWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  buyer: AccountWhereInput
+  contract: ContractWhereInput
+  created: DateTime
+  created_not: DateTime
+  created_in: [DateTime!]
+  created_not_in: [DateTime!]
+  created_lt: DateTime
+  created_lte: DateTime
+  created_gt: DateTime
+  created_gte: DateTime
+  offer: Float
+  offer_not: Float
+  offer_in: [Float!]
+  offer_not_in: [Float!]
+  offer_lt: Float
+  offer_lte: Float
+  offer_gt: Float
+  offer_gte: Float
+  property: PropertyWhereInput
+  updated: DateTime
+  updated_not: DateTime
+  updated_in: [DateTime!]
+  updated_not_in: [DateTime!]
+  updated_lt: DateTime
+  updated_lte: DateTime
+  updated_gt: DateTime
+  updated_gte: DateTime
+  AND: [ApplicationWhereInput!]
+  OR: [ApplicationWhereInput!]
+  NOT: [ApplicationWhereInput!]
+}
+
+input ApplicationWhereUniqueInput {
+  id: Int
 }
 
 type BatchPayload {
   count: Long!
 }
 
+type Contract {
+  id: Int!
+  application: Application!
+  created: DateTime!
+  price: Float!
+  updated: DateTime!
+}
+
+type ContractConnection {
+  pageInfo: PageInfo!
+  edges: [ContractEdge]!
+  aggregate: AggregateContract!
+}
+
+input ContractCreateInput {
+  id: Int
+  application: ApplicationCreateOneWithoutContractInput!
+  created: DateTime!
+  price: Float!
+  updated: DateTime!
+}
+
+input ContractCreateOneWithoutApplicationInput {
+  create: ContractCreateWithoutApplicationInput
+  connect: ContractWhereUniqueInput
+}
+
+input ContractCreateWithoutApplicationInput {
+  id: Int
+  created: DateTime!
+  price: Float!
+  updated: DateTime!
+}
+
+type ContractEdge {
+  node: Contract!
+  cursor: String!
+}
+
+enum ContractOrderByInput {
+  id_ASC
+  id_DESC
+  created_ASC
+  created_DESC
+  price_ASC
+  price_DESC
+  updated_ASC
+  updated_DESC
+}
+
+type ContractPreviousValues {
+  id: Int!
+  created: DateTime!
+  price: Float!
+  updated: DateTime!
+}
+
+type ContractSubscriptionPayload {
+  mutation: MutationType!
+  node: Contract
+  updatedFields: [String!]
+  previousValues: ContractPreviousValues
+}
+
+input ContractSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ContractWhereInput
+  AND: [ContractSubscriptionWhereInput!]
+  OR: [ContractSubscriptionWhereInput!]
+  NOT: [ContractSubscriptionWhereInput!]
+}
+
+input ContractUpdateInput {
+  application: ApplicationUpdateOneRequiredWithoutContractInput
+  created: DateTime
+  price: Float
+  updated: DateTime
+}
+
+input ContractUpdateManyMutationInput {
+  created: DateTime
+  price: Float
+  updated: DateTime
+}
+
+input ContractUpdateOneRequiredWithoutApplicationInput {
+  create: ContractCreateWithoutApplicationInput
+  update: ContractUpdateWithoutApplicationDataInput
+  upsert: ContractUpsertWithoutApplicationInput
+  connect: ContractWhereUniqueInput
+}
+
+input ContractUpdateWithoutApplicationDataInput {
+  created: DateTime
+  price: Float
+  updated: DateTime
+}
+
+input ContractUpsertWithoutApplicationInput {
+  update: ContractUpdateWithoutApplicationDataInput!
+  create: ContractCreateWithoutApplicationInput!
+}
+
+input ContractWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  application: ApplicationWhereInput
+  created: DateTime
+  created_not: DateTime
+  created_in: [DateTime!]
+  created_not_in: [DateTime!]
+  created_lt: DateTime
+  created_lte: DateTime
+  created_gt: DateTime
+  created_gte: DateTime
+  price: Float
+  price_not: Float
+  price_in: [Float!]
+  price_not_in: [Float!]
+  price_lt: Float
+  price_lte: Float
+  price_gt: Float
+  price_gte: Float
+  updated: DateTime
+  updated_not: DateTime
+  updated_in: [DateTime!]
+  updated_not_in: [DateTime!]
+  updated_lt: DateTime
+  updated_lte: DateTime
+  updated_gt: DateTime
+  updated_gte: DateTime
+  AND: [ContractWhereInput!]
+  OR: [ContractWhereInput!]
+  NOT: [ContractWhereInput!]
+}
+
+input ContractWhereUniqueInput {
+  id: Int
+}
+
 scalar DateTime
+
+type DoctrineMigrationVersion {
+  version: ID!
+  executedAt: DateTime
+  executionTime: Int
+}
+
+type DoctrineMigrationVersionConnection {
+  pageInfo: PageInfo!
+  edges: [DoctrineMigrationVersionEdge]!
+  aggregate: AggregateDoctrineMigrationVersion!
+}
+
+input DoctrineMigrationVersionCreateInput {
+  version: ID
+  executedAt: DateTime
+  executionTime: Int
+}
+
+type DoctrineMigrationVersionEdge {
+  node: DoctrineMigrationVersion!
+  cursor: String!
+}
+
+enum DoctrineMigrationVersionOrderByInput {
+  version_ASC
+  version_DESC
+  executedAt_ASC
+  executedAt_DESC
+  executionTime_ASC
+  executionTime_DESC
+}
+
+type DoctrineMigrationVersionPreviousValues {
+  version: ID!
+  executedAt: DateTime
+  executionTime: Int
+}
+
+type DoctrineMigrationVersionSubscriptionPayload {
+  mutation: MutationType!
+  node: DoctrineMigrationVersion
+  updatedFields: [String!]
+  previousValues: DoctrineMigrationVersionPreviousValues
+}
+
+input DoctrineMigrationVersionSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: DoctrineMigrationVersionWhereInput
+  AND: [DoctrineMigrationVersionSubscriptionWhereInput!]
+  OR: [DoctrineMigrationVersionSubscriptionWhereInput!]
+  NOT: [DoctrineMigrationVersionSubscriptionWhereInput!]
+}
+
+input DoctrineMigrationVersionUpdateInput {
+  executedAt: DateTime
+  executionTime: Int
+}
+
+input DoctrineMigrationVersionUpdateManyMutationInput {
+  executedAt: DateTime
+  executionTime: Int
+}
+
+input DoctrineMigrationVersionWhereInput {
+  version: ID
+  version_not: ID
+  version_in: [ID!]
+  version_not_in: [ID!]
+  version_lt: ID
+  version_lte: ID
+  version_gt: ID
+  version_gte: ID
+  version_contains: ID
+  version_not_contains: ID
+  version_starts_with: ID
+  version_not_starts_with: ID
+  version_ends_with: ID
+  version_not_ends_with: ID
+  executedAt: DateTime
+  executedAt_not: DateTime
+  executedAt_in: [DateTime!]
+  executedAt_not_in: [DateTime!]
+  executedAt_lt: DateTime
+  executedAt_lte: DateTime
+  executedAt_gt: DateTime
+  executedAt_gte: DateTime
+  executionTime: Int
+  executionTime_not: Int
+  executionTime_in: [Int!]
+  executionTime_not_in: [Int!]
+  executionTime_lt: Int
+  executionTime_lte: Int
+  executionTime_gt: Int
+  executionTime_gte: Int
+  AND: [DoctrineMigrationVersionWhereInput!]
+  OR: [DoctrineMigrationVersionWhereInput!]
+  NOT: [DoctrineMigrationVersionWhereInput!]
+}
+
+input DoctrineMigrationVersionWhereUniqueInput {
+  version: ID
+}
+
+type Feature {
+  id: Int!
+  bathrooms: Int!
+  bedrooms: Int!
+  garages: Int!
+  property: Property!
+  rooms: Int!
+  size: Int!
+}
+
+type FeatureConnection {
+  pageInfo: PageInfo!
+  edges: [FeatureEdge]!
+  aggregate: AggregateFeature!
+}
+
+input FeatureCreateInput {
+  id: Int
+  bathrooms: Int!
+  bedrooms: Int!
+  garages: Int!
+  property: PropertyCreateOneWithoutFeaturesInput!
+  rooms: Int!
+  size: Int!
+}
+
+input FeatureCreateOneWithoutPropertyInput {
+  create: FeatureCreateWithoutPropertyInput
+  connect: FeatureWhereUniqueInput
+}
+
+input FeatureCreateWithoutPropertyInput {
+  id: Int
+  bathrooms: Int!
+  bedrooms: Int!
+  garages: Int!
+  rooms: Int!
+  size: Int!
+}
+
+type FeatureEdge {
+  node: Feature!
+  cursor: String!
+}
+
+enum FeatureOrderByInput {
+  id_ASC
+  id_DESC
+  bathrooms_ASC
+  bathrooms_DESC
+  bedrooms_ASC
+  bedrooms_DESC
+  garages_ASC
+  garages_DESC
+  rooms_ASC
+  rooms_DESC
+  size_ASC
+  size_DESC
+}
+
+type FeaturePreviousValues {
+  id: Int!
+  bathrooms: Int!
+  bedrooms: Int!
+  garages: Int!
+  rooms: Int!
+  size: Int!
+}
+
+type FeatureSubscriptionPayload {
+  mutation: MutationType!
+  node: Feature
+  updatedFields: [String!]
+  previousValues: FeaturePreviousValues
+}
+
+input FeatureSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: FeatureWhereInput
+  AND: [FeatureSubscriptionWhereInput!]
+  OR: [FeatureSubscriptionWhereInput!]
+  NOT: [FeatureSubscriptionWhereInput!]
+}
+
+input FeatureUpdateInput {
+  bathrooms: Int
+  bedrooms: Int
+  garages: Int
+  property: PropertyUpdateOneRequiredWithoutFeaturesInput
+  rooms: Int
+  size: Int
+}
+
+input FeatureUpdateManyMutationInput {
+  bathrooms: Int
+  bedrooms: Int
+  garages: Int
+  rooms: Int
+  size: Int
+}
+
+input FeatureUpdateOneRequiredWithoutPropertyInput {
+  create: FeatureCreateWithoutPropertyInput
+  update: FeatureUpdateWithoutPropertyDataInput
+  upsert: FeatureUpsertWithoutPropertyInput
+  connect: FeatureWhereUniqueInput
+}
+
+input FeatureUpdateWithoutPropertyDataInput {
+  bathrooms: Int
+  bedrooms: Int
+  garages: Int
+  rooms: Int
+  size: Int
+}
+
+input FeatureUpsertWithoutPropertyInput {
+  update: FeatureUpdateWithoutPropertyDataInput!
+  create: FeatureCreateWithoutPropertyInput!
+}
+
+input FeatureWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  bathrooms: Int
+  bathrooms_not: Int
+  bathrooms_in: [Int!]
+  bathrooms_not_in: [Int!]
+  bathrooms_lt: Int
+  bathrooms_lte: Int
+  bathrooms_gt: Int
+  bathrooms_gte: Int
+  bedrooms: Int
+  bedrooms_not: Int
+  bedrooms_in: [Int!]
+  bedrooms_not_in: [Int!]
+  bedrooms_lt: Int
+  bedrooms_lte: Int
+  bedrooms_gt: Int
+  bedrooms_gte: Int
+  garages: Int
+  garages_not: Int
+  garages_in: [Int!]
+  garages_not_in: [Int!]
+  garages_lt: Int
+  garages_lte: Int
+  garages_gt: Int
+  garages_gte: Int
+  property: PropertyWhereInput
+  rooms: Int
+  rooms_not: Int
+  rooms_in: [Int!]
+  rooms_not_in: [Int!]
+  rooms_lt: Int
+  rooms_lte: Int
+  rooms_gt: Int
+  rooms_gte: Int
+  size: Int
+  size_not: Int
+  size_in: [Int!]
+  size_not_in: [Int!]
+  size_lt: Int
+  size_lte: Int
+  size_gt: Int
+  size_gte: Int
+  AND: [FeatureWhereInput!]
+  OR: [FeatureWhereInput!]
+  NOT: [FeatureWhereInput!]
+}
+
+input FeatureWhereUniqueInput {
+  id: Int
+}
+
+type Greeting {
+  id: Int!
+  name: String!
+}
+
+type GreetingConnection {
+  pageInfo: PageInfo!
+  edges: [GreetingEdge]!
+  aggregate: AggregateGreeting!
+}
+
+input GreetingCreateInput {
+  id: Int
+  name: String!
+}
+
+type GreetingEdge {
+  node: Greeting!
+  cursor: String!
+}
+
+enum GreetingOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+}
+
+type GreetingPreviousValues {
+  id: Int!
+  name: String!
+}
+
+type GreetingSubscriptionPayload {
+  mutation: MutationType!
+  node: Greeting
+  updatedFields: [String!]
+  previousValues: GreetingPreviousValues
+}
+
+input GreetingSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: GreetingWhereInput
+  AND: [GreetingSubscriptionWhereInput!]
+  OR: [GreetingSubscriptionWhereInput!]
+  NOT: [GreetingSubscriptionWhereInput!]
+}
+
+input GreetingUpdateInput {
+  name: String
+}
+
+input GreetingUpdateManyMutationInput {
+  name: String
+}
+
+input GreetingWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  AND: [GreetingWhereInput!]
+  OR: [GreetingWhereInput!]
+  NOT: [GreetingWhereInput!]
+}
+
+input GreetingWhereUniqueInput {
+  id: Int
+}
+
+type Guarantor {
+  id: Int!
+  firstName: String!
+  lastName: String!
+  relation: String!
+  salary: Float!
+  userRelated: Account!
+}
+
+type GuarantorConnection {
+  pageInfo: PageInfo!
+  edges: [GuarantorEdge]!
+  aggregate: AggregateGuarantor!
+}
+
+input GuarantorCreateInput {
+  id: Int
+  firstName: String!
+  lastName: String!
+  relation: String!
+  salary: Float!
+  userRelated: AccountCreateOneWithoutGuarantorInput!
+}
+
+input GuarantorCreateManyWithoutUserRelatedInput {
+  create: [GuarantorCreateWithoutUserRelatedInput!]
+  connect: [GuarantorWhereUniqueInput!]
+}
+
+input GuarantorCreateWithoutUserRelatedInput {
+  id: Int
+  firstName: String!
+  lastName: String!
+  relation: String!
+  salary: Float!
+}
+
+type GuarantorEdge {
+  node: Guarantor!
+  cursor: String!
+}
+
+enum GuarantorOrderByInput {
+  id_ASC
+  id_DESC
+  firstName_ASC
+  firstName_DESC
+  lastName_ASC
+  lastName_DESC
+  relation_ASC
+  relation_DESC
+  salary_ASC
+  salary_DESC
+}
+
+type GuarantorPreviousValues {
+  id: Int!
+  firstName: String!
+  lastName: String!
+  relation: String!
+  salary: Float!
+}
+
+input GuarantorScalarWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  firstName: String
+  firstName_not: String
+  firstName_in: [String!]
+  firstName_not_in: [String!]
+  firstName_lt: String
+  firstName_lte: String
+  firstName_gt: String
+  firstName_gte: String
+  firstName_contains: String
+  firstName_not_contains: String
+  firstName_starts_with: String
+  firstName_not_starts_with: String
+  firstName_ends_with: String
+  firstName_not_ends_with: String
+  lastName: String
+  lastName_not: String
+  lastName_in: [String!]
+  lastName_not_in: [String!]
+  lastName_lt: String
+  lastName_lte: String
+  lastName_gt: String
+  lastName_gte: String
+  lastName_contains: String
+  lastName_not_contains: String
+  lastName_starts_with: String
+  lastName_not_starts_with: String
+  lastName_ends_with: String
+  lastName_not_ends_with: String
+  relation: String
+  relation_not: String
+  relation_in: [String!]
+  relation_not_in: [String!]
+  relation_lt: String
+  relation_lte: String
+  relation_gt: String
+  relation_gte: String
+  relation_contains: String
+  relation_not_contains: String
+  relation_starts_with: String
+  relation_not_starts_with: String
+  relation_ends_with: String
+  relation_not_ends_with: String
+  salary: Float
+  salary_not: Float
+  salary_in: [Float!]
+  salary_not_in: [Float!]
+  salary_lt: Float
+  salary_lte: Float
+  salary_gt: Float
+  salary_gte: Float
+  AND: [GuarantorScalarWhereInput!]
+  OR: [GuarantorScalarWhereInput!]
+  NOT: [GuarantorScalarWhereInput!]
+}
+
+type GuarantorSubscriptionPayload {
+  mutation: MutationType!
+  node: Guarantor
+  updatedFields: [String!]
+  previousValues: GuarantorPreviousValues
+}
+
+input GuarantorSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: GuarantorWhereInput
+  AND: [GuarantorSubscriptionWhereInput!]
+  OR: [GuarantorSubscriptionWhereInput!]
+  NOT: [GuarantorSubscriptionWhereInput!]
+}
+
+input GuarantorUpdateInput {
+  firstName: String
+  lastName: String
+  relation: String
+  salary: Float
+  userRelated: AccountUpdateOneRequiredWithoutGuarantorInput
+}
+
+input GuarantorUpdateManyDataInput {
+  firstName: String
+  lastName: String
+  relation: String
+  salary: Float
+}
+
+input GuarantorUpdateManyMutationInput {
+  firstName: String
+  lastName: String
+  relation: String
+  salary: Float
+}
+
+input GuarantorUpdateManyWithoutUserRelatedInput {
+  create: [GuarantorCreateWithoutUserRelatedInput!]
+  delete: [GuarantorWhereUniqueInput!]
+  connect: [GuarantorWhereUniqueInput!]
+  set: [GuarantorWhereUniqueInput!]
+  disconnect: [GuarantorWhereUniqueInput!]
+  update: [GuarantorUpdateWithWhereUniqueWithoutUserRelatedInput!]
+  upsert: [GuarantorUpsertWithWhereUniqueWithoutUserRelatedInput!]
+  deleteMany: [GuarantorScalarWhereInput!]
+  updateMany: [GuarantorUpdateManyWithWhereNestedInput!]
+}
+
+input GuarantorUpdateManyWithWhereNestedInput {
+  where: GuarantorScalarWhereInput!
+  data: GuarantorUpdateManyDataInput!
+}
+
+input GuarantorUpdateWithoutUserRelatedDataInput {
+  firstName: String
+  lastName: String
+  relation: String
+  salary: Float
+}
+
+input GuarantorUpdateWithWhereUniqueWithoutUserRelatedInput {
+  where: GuarantorWhereUniqueInput!
+  data: GuarantorUpdateWithoutUserRelatedDataInput!
+}
+
+input GuarantorUpsertWithWhereUniqueWithoutUserRelatedInput {
+  where: GuarantorWhereUniqueInput!
+  update: GuarantorUpdateWithoutUserRelatedDataInput!
+  create: GuarantorCreateWithoutUserRelatedInput!
+}
+
+input GuarantorWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  firstName: String
+  firstName_not: String
+  firstName_in: [String!]
+  firstName_not_in: [String!]
+  firstName_lt: String
+  firstName_lte: String
+  firstName_gt: String
+  firstName_gte: String
+  firstName_contains: String
+  firstName_not_contains: String
+  firstName_starts_with: String
+  firstName_not_starts_with: String
+  firstName_ends_with: String
+  firstName_not_ends_with: String
+  lastName: String
+  lastName_not: String
+  lastName_in: [String!]
+  lastName_not_in: [String!]
+  lastName_lt: String
+  lastName_lte: String
+  lastName_gt: String
+  lastName_gte: String
+  lastName_contains: String
+  lastName_not_contains: String
+  lastName_starts_with: String
+  lastName_not_starts_with: String
+  lastName_ends_with: String
+  lastName_not_ends_with: String
+  relation: String
+  relation_not: String
+  relation_in: [String!]
+  relation_not_in: [String!]
+  relation_lt: String
+  relation_lte: String
+  relation_gt: String
+  relation_gte: String
+  relation_contains: String
+  relation_not_contains: String
+  relation_starts_with: String
+  relation_not_starts_with: String
+  relation_ends_with: String
+  relation_not_ends_with: String
+  salary: Float
+  salary_not: Float
+  salary_in: [Float!]
+  salary_not_in: [Float!]
+  salary_lt: Float
+  salary_lte: Float
+  salary_gt: Float
+  salary_gte: Float
+  userRelated: AccountWhereInput
+  AND: [GuarantorWhereInput!]
+  OR: [GuarantorWhereInput!]
+  NOT: [GuarantorWhereInput!]
+}
+
+input GuarantorWhereUniqueInput {
+  id: Int
+}
+
+scalar Json
 
 scalar Long
 
+type Media {
+  id: Int!
+  created: DateTime!
+  extension: String!
+  filename: String!
+  property: Property
+  updated: DateTime!
+  uri: String!
+}
+
+type MediaConnection {
+  pageInfo: PageInfo!
+  edges: [MediaEdge]!
+  aggregate: AggregateMedia!
+}
+
+input MediaCreateInput {
+  id: Int
+  created: DateTime!
+  extension: String!
+  filename: String!
+  property: PropertyCreateOneWithoutMediaInput
+  updated: DateTime!
+  uri: String!
+}
+
+input MediaCreateManyWithoutPropertyInput {
+  create: [MediaCreateWithoutPropertyInput!]
+  connect: [MediaWhereUniqueInput!]
+}
+
+input MediaCreateWithoutPropertyInput {
+  id: Int
+  created: DateTime!
+  extension: String!
+  filename: String!
+  updated: DateTime!
+  uri: String!
+}
+
+type MediaEdge {
+  node: Media!
+  cursor: String!
+}
+
+enum MediaOrderByInput {
+  id_ASC
+  id_DESC
+  created_ASC
+  created_DESC
+  extension_ASC
+  extension_DESC
+  filename_ASC
+  filename_DESC
+  updated_ASC
+  updated_DESC
+  uri_ASC
+  uri_DESC
+}
+
+type MediaPreviousValues {
+  id: Int!
+  created: DateTime!
+  extension: String!
+  filename: String!
+  updated: DateTime!
+  uri: String!
+}
+
+input MediaScalarWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  created: DateTime
+  created_not: DateTime
+  created_in: [DateTime!]
+  created_not_in: [DateTime!]
+  created_lt: DateTime
+  created_lte: DateTime
+  created_gt: DateTime
+  created_gte: DateTime
+  extension: String
+  extension_not: String
+  extension_in: [String!]
+  extension_not_in: [String!]
+  extension_lt: String
+  extension_lte: String
+  extension_gt: String
+  extension_gte: String
+  extension_contains: String
+  extension_not_contains: String
+  extension_starts_with: String
+  extension_not_starts_with: String
+  extension_ends_with: String
+  extension_not_ends_with: String
+  filename: String
+  filename_not: String
+  filename_in: [String!]
+  filename_not_in: [String!]
+  filename_lt: String
+  filename_lte: String
+  filename_gt: String
+  filename_gte: String
+  filename_contains: String
+  filename_not_contains: String
+  filename_starts_with: String
+  filename_not_starts_with: String
+  filename_ends_with: String
+  filename_not_ends_with: String
+  updated: DateTime
+  updated_not: DateTime
+  updated_in: [DateTime!]
+  updated_not_in: [DateTime!]
+  updated_lt: DateTime
+  updated_lte: DateTime
+  updated_gt: DateTime
+  updated_gte: DateTime
+  uri: String
+  uri_not: String
+  uri_in: [String!]
+  uri_not_in: [String!]
+  uri_lt: String
+  uri_lte: String
+  uri_gt: String
+  uri_gte: String
+  uri_contains: String
+  uri_not_contains: String
+  uri_starts_with: String
+  uri_not_starts_with: String
+  uri_ends_with: String
+  uri_not_ends_with: String
+  AND: [MediaScalarWhereInput!]
+  OR: [MediaScalarWhereInput!]
+  NOT: [MediaScalarWhereInput!]
+}
+
+type MediaSubscriptionPayload {
+  mutation: MutationType!
+  node: Media
+  updatedFields: [String!]
+  previousValues: MediaPreviousValues
+}
+
+input MediaSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: MediaWhereInput
+  AND: [MediaSubscriptionWhereInput!]
+  OR: [MediaSubscriptionWhereInput!]
+  NOT: [MediaSubscriptionWhereInput!]
+}
+
+input MediaUpdateInput {
+  created: DateTime
+  extension: String
+  filename: String
+  property: PropertyUpdateOneWithoutMediaInput
+  updated: DateTime
+  uri: String
+}
+
+input MediaUpdateManyDataInput {
+  created: DateTime
+  extension: String
+  filename: String
+  updated: DateTime
+  uri: String
+}
+
+input MediaUpdateManyMutationInput {
+  created: DateTime
+  extension: String
+  filename: String
+  updated: DateTime
+  uri: String
+}
+
+input MediaUpdateManyWithoutPropertyInput {
+  create: [MediaCreateWithoutPropertyInput!]
+  delete: [MediaWhereUniqueInput!]
+  connect: [MediaWhereUniqueInput!]
+  set: [MediaWhereUniqueInput!]
+  disconnect: [MediaWhereUniqueInput!]
+  update: [MediaUpdateWithWhereUniqueWithoutPropertyInput!]
+  upsert: [MediaUpsertWithWhereUniqueWithoutPropertyInput!]
+  deleteMany: [MediaScalarWhereInput!]
+  updateMany: [MediaUpdateManyWithWhereNestedInput!]
+}
+
+input MediaUpdateManyWithWhereNestedInput {
+  where: MediaScalarWhereInput!
+  data: MediaUpdateManyDataInput!
+}
+
+input MediaUpdateWithoutPropertyDataInput {
+  created: DateTime
+  extension: String
+  filename: String
+  updated: DateTime
+  uri: String
+}
+
+input MediaUpdateWithWhereUniqueWithoutPropertyInput {
+  where: MediaWhereUniqueInput!
+  data: MediaUpdateWithoutPropertyDataInput!
+}
+
+input MediaUpsertWithWhereUniqueWithoutPropertyInput {
+  where: MediaWhereUniqueInput!
+  update: MediaUpdateWithoutPropertyDataInput!
+  create: MediaCreateWithoutPropertyInput!
+}
+
+input MediaWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  created: DateTime
+  created_not: DateTime
+  created_in: [DateTime!]
+  created_not_in: [DateTime!]
+  created_lt: DateTime
+  created_lte: DateTime
+  created_gt: DateTime
+  created_gte: DateTime
+  extension: String
+  extension_not: String
+  extension_in: [String!]
+  extension_not_in: [String!]
+  extension_lt: String
+  extension_lte: String
+  extension_gt: String
+  extension_gte: String
+  extension_contains: String
+  extension_not_contains: String
+  extension_starts_with: String
+  extension_not_starts_with: String
+  extension_ends_with: String
+  extension_not_ends_with: String
+  filename: String
+  filename_not: String
+  filename_in: [String!]
+  filename_not_in: [String!]
+  filename_lt: String
+  filename_lte: String
+  filename_gt: String
+  filename_gte: String
+  filename_contains: String
+  filename_not_contains: String
+  filename_starts_with: String
+  filename_not_starts_with: String
+  filename_ends_with: String
+  filename_not_ends_with: String
+  property: PropertyWhereInput
+  updated: DateTime
+  updated_not: DateTime
+  updated_in: [DateTime!]
+  updated_not_in: [DateTime!]
+  updated_lt: DateTime
+  updated_lte: DateTime
+  updated_gt: DateTime
+  updated_gte: DateTime
+  uri: String
+  uri_not: String
+  uri_in: [String!]
+  uri_not_in: [String!]
+  uri_lt: String
+  uri_lte: String
+  uri_gt: String
+  uri_gte: String
+  uri_contains: String
+  uri_not_contains: String
+  uri_starts_with: String
+  uri_not_starts_with: String
+  uri_ends_with: String
+  uri_not_ends_with: String
+  AND: [MediaWhereInput!]
+  OR: [MediaWhereInput!]
+  NOT: [MediaWhereInput!]
+}
+
+input MediaWhereUniqueInput {
+  id: Int
+}
+
 type Mutation {
-  createPost(data: PostCreateInput!): Post!
-  updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
-  updateManyPosts(data: PostUpdateManyMutationInput!, where: PostWhereInput): BatchPayload!
-  upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
-  deletePost(where: PostWhereUniqueInput!): Post
-  deleteManyPosts(where: PostWhereInput): BatchPayload!
-  createUser(data: UserCreateInput!): User!
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  deleteUser(where: UserWhereUniqueInput!): User
-  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  createAccount(data: AccountCreateInput!): Account!
+  updateAccount(data: AccountUpdateInput!, where: AccountWhereUniqueInput!): Account
+  updateManyAccounts(data: AccountUpdateManyMutationInput!, where: AccountWhereInput): BatchPayload!
+  upsertAccount(where: AccountWhereUniqueInput!, create: AccountCreateInput!, update: AccountUpdateInput!): Account!
+  deleteAccount(where: AccountWhereUniqueInput!): Account
+  deleteManyAccounts(where: AccountWhereInput): BatchPayload!
+  createAddress(data: AddressCreateInput!): Address!
+  updateAddress(data: AddressUpdateInput!, where: AddressWhereUniqueInput!): Address
+  updateManyAddresses(data: AddressUpdateManyMutationInput!, where: AddressWhereInput): BatchPayload!
+  upsertAddress(where: AddressWhereUniqueInput!, create: AddressCreateInput!, update: AddressUpdateInput!): Address!
+  deleteAddress(where: AddressWhereUniqueInput!): Address
+  deleteManyAddresses(where: AddressWhereInput): BatchPayload!
+  createApplication(data: ApplicationCreateInput!): Application!
+  updateApplication(data: ApplicationUpdateInput!, where: ApplicationWhereUniqueInput!): Application
+  updateManyApplications(data: ApplicationUpdateManyMutationInput!, where: ApplicationWhereInput): BatchPayload!
+  upsertApplication(where: ApplicationWhereUniqueInput!, create: ApplicationCreateInput!, update: ApplicationUpdateInput!): Application!
+  deleteApplication(where: ApplicationWhereUniqueInput!): Application
+  deleteManyApplications(where: ApplicationWhereInput): BatchPayload!
+  createContract(data: ContractCreateInput!): Contract!
+  updateContract(data: ContractUpdateInput!, where: ContractWhereUniqueInput!): Contract
+  updateManyContracts(data: ContractUpdateManyMutationInput!, where: ContractWhereInput): BatchPayload!
+  upsertContract(where: ContractWhereUniqueInput!, create: ContractCreateInput!, update: ContractUpdateInput!): Contract!
+  deleteContract(where: ContractWhereUniqueInput!): Contract
+  deleteManyContracts(where: ContractWhereInput): BatchPayload!
+  createDoctrineMigrationVersion(data: DoctrineMigrationVersionCreateInput!): DoctrineMigrationVersion!
+  updateDoctrineMigrationVersion(data: DoctrineMigrationVersionUpdateInput!, where: DoctrineMigrationVersionWhereUniqueInput!): DoctrineMigrationVersion
+  updateManyDoctrineMigrationVersions(data: DoctrineMigrationVersionUpdateManyMutationInput!, where: DoctrineMigrationVersionWhereInput): BatchPayload!
+  upsertDoctrineMigrationVersion(where: DoctrineMigrationVersionWhereUniqueInput!, create: DoctrineMigrationVersionCreateInput!, update: DoctrineMigrationVersionUpdateInput!): DoctrineMigrationVersion!
+  deleteDoctrineMigrationVersion(where: DoctrineMigrationVersionWhereUniqueInput!): DoctrineMigrationVersion
+  deleteManyDoctrineMigrationVersions(where: DoctrineMigrationVersionWhereInput): BatchPayload!
+  createFeature(data: FeatureCreateInput!): Feature!
+  updateFeature(data: FeatureUpdateInput!, where: FeatureWhereUniqueInput!): Feature
+  updateManyFeatures(data: FeatureUpdateManyMutationInput!, where: FeatureWhereInput): BatchPayload!
+  upsertFeature(where: FeatureWhereUniqueInput!, create: FeatureCreateInput!, update: FeatureUpdateInput!): Feature!
+  deleteFeature(where: FeatureWhereUniqueInput!): Feature
+  deleteManyFeatures(where: FeatureWhereInput): BatchPayload!
+  createGreeting(data: GreetingCreateInput!): Greeting!
+  updateGreeting(data: GreetingUpdateInput!, where: GreetingWhereUniqueInput!): Greeting
+  updateManyGreetings(data: GreetingUpdateManyMutationInput!, where: GreetingWhereInput): BatchPayload!
+  upsertGreeting(where: GreetingWhereUniqueInput!, create: GreetingCreateInput!, update: GreetingUpdateInput!): Greeting!
+  deleteGreeting(where: GreetingWhereUniqueInput!): Greeting
+  deleteManyGreetings(where: GreetingWhereInput): BatchPayload!
+  createGuarantor(data: GuarantorCreateInput!): Guarantor!
+  updateGuarantor(data: GuarantorUpdateInput!, where: GuarantorWhereUniqueInput!): Guarantor
+  updateManyGuarantors(data: GuarantorUpdateManyMutationInput!, where: GuarantorWhereInput): BatchPayload!
+  upsertGuarantor(where: GuarantorWhereUniqueInput!, create: GuarantorCreateInput!, update: GuarantorUpdateInput!): Guarantor!
+  deleteGuarantor(where: GuarantorWhereUniqueInput!): Guarantor
+  deleteManyGuarantors(where: GuarantorWhereInput): BatchPayload!
+  createMedia(data: MediaCreateInput!): Media!
+  updateMedia(data: MediaUpdateInput!, where: MediaWhereUniqueInput!): Media
+  updateManyMedias(data: MediaUpdateManyMutationInput!, where: MediaWhereInput): BatchPayload!
+  upsertMedia(where: MediaWhereUniqueInput!, create: MediaCreateInput!, update: MediaUpdateInput!): Media!
+  deleteMedia(where: MediaWhereUniqueInput!): Media
+  deleteManyMedias(where: MediaWhereInput): BatchPayload!
+  createProperty(data: PropertyCreateInput!): Property!
+  updateProperty(data: PropertyUpdateInput!, where: PropertyWhereUniqueInput!): Property
+  updateManyProperties(data: PropertyUpdateManyMutationInput!, where: PropertyWhereInput): BatchPayload!
+  upsertProperty(where: PropertyWhereUniqueInput!, create: PropertyCreateInput!, update: PropertyUpdateInput!): Property!
+  deleteProperty(where: PropertyWhereUniqueInput!): Property
+  deleteManyProperties(where: PropertyWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -51,458 +2149,432 @@ type PageInfo {
   endCursor: String
 }
 
-type Post {
-  id: ID!
-  content: String!
-  author: User!
-  createdAt: DateTime!
-  updatedAt: DateTime!
+type Property {
+  id: Int!
+  address: Address!
+  application(where: ApplicationWhereInput, orderBy: ApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Application!]
+  description: String!
+  features: Feature!
+  media(where: MediaWhereInput, orderBy: MediaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Media!]
+  title: String!
+  userRelated: Account
 }
 
-type PostConnection {
+type PropertyConnection {
   pageInfo: PageInfo!
-  edges: [PostEdge]!
-  aggregate: AggregatePost!
+  edges: [PropertyEdge]!
+  aggregate: AggregateProperty!
 }
 
-input PostCreateInput {
-  id: ID
-  content: String!
-  author: UserCreateOneWithoutPostsInput!
+input PropertyCreateInput {
+  id: Int
+  address: AddressCreateOneWithoutPropertyInput!
+  application: ApplicationCreateManyWithoutPropertyInput
+  description: String!
+  features: FeatureCreateOneWithoutPropertyInput!
+  media: MediaCreateManyWithoutPropertyInput
+  title: String!
+  userRelated: AccountCreateOneWithoutPropertyInput
 }
 
-input PostCreateManyWithoutAuthorInput {
-  create: [PostCreateWithoutAuthorInput!]
-  connect: [PostWhereUniqueInput!]
+input PropertyCreateManyWithoutUserRelatedInput {
+  create: [PropertyCreateWithoutUserRelatedInput!]
+  connect: [PropertyWhereUniqueInput!]
 }
 
-input PostCreateWithoutAuthorInput {
-  id: ID
-  content: String!
+input PropertyCreateOneWithoutAddressInput {
+  create: PropertyCreateWithoutAddressInput
+  connect: PropertyWhereUniqueInput
 }
 
-type PostEdge {
-  node: Post!
+input PropertyCreateOneWithoutApplicationInput {
+  create: PropertyCreateWithoutApplicationInput
+  connect: PropertyWhereUniqueInput
+}
+
+input PropertyCreateOneWithoutFeaturesInput {
+  create: PropertyCreateWithoutFeaturesInput
+  connect: PropertyWhereUniqueInput
+}
+
+input PropertyCreateOneWithoutMediaInput {
+  create: PropertyCreateWithoutMediaInput
+  connect: PropertyWhereUniqueInput
+}
+
+input PropertyCreateWithoutAddressInput {
+  id: Int
+  application: ApplicationCreateManyWithoutPropertyInput
+  description: String!
+  features: FeatureCreateOneWithoutPropertyInput!
+  media: MediaCreateManyWithoutPropertyInput
+  title: String!
+  userRelated: AccountCreateOneWithoutPropertyInput
+}
+
+input PropertyCreateWithoutApplicationInput {
+  id: Int
+  address: AddressCreateOneWithoutPropertyInput!
+  description: String!
+  features: FeatureCreateOneWithoutPropertyInput!
+  media: MediaCreateManyWithoutPropertyInput
+  title: String!
+  userRelated: AccountCreateOneWithoutPropertyInput
+}
+
+input PropertyCreateWithoutFeaturesInput {
+  id: Int
+  address: AddressCreateOneWithoutPropertyInput!
+  application: ApplicationCreateManyWithoutPropertyInput
+  description: String!
+  media: MediaCreateManyWithoutPropertyInput
+  title: String!
+  userRelated: AccountCreateOneWithoutPropertyInput
+}
+
+input PropertyCreateWithoutMediaInput {
+  id: Int
+  address: AddressCreateOneWithoutPropertyInput!
+  application: ApplicationCreateManyWithoutPropertyInput
+  description: String!
+  features: FeatureCreateOneWithoutPropertyInput!
+  title: String!
+  userRelated: AccountCreateOneWithoutPropertyInput
+}
+
+input PropertyCreateWithoutUserRelatedInput {
+  id: Int
+  address: AddressCreateOneWithoutPropertyInput!
+  application: ApplicationCreateManyWithoutPropertyInput
+  description: String!
+  features: FeatureCreateOneWithoutPropertyInput!
+  media: MediaCreateManyWithoutPropertyInput
+  title: String!
+}
+
+type PropertyEdge {
+  node: Property!
   cursor: String!
 }
 
-enum PostOrderByInput {
+enum PropertyOrderByInput {
   id_ASC
   id_DESC
-  content_ASC
-  content_DESC
-  createdAt_ASC
-  createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
+  description_ASC
+  description_DESC
+  title_ASC
+  title_DESC
 }
 
-type PostPreviousValues {
-  id: ID!
-  content: String!
-  createdAt: DateTime!
-  updatedAt: DateTime!
+type PropertyPreviousValues {
+  id: Int!
+  description: String!
+  title: String!
 }
 
-input PostScalarWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  content: String
-  content_not: String
-  content_in: [String!]
-  content_not_in: [String!]
-  content_lt: String
-  content_lte: String
-  content_gt: String
-  content_gte: String
-  content_contains: String
-  content_not_contains: String
-  content_starts_with: String
-  content_not_starts_with: String
-  content_ends_with: String
-  content_not_ends_with: String
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  updatedAt_not: DateTime
-  updatedAt_in: [DateTime!]
-  updatedAt_not_in: [DateTime!]
-  updatedAt_lt: DateTime
-  updatedAt_lte: DateTime
-  updatedAt_gt: DateTime
-  updatedAt_gte: DateTime
-  AND: [PostScalarWhereInput!]
-  OR: [PostScalarWhereInput!]
-  NOT: [PostScalarWhereInput!]
+input PropertyScalarWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  AND: [PropertyScalarWhereInput!]
+  OR: [PropertyScalarWhereInput!]
+  NOT: [PropertyScalarWhereInput!]
 }
 
-type PostSubscriptionPayload {
+type PropertySubscriptionPayload {
   mutation: MutationType!
-  node: Post
+  node: Property
   updatedFields: [String!]
-  previousValues: PostPreviousValues
+  previousValues: PropertyPreviousValues
 }
 
-input PostSubscriptionWhereInput {
+input PropertySubscriptionWhereInput {
   mutation_in: [MutationType!]
   updatedFields_contains: String
   updatedFields_contains_every: [String!]
   updatedFields_contains_some: [String!]
-  node: PostWhereInput
-  AND: [PostSubscriptionWhereInput!]
-  OR: [PostSubscriptionWhereInput!]
-  NOT: [PostSubscriptionWhereInput!]
+  node: PropertyWhereInput
+  AND: [PropertySubscriptionWhereInput!]
+  OR: [PropertySubscriptionWhereInput!]
+  NOT: [PropertySubscriptionWhereInput!]
 }
 
-input PostUpdateInput {
-  content: String
-  author: UserUpdateOneRequiredWithoutPostsInput
+input PropertyUpdateInput {
+  address: AddressUpdateOneRequiredWithoutPropertyInput
+  application: ApplicationUpdateManyWithoutPropertyInput
+  description: String
+  features: FeatureUpdateOneRequiredWithoutPropertyInput
+  media: MediaUpdateManyWithoutPropertyInput
+  title: String
+  userRelated: AccountUpdateOneWithoutPropertyInput
 }
 
-input PostUpdateManyDataInput {
-  content: String
+input PropertyUpdateManyDataInput {
+  description: String
+  title: String
 }
 
-input PostUpdateManyMutationInput {
-  content: String
+input PropertyUpdateManyMutationInput {
+  description: String
+  title: String
 }
 
-input PostUpdateManyWithoutAuthorInput {
-  create: [PostCreateWithoutAuthorInput!]
-  delete: [PostWhereUniqueInput!]
-  connect: [PostWhereUniqueInput!]
-  set: [PostWhereUniqueInput!]
-  disconnect: [PostWhereUniqueInput!]
-  update: [PostUpdateWithWhereUniqueWithoutAuthorInput!]
-  upsert: [PostUpsertWithWhereUniqueWithoutAuthorInput!]
-  deleteMany: [PostScalarWhereInput!]
-  updateMany: [PostUpdateManyWithWhereNestedInput!]
+input PropertyUpdateManyWithoutUserRelatedInput {
+  create: [PropertyCreateWithoutUserRelatedInput!]
+  delete: [PropertyWhereUniqueInput!]
+  connect: [PropertyWhereUniqueInput!]
+  set: [PropertyWhereUniqueInput!]
+  disconnect: [PropertyWhereUniqueInput!]
+  update: [PropertyUpdateWithWhereUniqueWithoutUserRelatedInput!]
+  upsert: [PropertyUpsertWithWhereUniqueWithoutUserRelatedInput!]
+  deleteMany: [PropertyScalarWhereInput!]
+  updateMany: [PropertyUpdateManyWithWhereNestedInput!]
 }
 
-input PostUpdateManyWithWhereNestedInput {
-  where: PostScalarWhereInput!
-  data: PostUpdateManyDataInput!
+input PropertyUpdateManyWithWhereNestedInput {
+  where: PropertyScalarWhereInput!
+  data: PropertyUpdateManyDataInput!
 }
 
-input PostUpdateWithoutAuthorDataInput {
-  content: String
+input PropertyUpdateOneRequiredWithoutAddressInput {
+  create: PropertyCreateWithoutAddressInput
+  update: PropertyUpdateWithoutAddressDataInput
+  upsert: PropertyUpsertWithoutAddressInput
+  connect: PropertyWhereUniqueInput
 }
 
-input PostUpdateWithWhereUniqueWithoutAuthorInput {
-  where: PostWhereUniqueInput!
-  data: PostUpdateWithoutAuthorDataInput!
+input PropertyUpdateOneRequiredWithoutApplicationInput {
+  create: PropertyCreateWithoutApplicationInput
+  update: PropertyUpdateWithoutApplicationDataInput
+  upsert: PropertyUpsertWithoutApplicationInput
+  connect: PropertyWhereUniqueInput
 }
 
-input PostUpsertWithWhereUniqueWithoutAuthorInput {
-  where: PostWhereUniqueInput!
-  update: PostUpdateWithoutAuthorDataInput!
-  create: PostCreateWithoutAuthorInput!
+input PropertyUpdateOneRequiredWithoutFeaturesInput {
+  create: PropertyCreateWithoutFeaturesInput
+  update: PropertyUpdateWithoutFeaturesDataInput
+  upsert: PropertyUpsertWithoutFeaturesInput
+  connect: PropertyWhereUniqueInput
 }
 
-input PostWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  content: String
-  content_not: String
-  content_in: [String!]
-  content_not_in: [String!]
-  content_lt: String
-  content_lte: String
-  content_gt: String
-  content_gte: String
-  content_contains: String
-  content_not_contains: String
-  content_starts_with: String
-  content_not_starts_with: String
-  content_ends_with: String
-  content_not_ends_with: String
-  author: UserWhereInput
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  updatedAt_not: DateTime
-  updatedAt_in: [DateTime!]
-  updatedAt_not_in: [DateTime!]
-  updatedAt_lt: DateTime
-  updatedAt_lte: DateTime
-  updatedAt_gt: DateTime
-  updatedAt_gte: DateTime
-  AND: [PostWhereInput!]
-  OR: [PostWhereInput!]
-  NOT: [PostWhereInput!]
+input PropertyUpdateOneWithoutMediaInput {
+  create: PropertyCreateWithoutMediaInput
+  update: PropertyUpdateWithoutMediaDataInput
+  upsert: PropertyUpsertWithoutMediaInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: PropertyWhereUniqueInput
 }
 
-input PostWhereUniqueInput {
-  id: ID
+input PropertyUpdateWithoutAddressDataInput {
+  application: ApplicationUpdateManyWithoutPropertyInput
+  description: String
+  features: FeatureUpdateOneRequiredWithoutPropertyInput
+  media: MediaUpdateManyWithoutPropertyInput
+  title: String
+  userRelated: AccountUpdateOneWithoutPropertyInput
+}
+
+input PropertyUpdateWithoutApplicationDataInput {
+  address: AddressUpdateOneRequiredWithoutPropertyInput
+  description: String
+  features: FeatureUpdateOneRequiredWithoutPropertyInput
+  media: MediaUpdateManyWithoutPropertyInput
+  title: String
+  userRelated: AccountUpdateOneWithoutPropertyInput
+}
+
+input PropertyUpdateWithoutFeaturesDataInput {
+  address: AddressUpdateOneRequiredWithoutPropertyInput
+  application: ApplicationUpdateManyWithoutPropertyInput
+  description: String
+  media: MediaUpdateManyWithoutPropertyInput
+  title: String
+  userRelated: AccountUpdateOneWithoutPropertyInput
+}
+
+input PropertyUpdateWithoutMediaDataInput {
+  address: AddressUpdateOneRequiredWithoutPropertyInput
+  application: ApplicationUpdateManyWithoutPropertyInput
+  description: String
+  features: FeatureUpdateOneRequiredWithoutPropertyInput
+  title: String
+  userRelated: AccountUpdateOneWithoutPropertyInput
+}
+
+input PropertyUpdateWithoutUserRelatedDataInput {
+  address: AddressUpdateOneRequiredWithoutPropertyInput
+  application: ApplicationUpdateManyWithoutPropertyInput
+  description: String
+  features: FeatureUpdateOneRequiredWithoutPropertyInput
+  media: MediaUpdateManyWithoutPropertyInput
+  title: String
+}
+
+input PropertyUpdateWithWhereUniqueWithoutUserRelatedInput {
+  where: PropertyWhereUniqueInput!
+  data: PropertyUpdateWithoutUserRelatedDataInput!
+}
+
+input PropertyUpsertWithoutAddressInput {
+  update: PropertyUpdateWithoutAddressDataInput!
+  create: PropertyCreateWithoutAddressInput!
+}
+
+input PropertyUpsertWithoutApplicationInput {
+  update: PropertyUpdateWithoutApplicationDataInput!
+  create: PropertyCreateWithoutApplicationInput!
+}
+
+input PropertyUpsertWithoutFeaturesInput {
+  update: PropertyUpdateWithoutFeaturesDataInput!
+  create: PropertyCreateWithoutFeaturesInput!
+}
+
+input PropertyUpsertWithoutMediaInput {
+  update: PropertyUpdateWithoutMediaDataInput!
+  create: PropertyCreateWithoutMediaInput!
+}
+
+input PropertyUpsertWithWhereUniqueWithoutUserRelatedInput {
+  where: PropertyWhereUniqueInput!
+  update: PropertyUpdateWithoutUserRelatedDataInput!
+  create: PropertyCreateWithoutUserRelatedInput!
+}
+
+input PropertyWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  address: AddressWhereInput
+  application_every: ApplicationWhereInput
+  application_some: ApplicationWhereInput
+  application_none: ApplicationWhereInput
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  features: FeatureWhereInput
+  media_every: MediaWhereInput
+  media_some: MediaWhereInput
+  media_none: MediaWhereInput
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  userRelated: AccountWhereInput
+  AND: [PropertyWhereInput!]
+  OR: [PropertyWhereInput!]
+  NOT: [PropertyWhereInput!]
+}
+
+input PropertyWhereUniqueInput {
+  id: Int
 }
 
 type Query {
-  post(where: PostWhereUniqueInput!): Post
-  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
-  postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
-  user(where: UserWhereUniqueInput!): User
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  account(where: AccountWhereUniqueInput!): Account
+  accounts(where: AccountWhereInput, orderBy: AccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Account]!
+  accountsConnection(where: AccountWhereInput, orderBy: AccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AccountConnection!
+  address(where: AddressWhereUniqueInput!): Address
+  addresses(where: AddressWhereInput, orderBy: AddressOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Address]!
+  addressesConnection(where: AddressWhereInput, orderBy: AddressOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AddressConnection!
+  application(where: ApplicationWhereUniqueInput!): Application
+  applications(where: ApplicationWhereInput, orderBy: ApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Application]!
+  applicationsConnection(where: ApplicationWhereInput, orderBy: ApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ApplicationConnection!
+  contract(where: ContractWhereUniqueInput!): Contract
+  contracts(where: ContractWhereInput, orderBy: ContractOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Contract]!
+  contractsConnection(where: ContractWhereInput, orderBy: ContractOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContractConnection!
+  doctrineMigrationVersion(where: DoctrineMigrationVersionWhereUniqueInput!): DoctrineMigrationVersion
+  doctrineMigrationVersions(where: DoctrineMigrationVersionWhereInput, orderBy: DoctrineMigrationVersionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DoctrineMigrationVersion]!
+  doctrineMigrationVersionsConnection(where: DoctrineMigrationVersionWhereInput, orderBy: DoctrineMigrationVersionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DoctrineMigrationVersionConnection!
+  feature(where: FeatureWhereUniqueInput!): Feature
+  features(where: FeatureWhereInput, orderBy: FeatureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Feature]!
+  featuresConnection(where: FeatureWhereInput, orderBy: FeatureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FeatureConnection!
+  greeting(where: GreetingWhereUniqueInput!): Greeting
+  greetings(where: GreetingWhereInput, orderBy: GreetingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Greeting]!
+  greetingsConnection(where: GreetingWhereInput, orderBy: GreetingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): GreetingConnection!
+  guarantor(where: GuarantorWhereUniqueInput!): Guarantor
+  guarantors(where: GuarantorWhereInput, orderBy: GuarantorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Guarantor]!
+  guarantorsConnection(where: GuarantorWhereInput, orderBy: GuarantorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): GuarantorConnection!
+  media(where: MediaWhereUniqueInput!): Media
+  medias(where: MediaWhereInput, orderBy: MediaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Media]!
+  mediasConnection(where: MediaWhereInput, orderBy: MediaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): MediaConnection!
+  property(where: PropertyWhereUniqueInput!): Property
+  properties(where: PropertyWhereInput, orderBy: PropertyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Property]!
+  propertiesConnection(where: PropertyWhereInput, orderBy: PropertyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PropertyConnection!
   node(id: ID!): Node
 }
 
-enum Role {
-  USER
-  ADMIN
-}
-
 type Subscription {
-  post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
-}
-
-type User {
-  id: ID!
-  name: String!
-  email: String!
-  password: String!
-  role: Role
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
-}
-
-type UserConnection {
-  pageInfo: PageInfo!
-  edges: [UserEdge]!
-  aggregate: AggregateUser!
-}
-
-input UserCreateInput {
-  id: ID
-  name: String!
-  email: String!
-  password: String!
-  role: Role
-  posts: PostCreateManyWithoutAuthorInput
-}
-
-input UserCreateOneWithoutPostsInput {
-  create: UserCreateWithoutPostsInput
-  connect: UserWhereUniqueInput
-}
-
-input UserCreateWithoutPostsInput {
-  id: ID
-  name: String!
-  email: String!
-  password: String!
-  role: Role
-}
-
-type UserEdge {
-  node: User!
-  cursor: String!
-}
-
-enum UserOrderByInput {
-  id_ASC
-  id_DESC
-  name_ASC
-  name_DESC
-  email_ASC
-  email_DESC
-  password_ASC
-  password_DESC
-  role_ASC
-  role_DESC
-  createdAt_ASC
-  createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-}
-
-type UserPreviousValues {
-  id: ID!
-  name: String!
-  email: String!
-  password: String!
-  role: Role
-  createdAt: DateTime!
-  updatedAt: DateTime!
-}
-
-type UserSubscriptionPayload {
-  mutation: MutationType!
-  node: User
-  updatedFields: [String!]
-  previousValues: UserPreviousValues
-}
-
-input UserSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: UserWhereInput
-  AND: [UserSubscriptionWhereInput!]
-  OR: [UserSubscriptionWhereInput!]
-  NOT: [UserSubscriptionWhereInput!]
-}
-
-input UserUpdateInput {
-  name: String
-  email: String
-  password: String
-  role: Role
-  posts: PostUpdateManyWithoutAuthorInput
-}
-
-input UserUpdateManyMutationInput {
-  name: String
-  email: String
-  password: String
-  role: Role
-}
-
-input UserUpdateOneRequiredWithoutPostsInput {
-  create: UserCreateWithoutPostsInput
-  update: UserUpdateWithoutPostsDataInput
-  upsert: UserUpsertWithoutPostsInput
-  connect: UserWhereUniqueInput
-}
-
-input UserUpdateWithoutPostsDataInput {
-  name: String
-  email: String
-  password: String
-  role: Role
-}
-
-input UserUpsertWithoutPostsInput {
-  update: UserUpdateWithoutPostsDataInput!
-  create: UserCreateWithoutPostsInput!
-}
-
-input UserWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  email: String
-  email_not: String
-  email_in: [String!]
-  email_not_in: [String!]
-  email_lt: String
-  email_lte: String
-  email_gt: String
-  email_gte: String
-  email_contains: String
-  email_not_contains: String
-  email_starts_with: String
-  email_not_starts_with: String
-  email_ends_with: String
-  email_not_ends_with: String
-  password: String
-  password_not: String
-  password_in: [String!]
-  password_not_in: [String!]
-  password_lt: String
-  password_lte: String
-  password_gt: String
-  password_gte: String
-  password_contains: String
-  password_not_contains: String
-  password_starts_with: String
-  password_not_starts_with: String
-  password_ends_with: String
-  password_not_ends_with: String
-  role: Role
-  role_not: Role
-  role_in: [Role!]
-  role_not_in: [Role!]
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  updatedAt_not: DateTime
-  updatedAt_in: [DateTime!]
-  updatedAt_not_in: [DateTime!]
-  updatedAt_lt: DateTime
-  updatedAt_lte: DateTime
-  updatedAt_gt: DateTime
-  updatedAt_gte: DateTime
-  posts_every: PostWhereInput
-  posts_some: PostWhereInput
-  posts_none: PostWhereInput
-  AND: [UserWhereInput!]
-  OR: [UserWhereInput!]
-  NOT: [UserWhereInput!]
-}
-
-input UserWhereUniqueInput {
-  id: ID
-  email: String
+  account(where: AccountSubscriptionWhereInput): AccountSubscriptionPayload
+  address(where: AddressSubscriptionWhereInput): AddressSubscriptionPayload
+  application(where: ApplicationSubscriptionWhereInput): ApplicationSubscriptionPayload
+  contract(where: ContractSubscriptionWhereInput): ContractSubscriptionPayload
+  doctrineMigrationVersion(where: DoctrineMigrationVersionSubscriptionWhereInput): DoctrineMigrationVersionSubscriptionPayload
+  feature(where: FeatureSubscriptionWhereInput): FeatureSubscriptionPayload
+  greeting(where: GreetingSubscriptionWhereInput): GreetingSubscriptionPayload
+  guarantor(where: GuarantorSubscriptionWhereInput): GuarantorSubscriptionPayload
+  media(where: MediaSubscriptionWhereInput): MediaSubscriptionPayload
+  property(where: PropertySubscriptionWhereInput): PropertySubscriptionPayload
 }
 `
       }

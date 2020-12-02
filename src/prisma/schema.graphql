@@ -1,0 +1,32 @@
+# source: http://localhost:3000/graphql
+# timestamp: Tue Dec 01 2020 22:27:49 GMT+0100 (GMT+01:00)
+
+type Account {
+  id: Int
+  is_active: Boolean
+  email: String!
+  password: String
+  firstname: String!
+  lastname: String!
+  birthdate: DateTime!
+  created: DateTime
+  updated: DateTime
+  salary: Float
+}
+
+scalar DateTime
+
+type Message {
+  id: Int!
+  description: String!
+}
+
+type Mutation {
+  createMessage(description: String!): Message!
+  createAccount(email: String!, firstname: String!, lastname: String!): Account!
+}
+
+type Query {
+  messages: [Message]!
+  account: [Account]!
+}

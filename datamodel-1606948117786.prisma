@@ -94,3 +94,22 @@ type Property @db(name: "property") {
   title: String!
   userRelated: Account @db(name: "user_related_id")
 }
+
+type Post {
+  id: ID! @id
+  author: User
+  content: String!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type User {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  email: String! @unique
+  name: String!
+  password: String!
+  post: [Post]
+  role: String
+  updatedAt: DateTime! @updatedAt
+}
