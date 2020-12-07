@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { APP_SECRET } = require("../../utils/config");
+const { URL_DB_PRISMA } = require("../../utils/config");
 
 async function signup(_, args, context, info) {
     const password = await bcrypt.hash(args.password, 10);
@@ -17,7 +17,7 @@ async function signup(_, args, context, info) {
     });
 
     return {
-        token: jwt.sign({ userId: user.id }, "http://localhost:4467/"),
+        token: jwt.sign({ userId: user.id }, URL_DB_PRISMA),
         user,
     };
 }
@@ -39,7 +39,7 @@ async function login(parent, { email, password }, ctx, info) {
     }
 
     return {
-        token: jwt.sign({ userId: user.id },"http://localhost:4467/"),
+        token: jwt.sign({ userId: user.id }, URL_DB_PRISMA),
         user,
     };
 }
