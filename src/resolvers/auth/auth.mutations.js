@@ -5,16 +5,19 @@ const { APP_SECRET } = require("../../utils/config");
 async function signup(_, args, context, info) {
     const password = await bcrypt.hash(args.password, 10);
 
-    const user = await context.prisma.mutation.createUser({
+    const user = await context.prisma.mutation.createAccount({
         data: {
-            name: args.name,
             email: args.email,
             password: password,
-        },
+            created:args.created,
+            updated:args.updated,
+            isActive: args.isActive,
+            roles: args.roles,
+            },
     });
 
     return {
-        token: jwt.sign({ userId: user.id }, APP_SECRET),
+        token: jwt.sign({ userId: user.id }, "http://localhost:4467/"),
         user,
     };
 }
@@ -24,7 +27,8 @@ async function login(parent, { email, password }, ctx, info) {
         { where: { email } },
         "{ id email password }"
     );
-
+    console.log('user :>> ', user);
+    console.log('password :>> ', password);
     if (!user) {
         throw new Error(`No such user found for email: ${email}`);
     }
@@ -35,7 +39,7 @@ async function login(parent, { email, password }, ctx, info) {
     }
 
     return {
-        token: jwt.sign({ userId: user.id }, APP_SECRET),
+        token: jwt.sign({ userId: user.id },"http://localhost:4467/"),
         user,
     };
 }

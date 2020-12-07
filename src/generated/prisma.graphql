@@ -1,5 +1,5 @@
 # source: http://localhost:4467
-# timestamp: Thu Dec 03 2020 00:00:50 GMT+0100 (heure normale d’Europe centrale)
+# timestamp: Mon Dec 07 2020 17:15:35 GMT+0100 (GMT+01:00)
 
 type Account {
   id: Int!
@@ -44,19 +44,19 @@ input AccountCreateInput {
   property: PropertyCreateManyWithoutUserRelatedInput
 }
 
-input AccountCreateManyWithoutApplicationInput {
-  create: [AccountCreateWithoutApplicationInput!]
-  connect: [AccountWhereUniqueInput!]
+input AccountCreateOneWithoutApplicationInput {
+  create: AccountCreateWithoutApplicationInput
+  connect: AccountWhereUniqueInput
 }
 
-input AccountCreateManyWithoutGuarantorInput {
-  create: [AccountCreateWithoutGuarantorInput!]
-  connect: [AccountWhereUniqueInput!]
+input AccountCreateOneWithoutGuarantorInput {
+  create: AccountCreateWithoutGuarantorInput
+  connect: AccountWhereUniqueInput
 }
 
-input AccountCreateManyWithoutPropertyInput {
-  create: [AccountCreateWithoutPropertyInput!]
-  connect: [AccountWhereUniqueInput!]
+input AccountCreateOneWithoutPropertyInput {
+  create: AccountCreateWithoutPropertyInput
+  connect: AccountWhereUniqueInput
 }
 
 input AccountCreateWithoutApplicationInput {
@@ -152,291 +152,6 @@ type AccountPreviousValues {
   updated: DateTime!
 }
 
-input AccountScalarWhereInput {
-  """Logical AND on all given filters."""
-  AND: [AccountScalarWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [AccountScalarWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [AccountScalarWhereInput!]
-  id: Int
-
-  """All values that are not equal to given value."""
-  id_not: Int
-
-  """All values that are contained in given list."""
-  id_in: [Int!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [Int!]
-
-  """All values less than the given value."""
-  id_lt: Int
-
-  """All values less than or equal the given value."""
-  id_lte: Int
-
-  """All values greater than the given value."""
-  id_gt: Int
-
-  """All values greater than or equal the given value."""
-  id_gte: Int
-  birthdate: DateTime
-
-  """All values that are not equal to given value."""
-  birthdate_not: DateTime
-
-  """All values that are contained in given list."""
-  birthdate_in: [DateTime!]
-
-  """All values that are not contained in given list."""
-  birthdate_not_in: [DateTime!]
-
-  """All values less than the given value."""
-  birthdate_lt: DateTime
-
-  """All values less than or equal the given value."""
-  birthdate_lte: DateTime
-
-  """All values greater than the given value."""
-  birthdate_gt: DateTime
-
-  """All values greater than or equal the given value."""
-  birthdate_gte: DateTime
-  created: DateTime
-
-  """All values that are not equal to given value."""
-  created_not: DateTime
-
-  """All values that are contained in given list."""
-  created_in: [DateTime!]
-
-  """All values that are not contained in given list."""
-  created_not_in: [DateTime!]
-
-  """All values less than the given value."""
-  created_lt: DateTime
-
-  """All values less than or equal the given value."""
-  created_lte: DateTime
-
-  """All values greater than the given value."""
-  created_gt: DateTime
-
-  """All values greater than or equal the given value."""
-  created_gte: DateTime
-  email: String
-
-  """All values that are not equal to given value."""
-  email_not: String
-
-  """All values that are contained in given list."""
-  email_in: [String!]
-
-  """All values that are not contained in given list."""
-  email_not_in: [String!]
-
-  """All values less than the given value."""
-  email_lt: String
-
-  """All values less than or equal the given value."""
-  email_lte: String
-
-  """All values greater than the given value."""
-  email_gt: String
-
-  """All values greater than or equal the given value."""
-  email_gte: String
-
-  """All values containing the given string."""
-  email_contains: String
-
-  """All values not containing the given string."""
-  email_not_contains: String
-
-  """All values starting with the given string."""
-  email_starts_with: String
-
-  """All values not starting with the given string."""
-  email_not_starts_with: String
-
-  """All values ending with the given string."""
-  email_ends_with: String
-
-  """All values not ending with the given string."""
-  email_not_ends_with: String
-  firstname: String
-
-  """All values that are not equal to given value."""
-  firstname_not: String
-
-  """All values that are contained in given list."""
-  firstname_in: [String!]
-
-  """All values that are not contained in given list."""
-  firstname_not_in: [String!]
-
-  """All values less than the given value."""
-  firstname_lt: String
-
-  """All values less than or equal the given value."""
-  firstname_lte: String
-
-  """All values greater than the given value."""
-  firstname_gt: String
-
-  """All values greater than or equal the given value."""
-  firstname_gte: String
-
-  """All values containing the given string."""
-  firstname_contains: String
-
-  """All values not containing the given string."""
-  firstname_not_contains: String
-
-  """All values starting with the given string."""
-  firstname_starts_with: String
-
-  """All values not starting with the given string."""
-  firstname_not_starts_with: String
-
-  """All values ending with the given string."""
-  firstname_ends_with: String
-
-  """All values not ending with the given string."""
-  firstname_not_ends_with: String
-  isActive: Boolean
-
-  """All values that are not equal to given value."""
-  isActive_not: Boolean
-  lastname: String
-
-  """All values that are not equal to given value."""
-  lastname_not: String
-
-  """All values that are contained in given list."""
-  lastname_in: [String!]
-
-  """All values that are not contained in given list."""
-  lastname_not_in: [String!]
-
-  """All values less than the given value."""
-  lastname_lt: String
-
-  """All values less than or equal the given value."""
-  lastname_lte: String
-
-  """All values greater than the given value."""
-  lastname_gt: String
-
-  """All values greater than or equal the given value."""
-  lastname_gte: String
-
-  """All values containing the given string."""
-  lastname_contains: String
-
-  """All values not containing the given string."""
-  lastname_not_contains: String
-
-  """All values starting with the given string."""
-  lastname_starts_with: String
-
-  """All values not starting with the given string."""
-  lastname_not_starts_with: String
-
-  """All values ending with the given string."""
-  lastname_ends_with: String
-
-  """All values not ending with the given string."""
-  lastname_not_ends_with: String
-  password: String
-
-  """All values that are not equal to given value."""
-  password_not: String
-
-  """All values that are contained in given list."""
-  password_in: [String!]
-
-  """All values that are not contained in given list."""
-  password_not_in: [String!]
-
-  """All values less than the given value."""
-  password_lt: String
-
-  """All values less than or equal the given value."""
-  password_lte: String
-
-  """All values greater than the given value."""
-  password_gt: String
-
-  """All values greater than or equal the given value."""
-  password_gte: String
-
-  """All values containing the given string."""
-  password_contains: String
-
-  """All values not containing the given string."""
-  password_not_contains: String
-
-  """All values starting with the given string."""
-  password_starts_with: String
-
-  """All values not starting with the given string."""
-  password_not_starts_with: String
-
-  """All values ending with the given string."""
-  password_ends_with: String
-
-  """All values not ending with the given string."""
-  password_not_ends_with: String
-  salary: Float
-
-  """All values that are not equal to given value."""
-  salary_not: Float
-
-  """All values that are contained in given list."""
-  salary_in: [Float!]
-
-  """All values that are not contained in given list."""
-  salary_not_in: [Float!]
-
-  """All values less than the given value."""
-  salary_lt: Float
-
-  """All values less than or equal the given value."""
-  salary_lte: Float
-
-  """All values greater than the given value."""
-  salary_gt: Float
-
-  """All values greater than or equal the given value."""
-  salary_gte: Float
-  updated: DateTime
-
-  """All values that are not equal to given value."""
-  updated_not: DateTime
-
-  """All values that are contained in given list."""
-  updated_in: [DateTime!]
-
-  """All values that are not contained in given list."""
-  updated_not_in: [DateTime!]
-
-  """All values less than the given value."""
-  updated_lt: DateTime
-
-  """All values less than or equal the given value."""
-  updated_lte: DateTime
-
-  """All values greater than the given value."""
-  updated_gt: DateTime
-
-  """All values greater than or equal the given value."""
-  updated_gte: DateTime
-}
-
 type AccountSubscriptionPayload {
   mutation: MutationType!
   node: Account
@@ -490,19 +205,6 @@ input AccountUpdateInput {
   property: PropertyUpdateManyWithoutUserRelatedInput
 }
 
-input AccountUpdateManyDataInput {
-  birthdate: DateTime
-  created: DateTime
-  email: String
-  firstname: String
-  isActive: Boolean
-  lastname: String
-  password: String
-  roles: Json
-  salary: Float
-  updated: DateTime
-}
-
 input AccountUpdateManyMutationInput {
   birthdate: DateTime
   created: DateTime
@@ -516,45 +218,27 @@ input AccountUpdateManyMutationInput {
   updated: DateTime
 }
 
-input AccountUpdateManyWithoutApplicationInput {
-  create: [AccountCreateWithoutApplicationInput!]
-  connect: [AccountWhereUniqueInput!]
-  set: [AccountWhereUniqueInput!]
-  disconnect: [AccountWhereUniqueInput!]
-  delete: [AccountWhereUniqueInput!]
-  update: [AccountUpdateWithWhereUniqueWithoutApplicationInput!]
-  updateMany: [AccountUpdateManyWithWhereNestedInput!]
-  deleteMany: [AccountScalarWhereInput!]
-  upsert: [AccountUpsertWithWhereUniqueWithoutApplicationInput!]
+input AccountUpdateOneRequiredWithoutApplicationInput {
+  create: AccountCreateWithoutApplicationInput
+  connect: AccountWhereUniqueInput
+  update: AccountUpdateWithoutApplicationDataInput
+  upsert: AccountUpsertWithoutApplicationInput
 }
 
-input AccountUpdateManyWithoutGuarantorInput {
-  create: [AccountCreateWithoutGuarantorInput!]
-  connect: [AccountWhereUniqueInput!]
-  set: [AccountWhereUniqueInput!]
-  disconnect: [AccountWhereUniqueInput!]
-  delete: [AccountWhereUniqueInput!]
-  update: [AccountUpdateWithWhereUniqueWithoutGuarantorInput!]
-  updateMany: [AccountUpdateManyWithWhereNestedInput!]
-  deleteMany: [AccountScalarWhereInput!]
-  upsert: [AccountUpsertWithWhereUniqueWithoutGuarantorInput!]
+input AccountUpdateOneRequiredWithoutGuarantorInput {
+  create: AccountCreateWithoutGuarantorInput
+  connect: AccountWhereUniqueInput
+  update: AccountUpdateWithoutGuarantorDataInput
+  upsert: AccountUpsertWithoutGuarantorInput
 }
 
-input AccountUpdateManyWithoutPropertyInput {
-  create: [AccountCreateWithoutPropertyInput!]
-  connect: [AccountWhereUniqueInput!]
-  set: [AccountWhereUniqueInput!]
-  disconnect: [AccountWhereUniqueInput!]
-  delete: [AccountWhereUniqueInput!]
-  update: [AccountUpdateWithWhereUniqueWithoutPropertyInput!]
-  updateMany: [AccountUpdateManyWithWhereNestedInput!]
-  deleteMany: [AccountScalarWhereInput!]
-  upsert: [AccountUpsertWithWhereUniqueWithoutPropertyInput!]
-}
-
-input AccountUpdateManyWithWhereNestedInput {
-  where: AccountScalarWhereInput!
-  data: AccountUpdateManyDataInput!
+input AccountUpdateOneWithoutPropertyInput {
+  create: AccountCreateWithoutPropertyInput
+  connect: AccountWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: AccountUpdateWithoutPropertyDataInput
+  upsert: AccountUpsertWithoutPropertyInput
 }
 
 input AccountUpdateWithoutApplicationDataInput {
@@ -602,35 +286,17 @@ input AccountUpdateWithoutPropertyDataInput {
   guarantor: GuarantorUpdateManyWithoutUserRelatedInput
 }
 
-input AccountUpdateWithWhereUniqueWithoutApplicationInput {
-  where: AccountWhereUniqueInput!
-  data: AccountUpdateWithoutApplicationDataInput!
-}
-
-input AccountUpdateWithWhereUniqueWithoutGuarantorInput {
-  where: AccountWhereUniqueInput!
-  data: AccountUpdateWithoutGuarantorDataInput!
-}
-
-input AccountUpdateWithWhereUniqueWithoutPropertyInput {
-  where: AccountWhereUniqueInput!
-  data: AccountUpdateWithoutPropertyDataInput!
-}
-
-input AccountUpsertWithWhereUniqueWithoutApplicationInput {
-  where: AccountWhereUniqueInput!
+input AccountUpsertWithoutApplicationInput {
   update: AccountUpdateWithoutApplicationDataInput!
   create: AccountCreateWithoutApplicationInput!
 }
 
-input AccountUpsertWithWhereUniqueWithoutGuarantorInput {
-  where: AccountWhereUniqueInput!
+input AccountUpsertWithoutGuarantorInput {
   update: AccountUpdateWithoutGuarantorDataInput!
   create: AccountCreateWithoutGuarantorInput!
 }
 
-input AccountUpsertWithWhereUniqueWithoutPropertyInput {
-  where: AccountWhereUniqueInput!
+input AccountUpsertWithoutPropertyInput {
   update: AccountUpdateWithoutPropertyDataInput!
   create: AccountCreateWithoutPropertyInput!
 }
@@ -965,9 +631,9 @@ input AddressCreateInput {
   property: PropertyCreateOneWithoutAddressInput!
 }
 
-input AddressCreateManyWithoutPropertyInput {
-  create: [AddressCreateWithoutPropertyInput!]
-  connect: [AddressWhereUniqueInput!]
+input AddressCreateOneWithoutPropertyInput {
+  create: AddressCreateWithoutPropertyInput
+  connect: AddressWhereUniqueInput
 }
 
 input AddressCreateWithoutPropertyInput {
@@ -1013,243 +679,6 @@ type AddressPreviousValues {
   room: Int
   street: String!
   zipcode: String!
-}
-
-input AddressScalarWhereInput {
-  """Logical AND on all given filters."""
-  AND: [AddressScalarWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [AddressScalarWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [AddressScalarWhereInput!]
-  id: Int
-
-  """All values that are not equal to given value."""
-  id_not: Int
-
-  """All values that are contained in given list."""
-  id_in: [Int!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [Int!]
-
-  """All values less than the given value."""
-  id_lt: Int
-
-  """All values less than or equal the given value."""
-  id_lte: Int
-
-  """All values greater than the given value."""
-  id_gt: Int
-
-  """All values greater than or equal the given value."""
-  id_gte: Int
-  city: String
-
-  """All values that are not equal to given value."""
-  city_not: String
-
-  """All values that are contained in given list."""
-  city_in: [String!]
-
-  """All values that are not contained in given list."""
-  city_not_in: [String!]
-
-  """All values less than the given value."""
-  city_lt: String
-
-  """All values less than or equal the given value."""
-  city_lte: String
-
-  """All values greater than the given value."""
-  city_gt: String
-
-  """All values greater than or equal the given value."""
-  city_gte: String
-
-  """All values containing the given string."""
-  city_contains: String
-
-  """All values not containing the given string."""
-  city_not_contains: String
-
-  """All values starting with the given string."""
-  city_starts_with: String
-
-  """All values not starting with the given string."""
-  city_not_starts_with: String
-
-  """All values ending with the given string."""
-  city_ends_with: String
-
-  """All values not ending with the given string."""
-  city_not_ends_with: String
-  country: String
-
-  """All values that are not equal to given value."""
-  country_not: String
-
-  """All values that are contained in given list."""
-  country_in: [String!]
-
-  """All values that are not contained in given list."""
-  country_not_in: [String!]
-
-  """All values less than the given value."""
-  country_lt: String
-
-  """All values less than or equal the given value."""
-  country_lte: String
-
-  """All values greater than the given value."""
-  country_gt: String
-
-  """All values greater than or equal the given value."""
-  country_gte: String
-
-  """All values containing the given string."""
-  country_contains: String
-
-  """All values not containing the given string."""
-  country_not_contains: String
-
-  """All values starting with the given string."""
-  country_starts_with: String
-
-  """All values not starting with the given string."""
-  country_not_starts_with: String
-
-  """All values ending with the given string."""
-  country_ends_with: String
-
-  """All values not ending with the given string."""
-  country_not_ends_with: String
-  floor: Int
-
-  """All values that are not equal to given value."""
-  floor_not: Int
-
-  """All values that are contained in given list."""
-  floor_in: [Int!]
-
-  """All values that are not contained in given list."""
-  floor_not_in: [Int!]
-
-  """All values less than the given value."""
-  floor_lt: Int
-
-  """All values less than or equal the given value."""
-  floor_lte: Int
-
-  """All values greater than the given value."""
-  floor_gt: Int
-
-  """All values greater than or equal the given value."""
-  floor_gte: Int
-  room: Int
-
-  """All values that are not equal to given value."""
-  room_not: Int
-
-  """All values that are contained in given list."""
-  room_in: [Int!]
-
-  """All values that are not contained in given list."""
-  room_not_in: [Int!]
-
-  """All values less than the given value."""
-  room_lt: Int
-
-  """All values less than or equal the given value."""
-  room_lte: Int
-
-  """All values greater than the given value."""
-  room_gt: Int
-
-  """All values greater than or equal the given value."""
-  room_gte: Int
-  street: String
-
-  """All values that are not equal to given value."""
-  street_not: String
-
-  """All values that are contained in given list."""
-  street_in: [String!]
-
-  """All values that are not contained in given list."""
-  street_not_in: [String!]
-
-  """All values less than the given value."""
-  street_lt: String
-
-  """All values less than or equal the given value."""
-  street_lte: String
-
-  """All values greater than the given value."""
-  street_gt: String
-
-  """All values greater than or equal the given value."""
-  street_gte: String
-
-  """All values containing the given string."""
-  street_contains: String
-
-  """All values not containing the given string."""
-  street_not_contains: String
-
-  """All values starting with the given string."""
-  street_starts_with: String
-
-  """All values not starting with the given string."""
-  street_not_starts_with: String
-
-  """All values ending with the given string."""
-  street_ends_with: String
-
-  """All values not ending with the given string."""
-  street_not_ends_with: String
-  zipcode: String
-
-  """All values that are not equal to given value."""
-  zipcode_not: String
-
-  """All values that are contained in given list."""
-  zipcode_in: [String!]
-
-  """All values that are not contained in given list."""
-  zipcode_not_in: [String!]
-
-  """All values less than the given value."""
-  zipcode_lt: String
-
-  """All values less than or equal the given value."""
-  zipcode_lte: String
-
-  """All values greater than the given value."""
-  zipcode_gt: String
-
-  """All values greater than or equal the given value."""
-  zipcode_gte: String
-
-  """All values containing the given string."""
-  zipcode_contains: String
-
-  """All values not containing the given string."""
-  zipcode_not_contains: String
-
-  """All values starting with the given string."""
-  zipcode_starts_with: String
-
-  """All values not starting with the given string."""
-  zipcode_not_starts_with: String
-
-  """All values ending with the given string."""
-  zipcode_ends_with: String
-
-  """All values not ending with the given string."""
-  zipcode_not_ends_with: String
 }
 
 type AddressSubscriptionPayload {
@@ -1299,15 +728,6 @@ input AddressUpdateInput {
   property: PropertyUpdateOneRequiredWithoutAddressInput
 }
 
-input AddressUpdateManyDataInput {
-  city: String
-  country: String
-  floor: Int
-  room: Int
-  street: String
-  zipcode: String
-}
-
 input AddressUpdateManyMutationInput {
   city: String
   country: String
@@ -1317,21 +737,11 @@ input AddressUpdateManyMutationInput {
   zipcode: String
 }
 
-input AddressUpdateManyWithoutPropertyInput {
-  create: [AddressCreateWithoutPropertyInput!]
-  connect: [AddressWhereUniqueInput!]
-  set: [AddressWhereUniqueInput!]
-  disconnect: [AddressWhereUniqueInput!]
-  delete: [AddressWhereUniqueInput!]
-  update: [AddressUpdateWithWhereUniqueWithoutPropertyInput!]
-  updateMany: [AddressUpdateManyWithWhereNestedInput!]
-  deleteMany: [AddressScalarWhereInput!]
-  upsert: [AddressUpsertWithWhereUniqueWithoutPropertyInput!]
-}
-
-input AddressUpdateManyWithWhereNestedInput {
-  where: AddressScalarWhereInput!
-  data: AddressUpdateManyDataInput!
+input AddressUpdateOneRequiredWithoutPropertyInput {
+  create: AddressCreateWithoutPropertyInput
+  connect: AddressWhereUniqueInput
+  update: AddressUpdateWithoutPropertyDataInput
+  upsert: AddressUpsertWithoutPropertyInput
 }
 
 input AddressUpdateWithoutPropertyDataInput {
@@ -1343,13 +753,7 @@ input AddressUpdateWithoutPropertyDataInput {
   zipcode: String
 }
 
-input AddressUpdateWithWhereUniqueWithoutPropertyInput {
-  where: AddressWhereUniqueInput!
-  data: AddressUpdateWithoutPropertyDataInput!
-}
-
-input AddressUpsertWithWhereUniqueWithoutPropertyInput {
-  where: AddressWhereUniqueInput!
+input AddressUpsertWithoutPropertyInput {
   update: AddressUpdateWithoutPropertyDataInput!
   create: AddressCreateWithoutPropertyInput!
 }
@@ -1638,11 +1042,11 @@ type AggregateProperty {
 
 type Application {
   id: Int!
-  buyer(where: AccountWhereInput, orderBy: AccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Account!]
+  buyer: Account!
   contract: Contract!
   created: DateTime!
   offer: Float!
-  property(where: PropertyWhereInput, orderBy: PropertyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Property!]
+  property: Property!
   updated: DateTime!
 }
 
@@ -1660,18 +1064,13 @@ input ApplicationCreateInput {
   created: DateTime!
   offer: Float!
   updated: DateTime!
-  buyer: AccountCreateManyWithoutApplicationInput
+  buyer: AccountCreateOneWithoutApplicationInput!
   contract: ContractCreateOneWithoutApplicationInput!
-  property: PropertyCreateManyWithoutApplicationInput
+  property: PropertyCreateOneWithoutApplicationInput!
 }
 
 input ApplicationCreateManyWithoutBuyerInput {
   create: [ApplicationCreateWithoutBuyerInput!]
-  connect: [ApplicationWhereUniqueInput!]
-}
-
-input ApplicationCreateManyWithoutContractInput {
-  create: [ApplicationCreateWithoutContractInput!]
   connect: [ApplicationWhereUniqueInput!]
 }
 
@@ -1680,27 +1079,32 @@ input ApplicationCreateManyWithoutPropertyInput {
   connect: [ApplicationWhereUniqueInput!]
 }
 
+input ApplicationCreateOneWithoutContractInput {
+  create: ApplicationCreateWithoutContractInput
+  connect: ApplicationWhereUniqueInput
+}
+
 input ApplicationCreateWithoutBuyerInput {
   created: DateTime!
   offer: Float!
   updated: DateTime!
   contract: ContractCreateOneWithoutApplicationInput!
-  property: PropertyCreateManyWithoutApplicationInput
+  property: PropertyCreateOneWithoutApplicationInput!
 }
 
 input ApplicationCreateWithoutContractInput {
   created: DateTime!
   offer: Float!
   updated: DateTime!
-  buyer: AccountCreateManyWithoutApplicationInput
-  property: PropertyCreateManyWithoutApplicationInput
+  buyer: AccountCreateOneWithoutApplicationInput!
+  property: PropertyCreateOneWithoutApplicationInput!
 }
 
 input ApplicationCreateWithoutPropertyInput {
   created: DateTime!
   offer: Float!
   updated: DateTime!
-  buyer: AccountCreateManyWithoutApplicationInput
+  buyer: AccountCreateOneWithoutApplicationInput!
   contract: ContractCreateOneWithoutApplicationInput!
 }
 
@@ -1871,9 +1275,9 @@ input ApplicationUpdateInput {
   created: DateTime
   offer: Float
   updated: DateTime
-  buyer: AccountUpdateManyWithoutApplicationInput
+  buyer: AccountUpdateOneRequiredWithoutApplicationInput
   contract: ContractUpdateOneRequiredWithoutApplicationInput
-  property: PropertyUpdateManyWithoutApplicationInput
+  property: PropertyUpdateOneRequiredWithoutApplicationInput
 }
 
 input ApplicationUpdateManyDataInput {
@@ -1900,18 +1304,6 @@ input ApplicationUpdateManyWithoutBuyerInput {
   upsert: [ApplicationUpsertWithWhereUniqueWithoutBuyerInput!]
 }
 
-input ApplicationUpdateManyWithoutContractInput {
-  create: [ApplicationCreateWithoutContractInput!]
-  connect: [ApplicationWhereUniqueInput!]
-  set: [ApplicationWhereUniqueInput!]
-  disconnect: [ApplicationWhereUniqueInput!]
-  delete: [ApplicationWhereUniqueInput!]
-  update: [ApplicationUpdateWithWhereUniqueWithoutContractInput!]
-  updateMany: [ApplicationUpdateManyWithWhereNestedInput!]
-  deleteMany: [ApplicationScalarWhereInput!]
-  upsert: [ApplicationUpsertWithWhereUniqueWithoutContractInput!]
-}
-
 input ApplicationUpdateManyWithoutPropertyInput {
   create: [ApplicationCreateWithoutPropertyInput!]
   connect: [ApplicationWhereUniqueInput!]
@@ -1929,27 +1321,34 @@ input ApplicationUpdateManyWithWhereNestedInput {
   data: ApplicationUpdateManyDataInput!
 }
 
+input ApplicationUpdateOneRequiredWithoutContractInput {
+  create: ApplicationCreateWithoutContractInput
+  connect: ApplicationWhereUniqueInput
+  update: ApplicationUpdateWithoutContractDataInput
+  upsert: ApplicationUpsertWithoutContractInput
+}
+
 input ApplicationUpdateWithoutBuyerDataInput {
   created: DateTime
   offer: Float
   updated: DateTime
   contract: ContractUpdateOneRequiredWithoutApplicationInput
-  property: PropertyUpdateManyWithoutApplicationInput
+  property: PropertyUpdateOneRequiredWithoutApplicationInput
 }
 
 input ApplicationUpdateWithoutContractDataInput {
   created: DateTime
   offer: Float
   updated: DateTime
-  buyer: AccountUpdateManyWithoutApplicationInput
-  property: PropertyUpdateManyWithoutApplicationInput
+  buyer: AccountUpdateOneRequiredWithoutApplicationInput
+  property: PropertyUpdateOneRequiredWithoutApplicationInput
 }
 
 input ApplicationUpdateWithoutPropertyDataInput {
   created: DateTime
   offer: Float
   updated: DateTime
-  buyer: AccountUpdateManyWithoutApplicationInput
+  buyer: AccountUpdateOneRequiredWithoutApplicationInput
   contract: ContractUpdateOneRequiredWithoutApplicationInput
 }
 
@@ -1958,26 +1357,20 @@ input ApplicationUpdateWithWhereUniqueWithoutBuyerInput {
   data: ApplicationUpdateWithoutBuyerDataInput!
 }
 
-input ApplicationUpdateWithWhereUniqueWithoutContractInput {
-  where: ApplicationWhereUniqueInput!
-  data: ApplicationUpdateWithoutContractDataInput!
-}
-
 input ApplicationUpdateWithWhereUniqueWithoutPropertyInput {
   where: ApplicationWhereUniqueInput!
   data: ApplicationUpdateWithoutPropertyDataInput!
+}
+
+input ApplicationUpsertWithoutContractInput {
+  update: ApplicationUpdateWithoutContractDataInput!
+  create: ApplicationCreateWithoutContractInput!
 }
 
 input ApplicationUpsertWithWhereUniqueWithoutBuyerInput {
   where: ApplicationWhereUniqueInput!
   update: ApplicationUpdateWithoutBuyerDataInput!
   create: ApplicationCreateWithoutBuyerInput!
-}
-
-input ApplicationUpsertWithWhereUniqueWithoutContractInput {
-  where: ApplicationWhereUniqueInput!
-  update: ApplicationUpdateWithoutContractDataInput!
-  create: ApplicationCreateWithoutContractInput!
 }
 
 input ApplicationUpsertWithWhereUniqueWithoutPropertyInput {
@@ -2083,13 +1476,9 @@ input ApplicationWhereInput {
 
   """All values greater than or equal the given value."""
   updated_gte: DateTime
-  buyer_every: AccountWhereInput
-  buyer_some: AccountWhereInput
-  buyer_none: AccountWhereInput
+  buyer: AccountWhereInput
   contract: ContractWhereInput
-  property_every: PropertyWhereInput
-  property_some: PropertyWhereInput
-  property_none: PropertyWhereInput
+  property: PropertyWhereInput
 }
 
 input ApplicationWhereUniqueInput {
@@ -2103,7 +1492,7 @@ type BatchPayload {
 
 type Contract {
   id: Int!
-  application(where: ApplicationWhereInput, orderBy: ApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Application!]
+  application: Application!
   created: DateTime!
   price: Float!
   updated: DateTime!
@@ -2123,7 +1512,7 @@ input ContractCreateInput {
   created: DateTime!
   price: Float!
   updated: DateTime!
-  application: ApplicationCreateManyWithoutContractInput
+  application: ApplicationCreateOneWithoutContractInput!
 }
 
 input ContractCreateOneWithoutApplicationInput {
@@ -2205,7 +1594,7 @@ input ContractUpdateInput {
   created: DateTime
   price: Float
   updated: DateTime
-  application: ApplicationUpdateManyWithoutContractInput
+  application: ApplicationUpdateOneRequiredWithoutContractInput
 }
 
 input ContractUpdateManyMutationInput {
@@ -2329,9 +1718,7 @@ input ContractWhereInput {
 
   """All values greater than or equal the given value."""
   updated_gte: DateTime
-  application_every: ApplicationWhereInput
-  application_some: ApplicationWhereInput
-  application_none: ApplicationWhereInput
+  application: ApplicationWhereInput
 }
 
 input ContractWhereUniqueInput {
@@ -2537,7 +1924,7 @@ type Feature {
   bathrooms: Int!
   bedrooms: Int!
   garages: Int!
-  property(where: PropertyWhereInput, orderBy: PropertyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Property!]
+  property: Property!
   rooms: Int!
   size: Int!
 }
@@ -2558,12 +1945,12 @@ input FeatureCreateInput {
   garages: Int!
   rooms: Int!
   size: Int!
-  property: PropertyCreateManyWithoutFeaturesInput
+  property: PropertyCreateOneWithoutFeaturesInput!
 }
 
-input FeatureCreateManyWithoutPropertyInput {
-  create: [FeatureCreateWithoutPropertyInput!]
-  connect: [FeatureWhereUniqueInput!]
+input FeatureCreateOneWithoutPropertyInput {
+  create: FeatureCreateWithoutPropertyInput
+  connect: FeatureWhereUniqueInput
 }
 
 input FeatureCreateWithoutPropertyInput {
@@ -2605,149 +1992,6 @@ type FeaturePreviousValues {
   garages: Int!
   rooms: Int!
   size: Int!
-}
-
-input FeatureScalarWhereInput {
-  """Logical AND on all given filters."""
-  AND: [FeatureScalarWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [FeatureScalarWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [FeatureScalarWhereInput!]
-  id: Int
-
-  """All values that are not equal to given value."""
-  id_not: Int
-
-  """All values that are contained in given list."""
-  id_in: [Int!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [Int!]
-
-  """All values less than the given value."""
-  id_lt: Int
-
-  """All values less than or equal the given value."""
-  id_lte: Int
-
-  """All values greater than the given value."""
-  id_gt: Int
-
-  """All values greater than or equal the given value."""
-  id_gte: Int
-  bathrooms: Int
-
-  """All values that are not equal to given value."""
-  bathrooms_not: Int
-
-  """All values that are contained in given list."""
-  bathrooms_in: [Int!]
-
-  """All values that are not contained in given list."""
-  bathrooms_not_in: [Int!]
-
-  """All values less than the given value."""
-  bathrooms_lt: Int
-
-  """All values less than or equal the given value."""
-  bathrooms_lte: Int
-
-  """All values greater than the given value."""
-  bathrooms_gt: Int
-
-  """All values greater than or equal the given value."""
-  bathrooms_gte: Int
-  bedrooms: Int
-
-  """All values that are not equal to given value."""
-  bedrooms_not: Int
-
-  """All values that are contained in given list."""
-  bedrooms_in: [Int!]
-
-  """All values that are not contained in given list."""
-  bedrooms_not_in: [Int!]
-
-  """All values less than the given value."""
-  bedrooms_lt: Int
-
-  """All values less than or equal the given value."""
-  bedrooms_lte: Int
-
-  """All values greater than the given value."""
-  bedrooms_gt: Int
-
-  """All values greater than or equal the given value."""
-  bedrooms_gte: Int
-  garages: Int
-
-  """All values that are not equal to given value."""
-  garages_not: Int
-
-  """All values that are contained in given list."""
-  garages_in: [Int!]
-
-  """All values that are not contained in given list."""
-  garages_not_in: [Int!]
-
-  """All values less than the given value."""
-  garages_lt: Int
-
-  """All values less than or equal the given value."""
-  garages_lte: Int
-
-  """All values greater than the given value."""
-  garages_gt: Int
-
-  """All values greater than or equal the given value."""
-  garages_gte: Int
-  rooms: Int
-
-  """All values that are not equal to given value."""
-  rooms_not: Int
-
-  """All values that are contained in given list."""
-  rooms_in: [Int!]
-
-  """All values that are not contained in given list."""
-  rooms_not_in: [Int!]
-
-  """All values less than the given value."""
-  rooms_lt: Int
-
-  """All values less than or equal the given value."""
-  rooms_lte: Int
-
-  """All values greater than the given value."""
-  rooms_gt: Int
-
-  """All values greater than or equal the given value."""
-  rooms_gte: Int
-  size: Int
-
-  """All values that are not equal to given value."""
-  size_not: Int
-
-  """All values that are contained in given list."""
-  size_in: [Int!]
-
-  """All values that are not contained in given list."""
-  size_not_in: [Int!]
-
-  """All values less than the given value."""
-  size_lt: Int
-
-  """All values less than or equal the given value."""
-  size_lte: Int
-
-  """All values greater than the given value."""
-  size_gt: Int
-
-  """All values greater than or equal the given value."""
-  size_gte: Int
 }
 
 type FeatureSubscriptionPayload {
@@ -2793,15 +2037,7 @@ input FeatureUpdateInput {
   garages: Int
   rooms: Int
   size: Int
-  property: PropertyUpdateManyWithoutFeaturesInput
-}
-
-input FeatureUpdateManyDataInput {
-  bathrooms: Int
-  bedrooms: Int
-  garages: Int
-  rooms: Int
-  size: Int
+  property: PropertyUpdateOneRequiredWithoutFeaturesInput
 }
 
 input FeatureUpdateManyMutationInput {
@@ -2812,21 +2048,11 @@ input FeatureUpdateManyMutationInput {
   size: Int
 }
 
-input FeatureUpdateManyWithoutPropertyInput {
-  create: [FeatureCreateWithoutPropertyInput!]
-  connect: [FeatureWhereUniqueInput!]
-  set: [FeatureWhereUniqueInput!]
-  disconnect: [FeatureWhereUniqueInput!]
-  delete: [FeatureWhereUniqueInput!]
-  update: [FeatureUpdateWithWhereUniqueWithoutPropertyInput!]
-  updateMany: [FeatureUpdateManyWithWhereNestedInput!]
-  deleteMany: [FeatureScalarWhereInput!]
-  upsert: [FeatureUpsertWithWhereUniqueWithoutPropertyInput!]
-}
-
-input FeatureUpdateManyWithWhereNestedInput {
-  where: FeatureScalarWhereInput!
-  data: FeatureUpdateManyDataInput!
+input FeatureUpdateOneRequiredWithoutPropertyInput {
+  create: FeatureCreateWithoutPropertyInput
+  connect: FeatureWhereUniqueInput
+  update: FeatureUpdateWithoutPropertyDataInput
+  upsert: FeatureUpsertWithoutPropertyInput
 }
 
 input FeatureUpdateWithoutPropertyDataInput {
@@ -2837,13 +2063,7 @@ input FeatureUpdateWithoutPropertyDataInput {
   size: Int
 }
 
-input FeatureUpdateWithWhereUniqueWithoutPropertyInput {
-  where: FeatureWhereUniqueInput!
-  data: FeatureUpdateWithoutPropertyDataInput!
-}
-
-input FeatureUpsertWithWhereUniqueWithoutPropertyInput {
-  where: FeatureWhereUniqueInput!
+input FeatureUpsertWithoutPropertyInput {
   update: FeatureUpdateWithoutPropertyDataInput!
   create: FeatureCreateWithoutPropertyInput!
 }
@@ -2989,9 +2209,7 @@ input FeatureWhereInput {
 
   """All values greater than or equal the given value."""
   size_gte: Int
-  property_every: PropertyWhereInput
-  property_some: PropertyWhereInput
-  property_none: PropertyWhereInput
+  property: PropertyWhereInput
 }
 
 input FeatureWhereUniqueInput {
@@ -3166,7 +2384,7 @@ type Guarantor {
   lastName: String!
   relation: String!
   salary: Float!
-  userRelated(where: AccountWhereInput, orderBy: AccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Account!]
+  userRelated: Account!
 }
 
 """A connection to a list of items."""
@@ -3184,7 +2402,7 @@ input GuarantorCreateInput {
   lastName: String!
   relation: String!
   salary: Float!
-  userRelated: AccountCreateManyWithoutGuarantorInput
+  userRelated: AccountCreateOneWithoutGuarantorInput!
 }
 
 input GuarantorCreateManyWithoutUserRelatedInput {
@@ -3446,7 +2664,7 @@ input GuarantorUpdateInput {
   lastName: String
   relation: String
   salary: Float
-  userRelated: AccountUpdateManyWithoutGuarantorInput
+  userRelated: AccountUpdateOneRequiredWithoutGuarantorInput
 }
 
 input GuarantorUpdateManyDataInput {
@@ -3671,9 +2889,7 @@ input GuarantorWhereInput {
 
   """All values greater than or equal the given value."""
   salary_gte: Float
-  userRelated_every: AccountWhereInput
-  userRelated_some: AccountWhereInput
-  userRelated_none: AccountWhereInput
+  userRelated: AccountWhereInput
 }
 
 input GuarantorWhereUniqueInput {
@@ -3694,7 +2910,7 @@ type Media {
   created: DateTime!
   extension: String!
   filename: String!
-  property(where: PropertyWhereInput, orderBy: PropertyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Property!]
+  property: Property
   updated: DateTime!
   uri: String!
 }
@@ -3715,7 +2931,7 @@ input MediaCreateInput {
   filename: String!
   updated: DateTime!
   uri: String!
-  property: PropertyCreateManyWithoutMediaInput
+  property: PropertyCreateOneWithoutMediaInput
 }
 
 input MediaCreateManyWithoutPropertyInput {
@@ -4004,7 +3220,7 @@ input MediaUpdateInput {
   filename: String
   updated: DateTime
   uri: String
-  property: PropertyUpdateManyWithoutMediaInput
+  property: PropertyUpdateOneWithoutMediaInput
 }
 
 input MediaUpdateManyDataInput {
@@ -4254,9 +3470,7 @@ input MediaWhereInput {
 
   """All values not ending with the given string."""
   uri_not_ends_with: String
-  property_every: PropertyWhereInput
-  property_some: PropertyWhereInput
-  property_none: PropertyWhereInput
+  property: PropertyWhereInput
 }
 
 input MediaWhereUniqueInput {
@@ -4324,7 +3538,6 @@ type Mutation {
   deleteManyGuarantors(where: GuarantorWhereInput): BatchPayload!
   deleteManyMedias(where: MediaWhereInput): BatchPayload!
   deleteManyProperties(where: PropertyWhereInput): BatchPayload!
-  executeRaw(database: PrismaDatabase, query: String!): Json!
 }
 
 enum MutationType {
@@ -4354,19 +3567,15 @@ type PageInfo {
   endCursor: String
 }
 
-enum PrismaDatabase {
-  default
-}
-
 type Property {
   id: Int!
-  address(where: AddressWhereInput, orderBy: AddressOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Address!]
+  address: Address!
   application(where: ApplicationWhereInput, orderBy: ApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Application!]
   description: String!
-  features(where: FeatureWhereInput, orderBy: FeatureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Feature!]
+  features: Feature!
   media(where: MediaWhereInput, orderBy: MediaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Media!]
   title: String!
-  userRelated(where: AccountWhereInput, orderBy: AccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Account!]
+  userRelated: Account
 }
 
 """A connection to a list of items."""
@@ -4382,26 +3591,11 @@ type PropertyConnection {
 input PropertyCreateInput {
   description: String!
   title: String!
-  address: AddressCreateManyWithoutPropertyInput
+  address: AddressCreateOneWithoutPropertyInput!
   application: ApplicationCreateManyWithoutPropertyInput
-  features: FeatureCreateManyWithoutPropertyInput
+  features: FeatureCreateOneWithoutPropertyInput!
   media: MediaCreateManyWithoutPropertyInput
-  userRelated: AccountCreateManyWithoutPropertyInput
-}
-
-input PropertyCreateManyWithoutApplicationInput {
-  create: [PropertyCreateWithoutApplicationInput!]
-  connect: [PropertyWhereUniqueInput!]
-}
-
-input PropertyCreateManyWithoutFeaturesInput {
-  create: [PropertyCreateWithoutFeaturesInput!]
-  connect: [PropertyWhereUniqueInput!]
-}
-
-input PropertyCreateManyWithoutMediaInput {
-  create: [PropertyCreateWithoutMediaInput!]
-  connect: [PropertyWhereUniqueInput!]
+  userRelated: AccountCreateOneWithoutPropertyInput
 }
 
 input PropertyCreateManyWithoutUserRelatedInput {
@@ -4414,48 +3608,63 @@ input PropertyCreateOneWithoutAddressInput {
   connect: PropertyWhereUniqueInput
 }
 
+input PropertyCreateOneWithoutApplicationInput {
+  create: PropertyCreateWithoutApplicationInput
+  connect: PropertyWhereUniqueInput
+}
+
+input PropertyCreateOneWithoutFeaturesInput {
+  create: PropertyCreateWithoutFeaturesInput
+  connect: PropertyWhereUniqueInput
+}
+
+input PropertyCreateOneWithoutMediaInput {
+  create: PropertyCreateWithoutMediaInput
+  connect: PropertyWhereUniqueInput
+}
+
 input PropertyCreateWithoutAddressInput {
   description: String!
   title: String!
   application: ApplicationCreateManyWithoutPropertyInput
-  features: FeatureCreateManyWithoutPropertyInput
+  features: FeatureCreateOneWithoutPropertyInput!
   media: MediaCreateManyWithoutPropertyInput
-  userRelated: AccountCreateManyWithoutPropertyInput
+  userRelated: AccountCreateOneWithoutPropertyInput
 }
 
 input PropertyCreateWithoutApplicationInput {
   description: String!
   title: String!
-  address: AddressCreateManyWithoutPropertyInput
-  features: FeatureCreateManyWithoutPropertyInput
+  address: AddressCreateOneWithoutPropertyInput!
+  features: FeatureCreateOneWithoutPropertyInput!
   media: MediaCreateManyWithoutPropertyInput
-  userRelated: AccountCreateManyWithoutPropertyInput
+  userRelated: AccountCreateOneWithoutPropertyInput
 }
 
 input PropertyCreateWithoutFeaturesInput {
   description: String!
   title: String!
-  address: AddressCreateManyWithoutPropertyInput
+  address: AddressCreateOneWithoutPropertyInput!
   application: ApplicationCreateManyWithoutPropertyInput
   media: MediaCreateManyWithoutPropertyInput
-  userRelated: AccountCreateManyWithoutPropertyInput
+  userRelated: AccountCreateOneWithoutPropertyInput
 }
 
 input PropertyCreateWithoutMediaInput {
   description: String!
   title: String!
-  address: AddressCreateManyWithoutPropertyInput
+  address: AddressCreateOneWithoutPropertyInput!
   application: ApplicationCreateManyWithoutPropertyInput
-  features: FeatureCreateManyWithoutPropertyInput
-  userRelated: AccountCreateManyWithoutPropertyInput
+  features: FeatureCreateOneWithoutPropertyInput!
+  userRelated: AccountCreateOneWithoutPropertyInput
 }
 
 input PropertyCreateWithoutUserRelatedInput {
   description: String!
   title: String!
-  address: AddressCreateManyWithoutPropertyInput
+  address: AddressCreateOneWithoutPropertyInput!
   application: ApplicationCreateManyWithoutPropertyInput
-  features: FeatureCreateManyWithoutPropertyInput
+  features: FeatureCreateOneWithoutPropertyInput!
   media: MediaCreateManyWithoutPropertyInput
 }
 
@@ -4636,11 +3845,11 @@ input PropertySubscriptionWhereInput {
 input PropertyUpdateInput {
   description: String
   title: String
-  address: AddressUpdateManyWithoutPropertyInput
+  address: AddressUpdateOneRequiredWithoutPropertyInput
   application: ApplicationUpdateManyWithoutPropertyInput
-  features: FeatureUpdateManyWithoutPropertyInput
+  features: FeatureUpdateOneRequiredWithoutPropertyInput
   media: MediaUpdateManyWithoutPropertyInput
-  userRelated: AccountUpdateManyWithoutPropertyInput
+  userRelated: AccountUpdateOneWithoutPropertyInput
 }
 
 input PropertyUpdateManyDataInput {
@@ -4651,42 +3860,6 @@ input PropertyUpdateManyDataInput {
 input PropertyUpdateManyMutationInput {
   description: String
   title: String
-}
-
-input PropertyUpdateManyWithoutApplicationInput {
-  create: [PropertyCreateWithoutApplicationInput!]
-  connect: [PropertyWhereUniqueInput!]
-  set: [PropertyWhereUniqueInput!]
-  disconnect: [PropertyWhereUniqueInput!]
-  delete: [PropertyWhereUniqueInput!]
-  update: [PropertyUpdateWithWhereUniqueWithoutApplicationInput!]
-  updateMany: [PropertyUpdateManyWithWhereNestedInput!]
-  deleteMany: [PropertyScalarWhereInput!]
-  upsert: [PropertyUpsertWithWhereUniqueWithoutApplicationInput!]
-}
-
-input PropertyUpdateManyWithoutFeaturesInput {
-  create: [PropertyCreateWithoutFeaturesInput!]
-  connect: [PropertyWhereUniqueInput!]
-  set: [PropertyWhereUniqueInput!]
-  disconnect: [PropertyWhereUniqueInput!]
-  delete: [PropertyWhereUniqueInput!]
-  update: [PropertyUpdateWithWhereUniqueWithoutFeaturesInput!]
-  updateMany: [PropertyUpdateManyWithWhereNestedInput!]
-  deleteMany: [PropertyScalarWhereInput!]
-  upsert: [PropertyUpsertWithWhereUniqueWithoutFeaturesInput!]
-}
-
-input PropertyUpdateManyWithoutMediaInput {
-  create: [PropertyCreateWithoutMediaInput!]
-  connect: [PropertyWhereUniqueInput!]
-  set: [PropertyWhereUniqueInput!]
-  disconnect: [PropertyWhereUniqueInput!]
-  delete: [PropertyWhereUniqueInput!]
-  update: [PropertyUpdateWithWhereUniqueWithoutMediaInput!]
-  updateMany: [PropertyUpdateManyWithWhereNestedInput!]
-  deleteMany: [PropertyScalarWhereInput!]
-  upsert: [PropertyUpsertWithWhereUniqueWithoutMediaInput!]
 }
 
 input PropertyUpdateManyWithoutUserRelatedInput {
@@ -4713,64 +3886,72 @@ input PropertyUpdateOneRequiredWithoutAddressInput {
   upsert: PropertyUpsertWithoutAddressInput
 }
 
+input PropertyUpdateOneRequiredWithoutApplicationInput {
+  create: PropertyCreateWithoutApplicationInput
+  connect: PropertyWhereUniqueInput
+  update: PropertyUpdateWithoutApplicationDataInput
+  upsert: PropertyUpsertWithoutApplicationInput
+}
+
+input PropertyUpdateOneRequiredWithoutFeaturesInput {
+  create: PropertyCreateWithoutFeaturesInput
+  connect: PropertyWhereUniqueInput
+  update: PropertyUpdateWithoutFeaturesDataInput
+  upsert: PropertyUpsertWithoutFeaturesInput
+}
+
+input PropertyUpdateOneWithoutMediaInput {
+  create: PropertyCreateWithoutMediaInput
+  connect: PropertyWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: PropertyUpdateWithoutMediaDataInput
+  upsert: PropertyUpsertWithoutMediaInput
+}
+
 input PropertyUpdateWithoutAddressDataInput {
   description: String
   title: String
   application: ApplicationUpdateManyWithoutPropertyInput
-  features: FeatureUpdateManyWithoutPropertyInput
+  features: FeatureUpdateOneRequiredWithoutPropertyInput
   media: MediaUpdateManyWithoutPropertyInput
-  userRelated: AccountUpdateManyWithoutPropertyInput
+  userRelated: AccountUpdateOneWithoutPropertyInput
 }
 
 input PropertyUpdateWithoutApplicationDataInput {
   description: String
   title: String
-  address: AddressUpdateManyWithoutPropertyInput
-  features: FeatureUpdateManyWithoutPropertyInput
+  address: AddressUpdateOneRequiredWithoutPropertyInput
+  features: FeatureUpdateOneRequiredWithoutPropertyInput
   media: MediaUpdateManyWithoutPropertyInput
-  userRelated: AccountUpdateManyWithoutPropertyInput
+  userRelated: AccountUpdateOneWithoutPropertyInput
 }
 
 input PropertyUpdateWithoutFeaturesDataInput {
   description: String
   title: String
-  address: AddressUpdateManyWithoutPropertyInput
+  address: AddressUpdateOneRequiredWithoutPropertyInput
   application: ApplicationUpdateManyWithoutPropertyInput
   media: MediaUpdateManyWithoutPropertyInput
-  userRelated: AccountUpdateManyWithoutPropertyInput
+  userRelated: AccountUpdateOneWithoutPropertyInput
 }
 
 input PropertyUpdateWithoutMediaDataInput {
   description: String
   title: String
-  address: AddressUpdateManyWithoutPropertyInput
+  address: AddressUpdateOneRequiredWithoutPropertyInput
   application: ApplicationUpdateManyWithoutPropertyInput
-  features: FeatureUpdateManyWithoutPropertyInput
-  userRelated: AccountUpdateManyWithoutPropertyInput
+  features: FeatureUpdateOneRequiredWithoutPropertyInput
+  userRelated: AccountUpdateOneWithoutPropertyInput
 }
 
 input PropertyUpdateWithoutUserRelatedDataInput {
   description: String
   title: String
-  address: AddressUpdateManyWithoutPropertyInput
+  address: AddressUpdateOneRequiredWithoutPropertyInput
   application: ApplicationUpdateManyWithoutPropertyInput
-  features: FeatureUpdateManyWithoutPropertyInput
+  features: FeatureUpdateOneRequiredWithoutPropertyInput
   media: MediaUpdateManyWithoutPropertyInput
-}
-
-input PropertyUpdateWithWhereUniqueWithoutApplicationInput {
-  where: PropertyWhereUniqueInput!
-  data: PropertyUpdateWithoutApplicationDataInput!
-}
-
-input PropertyUpdateWithWhereUniqueWithoutFeaturesInput {
-  where: PropertyWhereUniqueInput!
-  data: PropertyUpdateWithoutFeaturesDataInput!
-}
-
-input PropertyUpdateWithWhereUniqueWithoutMediaInput {
-  where: PropertyWhereUniqueInput!
-  data: PropertyUpdateWithoutMediaDataInput!
 }
 
 input PropertyUpdateWithWhereUniqueWithoutUserRelatedInput {
@@ -4783,20 +3964,17 @@ input PropertyUpsertWithoutAddressInput {
   create: PropertyCreateWithoutAddressInput!
 }
 
-input PropertyUpsertWithWhereUniqueWithoutApplicationInput {
-  where: PropertyWhereUniqueInput!
+input PropertyUpsertWithoutApplicationInput {
   update: PropertyUpdateWithoutApplicationDataInput!
   create: PropertyCreateWithoutApplicationInput!
 }
 
-input PropertyUpsertWithWhereUniqueWithoutFeaturesInput {
-  where: PropertyWhereUniqueInput!
+input PropertyUpsertWithoutFeaturesInput {
   update: PropertyUpdateWithoutFeaturesDataInput!
   create: PropertyCreateWithoutFeaturesInput!
 }
 
-input PropertyUpsertWithWhereUniqueWithoutMediaInput {
-  where: PropertyWhereUniqueInput!
+input PropertyUpsertWithoutMediaInput {
   update: PropertyUpdateWithoutMediaDataInput!
   create: PropertyCreateWithoutMediaInput!
 }
@@ -4918,21 +4096,15 @@ input PropertyWhereInput {
 
   """All values not ending with the given string."""
   title_not_ends_with: String
-  address_every: AddressWhereInput
-  address_some: AddressWhereInput
-  address_none: AddressWhereInput
+  address: AddressWhereInput
   application_every: ApplicationWhereInput
   application_some: ApplicationWhereInput
   application_none: ApplicationWhereInput
-  features_every: FeatureWhereInput
-  features_some: FeatureWhereInput
-  features_none: FeatureWhereInput
+  features: FeatureWhereInput
   media_every: MediaWhereInput
   media_some: MediaWhereInput
   media_none: MediaWhereInput
-  userRelated_every: AccountWhereInput
-  userRelated_some: AccountWhereInput
-  userRelated_none: AccountWhereInput
+  userRelated: AccountWhereInput
 }
 
 input PropertyWhereUniqueInput {

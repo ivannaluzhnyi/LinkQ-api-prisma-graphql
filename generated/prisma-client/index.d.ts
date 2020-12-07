@@ -476,68 +476,6 @@ export type ApplicationOrderByInput =
   | "updated_ASC"
   | "updated_DESC";
 
-export type AccountOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "birthdate_ASC"
-  | "birthdate_DESC"
-  | "created_ASC"
-  | "created_DESC"
-  | "email_ASC"
-  | "email_DESC"
-  | "firstname_ASC"
-  | "firstname_DESC"
-  | "isActive_ASC"
-  | "isActive_DESC"
-  | "lastname_ASC"
-  | "lastname_DESC"
-  | "password_ASC"
-  | "password_DESC"
-  | "roles_ASC"
-  | "roles_DESC"
-  | "salary_ASC"
-  | "salary_DESC"
-  | "updated_ASC"
-  | "updated_DESC";
-
-export type PropertyOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "description_ASC"
-  | "description_DESC"
-  | "title_ASC"
-  | "title_DESC";
-
-export type AddressOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "city_ASC"
-  | "city_DESC"
-  | "country_ASC"
-  | "country_DESC"
-  | "floor_ASC"
-  | "floor_DESC"
-  | "room_ASC"
-  | "room_DESC"
-  | "street_ASC"
-  | "street_DESC"
-  | "zipcode_ASC"
-  | "zipcode_DESC";
-
-export type FeatureOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "bathrooms_ASC"
-  | "bathrooms_DESC"
-  | "bedrooms_ASC"
-  | "bedrooms_DESC"
-  | "garages_ASC"
-  | "garages_DESC"
-  | "rooms_ASC"
-  | "rooms_DESC"
-  | "size_ASC"
-  | "size_DESC";
-
 export type MediaOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -564,6 +502,54 @@ export type GuarantorOrderByInput =
   | "salary_ASC"
   | "salary_DESC";
 
+export type PropertyOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "description_ASC"
+  | "description_DESC"
+  | "title_ASC"
+  | "title_DESC";
+
+export type AccountOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "birthdate_ASC"
+  | "birthdate_DESC"
+  | "created_ASC"
+  | "created_DESC"
+  | "email_ASC"
+  | "email_DESC"
+  | "firstname_ASC"
+  | "firstname_DESC"
+  | "isActive_ASC"
+  | "isActive_DESC"
+  | "lastname_ASC"
+  | "lastname_DESC"
+  | "password_ASC"
+  | "password_DESC"
+  | "roles_ASC"
+  | "roles_DESC"
+  | "salary_ASC"
+  | "salary_DESC"
+  | "updated_ASC"
+  | "updated_DESC";
+
+export type AddressOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "city_ASC"
+  | "city_DESC"
+  | "country_ASC"
+  | "country_DESC"
+  | "floor_ASC"
+  | "floor_DESC"
+  | "room_ASC"
+  | "room_DESC"
+  | "street_ASC"
+  | "street_DESC"
+  | "zipcode_ASC"
+  | "zipcode_DESC";
+
 export type ContractOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -581,6 +567,20 @@ export type DoctrineMigrationVersionOrderByInput =
   | "executedAt_DESC"
   | "executionTime_ASC"
   | "executionTime_DESC";
+
+export type FeatureOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "bathrooms_ASC"
+  | "bathrooms_DESC"
+  | "bedrooms_ASC"
+  | "bedrooms_DESC"
+  | "garages_ASC"
+  | "garages_DESC"
+  | "rooms_ASC"
+  | "rooms_DESC"
+  | "size_ASC"
+  | "size_DESC";
 
 export type GreetingOrderByInput =
   | "id_ASC"
@@ -604,9 +604,7 @@ export interface ApplicationWhereInput {
   id_lte?: Maybe<Int>;
   id_gt?: Maybe<Int>;
   id_gte?: Maybe<Int>;
-  buyer_every?: Maybe<AccountWhereInput>;
-  buyer_some?: Maybe<AccountWhereInput>;
-  buyer_none?: Maybe<AccountWhereInput>;
+  buyer?: Maybe<AccountWhereInput>;
   contract?: Maybe<ContractWhereInput>;
   created?: Maybe<DateTimeInput>;
   created_not?: Maybe<DateTimeInput>;
@@ -624,9 +622,7 @@ export interface ApplicationWhereInput {
   offer_lte?: Maybe<Float>;
   offer_gt?: Maybe<Float>;
   offer_gte?: Maybe<Float>;
-  property_every?: Maybe<PropertyWhereInput>;
-  property_some?: Maybe<PropertyWhereInput>;
-  property_none?: Maybe<PropertyWhereInput>;
+  property?: Maybe<PropertyWhereInput>;
   updated?: Maybe<DateTimeInput>;
   updated_not?: Maybe<DateTimeInput>;
   updated_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -812,9 +808,7 @@ export interface GuarantorWhereInput {
   salary_lte?: Maybe<Float>;
   salary_gt?: Maybe<Float>;
   salary_gte?: Maybe<Float>;
-  userRelated_every?: Maybe<AccountWhereInput>;
-  userRelated_some?: Maybe<AccountWhereInput>;
-  userRelated_none?: Maybe<AccountWhereInput>;
+  userRelated?: Maybe<AccountWhereInput>;
   AND?: Maybe<GuarantorWhereInput[] | GuarantorWhereInput>;
   OR?: Maybe<GuarantorWhereInput[] | GuarantorWhereInput>;
   NOT?: Maybe<GuarantorWhereInput[] | GuarantorWhereInput>;
@@ -829,9 +823,7 @@ export interface PropertyWhereInput {
   id_lte?: Maybe<Int>;
   id_gt?: Maybe<Int>;
   id_gte?: Maybe<Int>;
-  address_every?: Maybe<AddressWhereInput>;
-  address_some?: Maybe<AddressWhereInput>;
-  address_none?: Maybe<AddressWhereInput>;
+  address?: Maybe<AddressWhereInput>;
   application_every?: Maybe<ApplicationWhereInput>;
   application_some?: Maybe<ApplicationWhereInput>;
   application_none?: Maybe<ApplicationWhereInput>;
@@ -849,9 +841,7 @@ export interface PropertyWhereInput {
   description_not_starts_with?: Maybe<String>;
   description_ends_with?: Maybe<String>;
   description_not_ends_with?: Maybe<String>;
-  features_every?: Maybe<FeatureWhereInput>;
-  features_some?: Maybe<FeatureWhereInput>;
-  features_none?: Maybe<FeatureWhereInput>;
+  features?: Maybe<FeatureWhereInput>;
   media_every?: Maybe<MediaWhereInput>;
   media_some?: Maybe<MediaWhereInput>;
   media_none?: Maybe<MediaWhereInput>;
@@ -869,9 +859,7 @@ export interface PropertyWhereInput {
   title_not_starts_with?: Maybe<String>;
   title_ends_with?: Maybe<String>;
   title_not_ends_with?: Maybe<String>;
-  userRelated_every?: Maybe<AccountWhereInput>;
-  userRelated_some?: Maybe<AccountWhereInput>;
-  userRelated_none?: Maybe<AccountWhereInput>;
+  userRelated?: Maybe<AccountWhereInput>;
   AND?: Maybe<PropertyWhereInput[] | PropertyWhereInput>;
   OR?: Maybe<PropertyWhereInput[] | PropertyWhereInput>;
   NOT?: Maybe<PropertyWhereInput[] | PropertyWhereInput>;
@@ -997,9 +985,7 @@ export interface FeatureWhereInput {
   garages_lte?: Maybe<Int>;
   garages_gt?: Maybe<Int>;
   garages_gte?: Maybe<Int>;
-  property_every?: Maybe<PropertyWhereInput>;
-  property_some?: Maybe<PropertyWhereInput>;
-  property_none?: Maybe<PropertyWhereInput>;
+  property?: Maybe<PropertyWhereInput>;
   rooms?: Maybe<Int>;
   rooms_not?: Maybe<Int>;
   rooms_in?: Maybe<Int[] | Int>;
@@ -1066,9 +1052,7 @@ export interface MediaWhereInput {
   filename_not_starts_with?: Maybe<String>;
   filename_ends_with?: Maybe<String>;
   filename_not_ends_with?: Maybe<String>;
-  property_every?: Maybe<PropertyWhereInput>;
-  property_some?: Maybe<PropertyWhereInput>;
-  property_none?: Maybe<PropertyWhereInput>;
+  property?: Maybe<PropertyWhereInput>;
   updated?: Maybe<DateTimeInput>;
   updated_not?: Maybe<DateTimeInput>;
   updated_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -1105,9 +1089,7 @@ export interface ContractWhereInput {
   id_lte?: Maybe<Int>;
   id_gt?: Maybe<Int>;
   id_gte?: Maybe<Int>;
-  application_every?: Maybe<ApplicationWhereInput>;
-  application_some?: Maybe<ApplicationWhereInput>;
-  application_none?: Maybe<ApplicationWhereInput>;
+  application?: Maybe<ApplicationWhereInput>;
   created?: Maybe<DateTimeInput>;
   created_not?: Maybe<DateTimeInput>;
   created_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -1272,7 +1254,7 @@ export interface ApplicationCreateWithoutBuyerInput {
   contract: ContractCreateOneWithoutApplicationInput;
   created: DateTimeInput;
   offer: Float;
-  property?: Maybe<PropertyCreateManyWithoutApplicationInput>;
+  property: PropertyCreateOneWithoutApplicationInput;
   updated: DateTimeInput;
 }
 
@@ -1288,29 +1270,24 @@ export interface ContractCreateWithoutApplicationInput {
   updated: DateTimeInput;
 }
 
-export interface PropertyCreateManyWithoutApplicationInput {
-  create?: Maybe<
-    | PropertyCreateWithoutApplicationInput[]
-    | PropertyCreateWithoutApplicationInput
-  >;
-  connect?: Maybe<PropertyWhereUniqueInput[] | PropertyWhereUniqueInput>;
+export interface PropertyCreateOneWithoutApplicationInput {
+  create?: Maybe<PropertyCreateWithoutApplicationInput>;
+  connect?: Maybe<PropertyWhereUniqueInput>;
 }
 
 export interface PropertyCreateWithoutApplicationInput {
   id?: Maybe<Int>;
-  address?: Maybe<AddressCreateManyWithoutPropertyInput>;
+  address: AddressCreateOneWithoutPropertyInput;
   description: String;
-  features?: Maybe<FeatureCreateManyWithoutPropertyInput>;
+  features: FeatureCreateOneWithoutPropertyInput;
   media?: Maybe<MediaCreateManyWithoutPropertyInput>;
   title: String;
-  userRelated?: Maybe<AccountCreateManyWithoutPropertyInput>;
+  userRelated?: Maybe<AccountCreateOneWithoutPropertyInput>;
 }
 
-export interface AddressCreateManyWithoutPropertyInput {
-  create?: Maybe<
-    AddressCreateWithoutPropertyInput[] | AddressCreateWithoutPropertyInput
-  >;
-  connect?: Maybe<AddressWhereUniqueInput[] | AddressWhereUniqueInput>;
+export interface AddressCreateOneWithoutPropertyInput {
+  create?: Maybe<AddressCreateWithoutPropertyInput>;
+  connect?: Maybe<AddressWhereUniqueInput>;
 }
 
 export interface AddressCreateWithoutPropertyInput {
@@ -1323,11 +1300,9 @@ export interface AddressCreateWithoutPropertyInput {
   zipcode: String;
 }
 
-export interface FeatureCreateManyWithoutPropertyInput {
-  create?: Maybe<
-    FeatureCreateWithoutPropertyInput[] | FeatureCreateWithoutPropertyInput
-  >;
-  connect?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
+export interface FeatureCreateOneWithoutPropertyInput {
+  create?: Maybe<FeatureCreateWithoutPropertyInput>;
+  connect?: Maybe<FeatureWhereUniqueInput>;
 }
 
 export interface FeatureCreateWithoutPropertyInput {
@@ -1355,11 +1330,9 @@ export interface MediaCreateWithoutPropertyInput {
   uri: String;
 }
 
-export interface AccountCreateManyWithoutPropertyInput {
-  create?: Maybe<
-    AccountCreateWithoutPropertyInput[] | AccountCreateWithoutPropertyInput
-  >;
-  connect?: Maybe<AccountWhereUniqueInput[] | AccountWhereUniqueInput>;
+export interface AccountCreateOneWithoutPropertyInput {
+  create?: Maybe<AccountCreateWithoutPropertyInput>;
+  connect?: Maybe<AccountWhereUniqueInput>;
 }
 
 export interface AccountCreateWithoutPropertyInput {
@@ -1404,10 +1377,10 @@ export interface PropertyCreateManyWithoutUserRelatedInput {
 
 export interface PropertyCreateWithoutUserRelatedInput {
   id?: Maybe<Int>;
-  address?: Maybe<AddressCreateManyWithoutPropertyInput>;
+  address: AddressCreateOneWithoutPropertyInput;
   application?: Maybe<ApplicationCreateManyWithoutPropertyInput>;
   description: String;
-  features?: Maybe<FeatureCreateManyWithoutPropertyInput>;
+  features: FeatureCreateOneWithoutPropertyInput;
   media?: Maybe<MediaCreateManyWithoutPropertyInput>;
   title: String;
 }
@@ -1422,19 +1395,16 @@ export interface ApplicationCreateManyWithoutPropertyInput {
 
 export interface ApplicationCreateWithoutPropertyInput {
   id?: Maybe<Int>;
-  buyer?: Maybe<AccountCreateManyWithoutApplicationInput>;
+  buyer: AccountCreateOneWithoutApplicationInput;
   contract: ContractCreateOneWithoutApplicationInput;
   created: DateTimeInput;
   offer: Float;
   updated: DateTimeInput;
 }
 
-export interface AccountCreateManyWithoutApplicationInput {
-  create?: Maybe<
-    | AccountCreateWithoutApplicationInput[]
-    | AccountCreateWithoutApplicationInput
-  >;
-  connect?: Maybe<AccountWhereUniqueInput[] | AccountWhereUniqueInput>;
+export interface AccountCreateOneWithoutApplicationInput {
+  create?: Maybe<AccountCreateWithoutApplicationInput>;
+  connect?: Maybe<AccountWhereUniqueInput>;
 }
 
 export interface AccountCreateWithoutApplicationInput {
@@ -1505,7 +1475,7 @@ export interface ApplicationUpdateWithoutBuyerDataInput {
   contract?: Maybe<ContractUpdateOneRequiredWithoutApplicationInput>;
   created?: Maybe<DateTimeInput>;
   offer?: Maybe<Float>;
-  property?: Maybe<PropertyUpdateManyWithoutApplicationInput>;
+  property?: Maybe<PropertyUpdateOneRequiredWithoutApplicationInput>;
   updated?: Maybe<DateTimeInput>;
 }
 
@@ -1527,70 +1497,27 @@ export interface ContractUpsertWithoutApplicationInput {
   create: ContractCreateWithoutApplicationInput;
 }
 
-export interface PropertyUpdateManyWithoutApplicationInput {
-  create?: Maybe<
-    | PropertyCreateWithoutApplicationInput[]
-    | PropertyCreateWithoutApplicationInput
-  >;
-  delete?: Maybe<PropertyWhereUniqueInput[] | PropertyWhereUniqueInput>;
-  connect?: Maybe<PropertyWhereUniqueInput[] | PropertyWhereUniqueInput>;
-  set?: Maybe<PropertyWhereUniqueInput[] | PropertyWhereUniqueInput>;
-  disconnect?: Maybe<PropertyWhereUniqueInput[] | PropertyWhereUniqueInput>;
-  update?: Maybe<
-    | PropertyUpdateWithWhereUniqueWithoutApplicationInput[]
-    | PropertyUpdateWithWhereUniqueWithoutApplicationInput
-  >;
-  upsert?: Maybe<
-    | PropertyUpsertWithWhereUniqueWithoutApplicationInput[]
-    | PropertyUpsertWithWhereUniqueWithoutApplicationInput
-  >;
-  deleteMany?: Maybe<PropertyScalarWhereInput[] | PropertyScalarWhereInput>;
-  updateMany?: Maybe<
-    | PropertyUpdateManyWithWhereNestedInput[]
-    | PropertyUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface PropertyUpdateWithWhereUniqueWithoutApplicationInput {
-  where: PropertyWhereUniqueInput;
-  data: PropertyUpdateWithoutApplicationDataInput;
+export interface PropertyUpdateOneRequiredWithoutApplicationInput {
+  create?: Maybe<PropertyCreateWithoutApplicationInput>;
+  update?: Maybe<PropertyUpdateWithoutApplicationDataInput>;
+  upsert?: Maybe<PropertyUpsertWithoutApplicationInput>;
+  connect?: Maybe<PropertyWhereUniqueInput>;
 }
 
 export interface PropertyUpdateWithoutApplicationDataInput {
-  address?: Maybe<AddressUpdateManyWithoutPropertyInput>;
+  address?: Maybe<AddressUpdateOneRequiredWithoutPropertyInput>;
   description?: Maybe<String>;
-  features?: Maybe<FeatureUpdateManyWithoutPropertyInput>;
+  features?: Maybe<FeatureUpdateOneRequiredWithoutPropertyInput>;
   media?: Maybe<MediaUpdateManyWithoutPropertyInput>;
   title?: Maybe<String>;
-  userRelated?: Maybe<AccountUpdateManyWithoutPropertyInput>;
+  userRelated?: Maybe<AccountUpdateOneWithoutPropertyInput>;
 }
 
-export interface AddressUpdateManyWithoutPropertyInput {
-  create?: Maybe<
-    AddressCreateWithoutPropertyInput[] | AddressCreateWithoutPropertyInput
-  >;
-  delete?: Maybe<AddressWhereUniqueInput[] | AddressWhereUniqueInput>;
-  connect?: Maybe<AddressWhereUniqueInput[] | AddressWhereUniqueInput>;
-  set?: Maybe<AddressWhereUniqueInput[] | AddressWhereUniqueInput>;
-  disconnect?: Maybe<AddressWhereUniqueInput[] | AddressWhereUniqueInput>;
-  update?: Maybe<
-    | AddressUpdateWithWhereUniqueWithoutPropertyInput[]
-    | AddressUpdateWithWhereUniqueWithoutPropertyInput
-  >;
-  upsert?: Maybe<
-    | AddressUpsertWithWhereUniqueWithoutPropertyInput[]
-    | AddressUpsertWithWhereUniqueWithoutPropertyInput
-  >;
-  deleteMany?: Maybe<AddressScalarWhereInput[] | AddressScalarWhereInput>;
-  updateMany?: Maybe<
-    | AddressUpdateManyWithWhereNestedInput[]
-    | AddressUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface AddressUpdateWithWhereUniqueWithoutPropertyInput {
-  where: AddressWhereUniqueInput;
-  data: AddressUpdateWithoutPropertyDataInput;
+export interface AddressUpdateOneRequiredWithoutPropertyInput {
+  create?: Maybe<AddressCreateWithoutPropertyInput>;
+  update?: Maybe<AddressUpdateWithoutPropertyDataInput>;
+  upsert?: Maybe<AddressUpsertWithoutPropertyInput>;
+  connect?: Maybe<AddressWhereUniqueInput>;
 }
 
 export interface AddressUpdateWithoutPropertyDataInput {
@@ -1602,138 +1529,16 @@ export interface AddressUpdateWithoutPropertyDataInput {
   zipcode?: Maybe<String>;
 }
 
-export interface AddressUpsertWithWhereUniqueWithoutPropertyInput {
-  where: AddressWhereUniqueInput;
+export interface AddressUpsertWithoutPropertyInput {
   update: AddressUpdateWithoutPropertyDataInput;
   create: AddressCreateWithoutPropertyInput;
 }
 
-export interface AddressScalarWhereInput {
-  id?: Maybe<Int>;
-  id_not?: Maybe<Int>;
-  id_in?: Maybe<Int[] | Int>;
-  id_not_in?: Maybe<Int[] | Int>;
-  id_lt?: Maybe<Int>;
-  id_lte?: Maybe<Int>;
-  id_gt?: Maybe<Int>;
-  id_gte?: Maybe<Int>;
-  city?: Maybe<String>;
-  city_not?: Maybe<String>;
-  city_in?: Maybe<String[] | String>;
-  city_not_in?: Maybe<String[] | String>;
-  city_lt?: Maybe<String>;
-  city_lte?: Maybe<String>;
-  city_gt?: Maybe<String>;
-  city_gte?: Maybe<String>;
-  city_contains?: Maybe<String>;
-  city_not_contains?: Maybe<String>;
-  city_starts_with?: Maybe<String>;
-  city_not_starts_with?: Maybe<String>;
-  city_ends_with?: Maybe<String>;
-  city_not_ends_with?: Maybe<String>;
-  country?: Maybe<String>;
-  country_not?: Maybe<String>;
-  country_in?: Maybe<String[] | String>;
-  country_not_in?: Maybe<String[] | String>;
-  country_lt?: Maybe<String>;
-  country_lte?: Maybe<String>;
-  country_gt?: Maybe<String>;
-  country_gte?: Maybe<String>;
-  country_contains?: Maybe<String>;
-  country_not_contains?: Maybe<String>;
-  country_starts_with?: Maybe<String>;
-  country_not_starts_with?: Maybe<String>;
-  country_ends_with?: Maybe<String>;
-  country_not_ends_with?: Maybe<String>;
-  floor?: Maybe<Int>;
-  floor_not?: Maybe<Int>;
-  floor_in?: Maybe<Int[] | Int>;
-  floor_not_in?: Maybe<Int[] | Int>;
-  floor_lt?: Maybe<Int>;
-  floor_lte?: Maybe<Int>;
-  floor_gt?: Maybe<Int>;
-  floor_gte?: Maybe<Int>;
-  room?: Maybe<Int>;
-  room_not?: Maybe<Int>;
-  room_in?: Maybe<Int[] | Int>;
-  room_not_in?: Maybe<Int[] | Int>;
-  room_lt?: Maybe<Int>;
-  room_lte?: Maybe<Int>;
-  room_gt?: Maybe<Int>;
-  room_gte?: Maybe<Int>;
-  street?: Maybe<String>;
-  street_not?: Maybe<String>;
-  street_in?: Maybe<String[] | String>;
-  street_not_in?: Maybe<String[] | String>;
-  street_lt?: Maybe<String>;
-  street_lte?: Maybe<String>;
-  street_gt?: Maybe<String>;
-  street_gte?: Maybe<String>;
-  street_contains?: Maybe<String>;
-  street_not_contains?: Maybe<String>;
-  street_starts_with?: Maybe<String>;
-  street_not_starts_with?: Maybe<String>;
-  street_ends_with?: Maybe<String>;
-  street_not_ends_with?: Maybe<String>;
-  zipcode?: Maybe<String>;
-  zipcode_not?: Maybe<String>;
-  zipcode_in?: Maybe<String[] | String>;
-  zipcode_not_in?: Maybe<String[] | String>;
-  zipcode_lt?: Maybe<String>;
-  zipcode_lte?: Maybe<String>;
-  zipcode_gt?: Maybe<String>;
-  zipcode_gte?: Maybe<String>;
-  zipcode_contains?: Maybe<String>;
-  zipcode_not_contains?: Maybe<String>;
-  zipcode_starts_with?: Maybe<String>;
-  zipcode_not_starts_with?: Maybe<String>;
-  zipcode_ends_with?: Maybe<String>;
-  zipcode_not_ends_with?: Maybe<String>;
-  AND?: Maybe<AddressScalarWhereInput[] | AddressScalarWhereInput>;
-  OR?: Maybe<AddressScalarWhereInput[] | AddressScalarWhereInput>;
-  NOT?: Maybe<AddressScalarWhereInput[] | AddressScalarWhereInput>;
-}
-
-export interface AddressUpdateManyWithWhereNestedInput {
-  where: AddressScalarWhereInput;
-  data: AddressUpdateManyDataInput;
-}
-
-export interface AddressUpdateManyDataInput {
-  city?: Maybe<String>;
-  country?: Maybe<String>;
-  floor?: Maybe<Int>;
-  room?: Maybe<Int>;
-  street?: Maybe<String>;
-  zipcode?: Maybe<String>;
-}
-
-export interface FeatureUpdateManyWithoutPropertyInput {
-  create?: Maybe<
-    FeatureCreateWithoutPropertyInput[] | FeatureCreateWithoutPropertyInput
-  >;
-  delete?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
-  connect?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
-  set?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
-  disconnect?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
-  update?: Maybe<
-    | FeatureUpdateWithWhereUniqueWithoutPropertyInput[]
-    | FeatureUpdateWithWhereUniqueWithoutPropertyInput
-  >;
-  upsert?: Maybe<
-    | FeatureUpsertWithWhereUniqueWithoutPropertyInput[]
-    | FeatureUpsertWithWhereUniqueWithoutPropertyInput
-  >;
-  deleteMany?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
-  updateMany?: Maybe<
-    | FeatureUpdateManyWithWhereNestedInput[]
-    | FeatureUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface FeatureUpdateWithWhereUniqueWithoutPropertyInput {
-  where: FeatureWhereUniqueInput;
-  data: FeatureUpdateWithoutPropertyDataInput;
+export interface FeatureUpdateOneRequiredWithoutPropertyInput {
+  create?: Maybe<FeatureCreateWithoutPropertyInput>;
+  update?: Maybe<FeatureUpdateWithoutPropertyDataInput>;
+  upsert?: Maybe<FeatureUpsertWithoutPropertyInput>;
+  connect?: Maybe<FeatureWhereUniqueInput>;
 }
 
 export interface FeatureUpdateWithoutPropertyDataInput {
@@ -1744,77 +1549,9 @@ export interface FeatureUpdateWithoutPropertyDataInput {
   size?: Maybe<Int>;
 }
 
-export interface FeatureUpsertWithWhereUniqueWithoutPropertyInput {
-  where: FeatureWhereUniqueInput;
+export interface FeatureUpsertWithoutPropertyInput {
   update: FeatureUpdateWithoutPropertyDataInput;
   create: FeatureCreateWithoutPropertyInput;
-}
-
-export interface FeatureScalarWhereInput {
-  id?: Maybe<Int>;
-  id_not?: Maybe<Int>;
-  id_in?: Maybe<Int[] | Int>;
-  id_not_in?: Maybe<Int[] | Int>;
-  id_lt?: Maybe<Int>;
-  id_lte?: Maybe<Int>;
-  id_gt?: Maybe<Int>;
-  id_gte?: Maybe<Int>;
-  bathrooms?: Maybe<Int>;
-  bathrooms_not?: Maybe<Int>;
-  bathrooms_in?: Maybe<Int[] | Int>;
-  bathrooms_not_in?: Maybe<Int[] | Int>;
-  bathrooms_lt?: Maybe<Int>;
-  bathrooms_lte?: Maybe<Int>;
-  bathrooms_gt?: Maybe<Int>;
-  bathrooms_gte?: Maybe<Int>;
-  bedrooms?: Maybe<Int>;
-  bedrooms_not?: Maybe<Int>;
-  bedrooms_in?: Maybe<Int[] | Int>;
-  bedrooms_not_in?: Maybe<Int[] | Int>;
-  bedrooms_lt?: Maybe<Int>;
-  bedrooms_lte?: Maybe<Int>;
-  bedrooms_gt?: Maybe<Int>;
-  bedrooms_gte?: Maybe<Int>;
-  garages?: Maybe<Int>;
-  garages_not?: Maybe<Int>;
-  garages_in?: Maybe<Int[] | Int>;
-  garages_not_in?: Maybe<Int[] | Int>;
-  garages_lt?: Maybe<Int>;
-  garages_lte?: Maybe<Int>;
-  garages_gt?: Maybe<Int>;
-  garages_gte?: Maybe<Int>;
-  rooms?: Maybe<Int>;
-  rooms_not?: Maybe<Int>;
-  rooms_in?: Maybe<Int[] | Int>;
-  rooms_not_in?: Maybe<Int[] | Int>;
-  rooms_lt?: Maybe<Int>;
-  rooms_lte?: Maybe<Int>;
-  rooms_gt?: Maybe<Int>;
-  rooms_gte?: Maybe<Int>;
-  size?: Maybe<Int>;
-  size_not?: Maybe<Int>;
-  size_in?: Maybe<Int[] | Int>;
-  size_not_in?: Maybe<Int[] | Int>;
-  size_lt?: Maybe<Int>;
-  size_lte?: Maybe<Int>;
-  size_gt?: Maybe<Int>;
-  size_gte?: Maybe<Int>;
-  AND?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
-  OR?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
-  NOT?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
-}
-
-export interface FeatureUpdateManyWithWhereNestedInput {
-  where: FeatureScalarWhereInput;
-  data: FeatureUpdateManyDataInput;
-}
-
-export interface FeatureUpdateManyDataInput {
-  bathrooms?: Maybe<Int>;
-  bedrooms?: Maybe<Int>;
-  garages?: Maybe<Int>;
-  rooms?: Maybe<Int>;
-  size?: Maybe<Int>;
 }
 
 export interface MediaUpdateManyWithoutPropertyInput {
@@ -1943,32 +1680,13 @@ export interface MediaUpdateManyDataInput {
   uri?: Maybe<String>;
 }
 
-export interface AccountUpdateManyWithoutPropertyInput {
-  create?: Maybe<
-    AccountCreateWithoutPropertyInput[] | AccountCreateWithoutPropertyInput
-  >;
-  delete?: Maybe<AccountWhereUniqueInput[] | AccountWhereUniqueInput>;
-  connect?: Maybe<AccountWhereUniqueInput[] | AccountWhereUniqueInput>;
-  set?: Maybe<AccountWhereUniqueInput[] | AccountWhereUniqueInput>;
-  disconnect?: Maybe<AccountWhereUniqueInput[] | AccountWhereUniqueInput>;
-  update?: Maybe<
-    | AccountUpdateWithWhereUniqueWithoutPropertyInput[]
-    | AccountUpdateWithWhereUniqueWithoutPropertyInput
-  >;
-  upsert?: Maybe<
-    | AccountUpsertWithWhereUniqueWithoutPropertyInput[]
-    | AccountUpsertWithWhereUniqueWithoutPropertyInput
-  >;
-  deleteMany?: Maybe<AccountScalarWhereInput[] | AccountScalarWhereInput>;
-  updateMany?: Maybe<
-    | AccountUpdateManyWithWhereNestedInput[]
-    | AccountUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface AccountUpdateWithWhereUniqueWithoutPropertyInput {
-  where: AccountWhereUniqueInput;
-  data: AccountUpdateWithoutPropertyDataInput;
+export interface AccountUpdateOneWithoutPropertyInput {
+  create?: Maybe<AccountCreateWithoutPropertyInput>;
+  update?: Maybe<AccountUpdateWithoutPropertyDataInput>;
+  upsert?: Maybe<AccountUpsertWithoutPropertyInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<AccountWhereUniqueInput>;
 }
 
 export interface AccountUpdateWithoutPropertyDataInput {
@@ -2104,190 +1822,14 @@ export interface GuarantorUpdateManyDataInput {
   salary?: Maybe<Float>;
 }
 
-export interface AccountUpsertWithWhereUniqueWithoutPropertyInput {
-  where: AccountWhereUniqueInput;
+export interface AccountUpsertWithoutPropertyInput {
   update: AccountUpdateWithoutPropertyDataInput;
   create: AccountCreateWithoutPropertyInput;
 }
 
-export interface AccountScalarWhereInput {
-  id?: Maybe<Int>;
-  id_not?: Maybe<Int>;
-  id_in?: Maybe<Int[] | Int>;
-  id_not_in?: Maybe<Int[] | Int>;
-  id_lt?: Maybe<Int>;
-  id_lte?: Maybe<Int>;
-  id_gt?: Maybe<Int>;
-  id_gte?: Maybe<Int>;
-  birthdate?: Maybe<DateTimeInput>;
-  birthdate_not?: Maybe<DateTimeInput>;
-  birthdate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  birthdate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  birthdate_lt?: Maybe<DateTimeInput>;
-  birthdate_lte?: Maybe<DateTimeInput>;
-  birthdate_gt?: Maybe<DateTimeInput>;
-  birthdate_gte?: Maybe<DateTimeInput>;
-  created?: Maybe<DateTimeInput>;
-  created_not?: Maybe<DateTimeInput>;
-  created_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  created_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  created_lt?: Maybe<DateTimeInput>;
-  created_lte?: Maybe<DateTimeInput>;
-  created_gt?: Maybe<DateTimeInput>;
-  created_gte?: Maybe<DateTimeInput>;
-  email?: Maybe<String>;
-  email_not?: Maybe<String>;
-  email_in?: Maybe<String[] | String>;
-  email_not_in?: Maybe<String[] | String>;
-  email_lt?: Maybe<String>;
-  email_lte?: Maybe<String>;
-  email_gt?: Maybe<String>;
-  email_gte?: Maybe<String>;
-  email_contains?: Maybe<String>;
-  email_not_contains?: Maybe<String>;
-  email_starts_with?: Maybe<String>;
-  email_not_starts_with?: Maybe<String>;
-  email_ends_with?: Maybe<String>;
-  email_not_ends_with?: Maybe<String>;
-  firstname?: Maybe<String>;
-  firstname_not?: Maybe<String>;
-  firstname_in?: Maybe<String[] | String>;
-  firstname_not_in?: Maybe<String[] | String>;
-  firstname_lt?: Maybe<String>;
-  firstname_lte?: Maybe<String>;
-  firstname_gt?: Maybe<String>;
-  firstname_gte?: Maybe<String>;
-  firstname_contains?: Maybe<String>;
-  firstname_not_contains?: Maybe<String>;
-  firstname_starts_with?: Maybe<String>;
-  firstname_not_starts_with?: Maybe<String>;
-  firstname_ends_with?: Maybe<String>;
-  firstname_not_ends_with?: Maybe<String>;
-  isActive?: Maybe<Boolean>;
-  isActive_not?: Maybe<Boolean>;
-  lastname?: Maybe<String>;
-  lastname_not?: Maybe<String>;
-  lastname_in?: Maybe<String[] | String>;
-  lastname_not_in?: Maybe<String[] | String>;
-  lastname_lt?: Maybe<String>;
-  lastname_lte?: Maybe<String>;
-  lastname_gt?: Maybe<String>;
-  lastname_gte?: Maybe<String>;
-  lastname_contains?: Maybe<String>;
-  lastname_not_contains?: Maybe<String>;
-  lastname_starts_with?: Maybe<String>;
-  lastname_not_starts_with?: Maybe<String>;
-  lastname_ends_with?: Maybe<String>;
-  lastname_not_ends_with?: Maybe<String>;
-  password?: Maybe<String>;
-  password_not?: Maybe<String>;
-  password_in?: Maybe<String[] | String>;
-  password_not_in?: Maybe<String[] | String>;
-  password_lt?: Maybe<String>;
-  password_lte?: Maybe<String>;
-  password_gt?: Maybe<String>;
-  password_gte?: Maybe<String>;
-  password_contains?: Maybe<String>;
-  password_not_contains?: Maybe<String>;
-  password_starts_with?: Maybe<String>;
-  password_not_starts_with?: Maybe<String>;
-  password_ends_with?: Maybe<String>;
-  password_not_ends_with?: Maybe<String>;
-  salary?: Maybe<Float>;
-  salary_not?: Maybe<Float>;
-  salary_in?: Maybe<Float[] | Float>;
-  salary_not_in?: Maybe<Float[] | Float>;
-  salary_lt?: Maybe<Float>;
-  salary_lte?: Maybe<Float>;
-  salary_gt?: Maybe<Float>;
-  salary_gte?: Maybe<Float>;
-  updated?: Maybe<DateTimeInput>;
-  updated_not?: Maybe<DateTimeInput>;
-  updated_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updated_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updated_lt?: Maybe<DateTimeInput>;
-  updated_lte?: Maybe<DateTimeInput>;
-  updated_gt?: Maybe<DateTimeInput>;
-  updated_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<AccountScalarWhereInput[] | AccountScalarWhereInput>;
-  OR?: Maybe<AccountScalarWhereInput[] | AccountScalarWhereInput>;
-  NOT?: Maybe<AccountScalarWhereInput[] | AccountScalarWhereInput>;
-}
-
-export interface AccountUpdateManyWithWhereNestedInput {
-  where: AccountScalarWhereInput;
-  data: AccountUpdateManyDataInput;
-}
-
-export interface AccountUpdateManyDataInput {
-  birthdate?: Maybe<DateTimeInput>;
-  created?: Maybe<DateTimeInput>;
-  email?: Maybe<String>;
-  firstname?: Maybe<String>;
-  isActive?: Maybe<Boolean>;
-  lastname?: Maybe<String>;
-  password?: Maybe<String>;
-  roles?: Maybe<Json>;
-  salary?: Maybe<Float>;
-  updated?: Maybe<DateTimeInput>;
-}
-
-export interface PropertyUpsertWithWhereUniqueWithoutApplicationInput {
-  where: PropertyWhereUniqueInput;
+export interface PropertyUpsertWithoutApplicationInput {
   update: PropertyUpdateWithoutApplicationDataInput;
   create: PropertyCreateWithoutApplicationInput;
-}
-
-export interface PropertyScalarWhereInput {
-  id?: Maybe<Int>;
-  id_not?: Maybe<Int>;
-  id_in?: Maybe<Int[] | Int>;
-  id_not_in?: Maybe<Int[] | Int>;
-  id_lt?: Maybe<Int>;
-  id_lte?: Maybe<Int>;
-  id_gt?: Maybe<Int>;
-  id_gte?: Maybe<Int>;
-  description?: Maybe<String>;
-  description_not?: Maybe<String>;
-  description_in?: Maybe<String[] | String>;
-  description_not_in?: Maybe<String[] | String>;
-  description_lt?: Maybe<String>;
-  description_lte?: Maybe<String>;
-  description_gt?: Maybe<String>;
-  description_gte?: Maybe<String>;
-  description_contains?: Maybe<String>;
-  description_not_contains?: Maybe<String>;
-  description_starts_with?: Maybe<String>;
-  description_not_starts_with?: Maybe<String>;
-  description_ends_with?: Maybe<String>;
-  description_not_ends_with?: Maybe<String>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  AND?: Maybe<PropertyScalarWhereInput[] | PropertyScalarWhereInput>;
-  OR?: Maybe<PropertyScalarWhereInput[] | PropertyScalarWhereInput>;
-  NOT?: Maybe<PropertyScalarWhereInput[] | PropertyScalarWhereInput>;
-}
-
-export interface PropertyUpdateManyWithWhereNestedInput {
-  where: PropertyScalarWhereInput;
-  data: PropertyUpdateManyDataInput;
-}
-
-export interface PropertyUpdateManyDataInput {
-  description?: Maybe<String>;
-  title?: Maybe<String>;
 }
 
 export interface ApplicationUpsertWithWhereUniqueWithoutBuyerInput {
@@ -2375,10 +1917,10 @@ export interface PropertyUpdateWithWhereUniqueWithoutUserRelatedInput {
 }
 
 export interface PropertyUpdateWithoutUserRelatedDataInput {
-  address?: Maybe<AddressUpdateManyWithoutPropertyInput>;
+  address?: Maybe<AddressUpdateOneRequiredWithoutPropertyInput>;
   application?: Maybe<ApplicationUpdateManyWithoutPropertyInput>;
   description?: Maybe<String>;
-  features?: Maybe<FeatureUpdateManyWithoutPropertyInput>;
+  features?: Maybe<FeatureUpdateOneRequiredWithoutPropertyInput>;
   media?: Maybe<MediaUpdateManyWithoutPropertyInput>;
   title?: Maybe<String>;
 }
@@ -2417,40 +1959,18 @@ export interface ApplicationUpdateWithWhereUniqueWithoutPropertyInput {
 }
 
 export interface ApplicationUpdateWithoutPropertyDataInput {
-  buyer?: Maybe<AccountUpdateManyWithoutApplicationInput>;
+  buyer?: Maybe<AccountUpdateOneRequiredWithoutApplicationInput>;
   contract?: Maybe<ContractUpdateOneRequiredWithoutApplicationInput>;
   created?: Maybe<DateTimeInput>;
   offer?: Maybe<Float>;
   updated?: Maybe<DateTimeInput>;
 }
 
-export interface AccountUpdateManyWithoutApplicationInput {
-  create?: Maybe<
-    | AccountCreateWithoutApplicationInput[]
-    | AccountCreateWithoutApplicationInput
-  >;
-  delete?: Maybe<AccountWhereUniqueInput[] | AccountWhereUniqueInput>;
-  connect?: Maybe<AccountWhereUniqueInput[] | AccountWhereUniqueInput>;
-  set?: Maybe<AccountWhereUniqueInput[] | AccountWhereUniqueInput>;
-  disconnect?: Maybe<AccountWhereUniqueInput[] | AccountWhereUniqueInput>;
-  update?: Maybe<
-    | AccountUpdateWithWhereUniqueWithoutApplicationInput[]
-    | AccountUpdateWithWhereUniqueWithoutApplicationInput
-  >;
-  upsert?: Maybe<
-    | AccountUpsertWithWhereUniqueWithoutApplicationInput[]
-    | AccountUpsertWithWhereUniqueWithoutApplicationInput
-  >;
-  deleteMany?: Maybe<AccountScalarWhereInput[] | AccountScalarWhereInput>;
-  updateMany?: Maybe<
-    | AccountUpdateManyWithWhereNestedInput[]
-    | AccountUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface AccountUpdateWithWhereUniqueWithoutApplicationInput {
-  where: AccountWhereUniqueInput;
-  data: AccountUpdateWithoutApplicationDataInput;
+export interface AccountUpdateOneRequiredWithoutApplicationInput {
+  create?: Maybe<AccountCreateWithoutApplicationInput>;
+  update?: Maybe<AccountUpdateWithoutApplicationDataInput>;
+  upsert?: Maybe<AccountUpsertWithoutApplicationInput>;
+  connect?: Maybe<AccountWhereUniqueInput>;
 }
 
 export interface AccountUpdateWithoutApplicationDataInput {
@@ -2468,8 +1988,7 @@ export interface AccountUpdateWithoutApplicationDataInput {
   updated?: Maybe<DateTimeInput>;
 }
 
-export interface AccountUpsertWithWhereUniqueWithoutApplicationInput {
-  where: AccountWhereUniqueInput;
+export interface AccountUpsertWithoutApplicationInput {
   update: AccountUpdateWithoutApplicationDataInput;
   create: AccountCreateWithoutApplicationInput;
 }
@@ -2484,6 +2003,58 @@ export interface PropertyUpsertWithWhereUniqueWithoutUserRelatedInput {
   where: PropertyWhereUniqueInput;
   update: PropertyUpdateWithoutUserRelatedDataInput;
   create: PropertyCreateWithoutUserRelatedInput;
+}
+
+export interface PropertyScalarWhereInput {
+  id?: Maybe<Int>;
+  id_not?: Maybe<Int>;
+  id_in?: Maybe<Int[] | Int>;
+  id_not_in?: Maybe<Int[] | Int>;
+  id_lt?: Maybe<Int>;
+  id_lte?: Maybe<Int>;
+  id_gt?: Maybe<Int>;
+  id_gte?: Maybe<Int>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  AND?: Maybe<PropertyScalarWhereInput[] | PropertyScalarWhereInput>;
+  OR?: Maybe<PropertyScalarWhereInput[] | PropertyScalarWhereInput>;
+  NOT?: Maybe<PropertyScalarWhereInput[] | PropertyScalarWhereInput>;
+}
+
+export interface PropertyUpdateManyWithWhereNestedInput {
+  where: PropertyScalarWhereInput;
+  data: PropertyUpdateManyDataInput;
+}
+
+export interface PropertyUpdateManyDataInput {
+  description?: Maybe<String>;
+  title?: Maybe<String>;
 }
 
 export interface AccountUpdateManyMutationInput {
@@ -2519,10 +2090,10 @@ export interface PropertyCreateWithoutAddressInput {
   id?: Maybe<Int>;
   application?: Maybe<ApplicationCreateManyWithoutPropertyInput>;
   description: String;
-  features?: Maybe<FeatureCreateManyWithoutPropertyInput>;
+  features: FeatureCreateOneWithoutPropertyInput;
   media?: Maybe<MediaCreateManyWithoutPropertyInput>;
   title: String;
-  userRelated?: Maybe<AccountCreateManyWithoutPropertyInput>;
+  userRelated?: Maybe<AccountCreateOneWithoutPropertyInput>;
 }
 
 export interface AddressUpdateInput {
@@ -2545,10 +2116,10 @@ export interface PropertyUpdateOneRequiredWithoutAddressInput {
 export interface PropertyUpdateWithoutAddressDataInput {
   application?: Maybe<ApplicationUpdateManyWithoutPropertyInput>;
   description?: Maybe<String>;
-  features?: Maybe<FeatureUpdateManyWithoutPropertyInput>;
+  features?: Maybe<FeatureUpdateOneRequiredWithoutPropertyInput>;
   media?: Maybe<MediaUpdateManyWithoutPropertyInput>;
   title?: Maybe<String>;
-  userRelated?: Maybe<AccountUpdateManyWithoutPropertyInput>;
+  userRelated?: Maybe<AccountUpdateOneWithoutPropertyInput>;
 }
 
 export interface PropertyUpsertWithoutAddressInput {
@@ -2567,20 +2138,20 @@ export interface AddressUpdateManyMutationInput {
 
 export interface ApplicationCreateInput {
   id?: Maybe<Int>;
-  buyer?: Maybe<AccountCreateManyWithoutApplicationInput>;
+  buyer: AccountCreateOneWithoutApplicationInput;
   contract: ContractCreateOneWithoutApplicationInput;
   created: DateTimeInput;
   offer: Float;
-  property?: Maybe<PropertyCreateManyWithoutApplicationInput>;
+  property: PropertyCreateOneWithoutApplicationInput;
   updated: DateTimeInput;
 }
 
 export interface ApplicationUpdateInput {
-  buyer?: Maybe<AccountUpdateManyWithoutApplicationInput>;
+  buyer?: Maybe<AccountUpdateOneRequiredWithoutApplicationInput>;
   contract?: Maybe<ContractUpdateOneRequiredWithoutApplicationInput>;
   created?: Maybe<DateTimeInput>;
   offer?: Maybe<Float>;
-  property?: Maybe<PropertyUpdateManyWithoutApplicationInput>;
+  property?: Maybe<PropertyUpdateOneRequiredWithoutApplicationInput>;
   updated?: Maybe<DateTimeInput>;
 }
 
@@ -2592,79 +2163,49 @@ export interface ApplicationUpdateManyMutationInput {
 
 export interface ContractCreateInput {
   id?: Maybe<Int>;
-  application?: Maybe<ApplicationCreateManyWithoutContractInput>;
+  application: ApplicationCreateOneWithoutContractInput;
   created: DateTimeInput;
   price: Float;
   updated: DateTimeInput;
 }
 
-export interface ApplicationCreateManyWithoutContractInput {
-  create?: Maybe<
-    | ApplicationCreateWithoutContractInput[]
-    | ApplicationCreateWithoutContractInput
-  >;
-  connect?: Maybe<ApplicationWhereUniqueInput[] | ApplicationWhereUniqueInput>;
+export interface ApplicationCreateOneWithoutContractInput {
+  create?: Maybe<ApplicationCreateWithoutContractInput>;
+  connect?: Maybe<ApplicationWhereUniqueInput>;
 }
 
 export interface ApplicationCreateWithoutContractInput {
   id?: Maybe<Int>;
-  buyer?: Maybe<AccountCreateManyWithoutApplicationInput>;
+  buyer: AccountCreateOneWithoutApplicationInput;
   created: DateTimeInput;
   offer: Float;
-  property?: Maybe<PropertyCreateManyWithoutApplicationInput>;
+  property: PropertyCreateOneWithoutApplicationInput;
   updated: DateTimeInput;
 }
 
 export interface ContractUpdateInput {
-  application?: Maybe<ApplicationUpdateManyWithoutContractInput>;
+  application?: Maybe<ApplicationUpdateOneRequiredWithoutContractInput>;
   created?: Maybe<DateTimeInput>;
   price?: Maybe<Float>;
   updated?: Maybe<DateTimeInput>;
 }
 
-export interface ApplicationUpdateManyWithoutContractInput {
-  create?: Maybe<
-    | ApplicationCreateWithoutContractInput[]
-    | ApplicationCreateWithoutContractInput
-  >;
-  delete?: Maybe<ApplicationWhereUniqueInput[] | ApplicationWhereUniqueInput>;
-  connect?: Maybe<ApplicationWhereUniqueInput[] | ApplicationWhereUniqueInput>;
-  set?: Maybe<ApplicationWhereUniqueInput[] | ApplicationWhereUniqueInput>;
-  disconnect?: Maybe<
-    ApplicationWhereUniqueInput[] | ApplicationWhereUniqueInput
-  >;
-  update?: Maybe<
-    | ApplicationUpdateWithWhereUniqueWithoutContractInput[]
-    | ApplicationUpdateWithWhereUniqueWithoutContractInput
-  >;
-  upsert?: Maybe<
-    | ApplicationUpsertWithWhereUniqueWithoutContractInput[]
-    | ApplicationUpsertWithWhereUniqueWithoutContractInput
-  >;
-  deleteMany?: Maybe<
-    ApplicationScalarWhereInput[] | ApplicationScalarWhereInput
-  >;
-  updateMany?: Maybe<
-    | ApplicationUpdateManyWithWhereNestedInput[]
-    | ApplicationUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface ApplicationUpdateWithWhereUniqueWithoutContractInput {
-  where: ApplicationWhereUniqueInput;
-  data: ApplicationUpdateWithoutContractDataInput;
+export interface ApplicationUpdateOneRequiredWithoutContractInput {
+  create?: Maybe<ApplicationCreateWithoutContractInput>;
+  update?: Maybe<ApplicationUpdateWithoutContractDataInput>;
+  upsert?: Maybe<ApplicationUpsertWithoutContractInput>;
+  connect?: Maybe<ApplicationWhereUniqueInput>;
 }
 
 export interface ApplicationUpdateWithoutContractDataInput {
-  buyer?: Maybe<AccountUpdateManyWithoutApplicationInput>;
+  buyer?: Maybe<AccountUpdateOneRequiredWithoutApplicationInput>;
   created?: Maybe<DateTimeInput>;
   offer?: Maybe<Float>;
-  property?: Maybe<PropertyUpdateManyWithoutApplicationInput>;
+  property?: Maybe<PropertyUpdateOneRequiredWithoutApplicationInput>;
   updated?: Maybe<DateTimeInput>;
 }
 
-export interface ApplicationUpsertWithWhereUniqueWithoutContractInput {
-  where: ApplicationWhereUniqueInput;
+export interface ApplicationUpsertWithoutContractInput {
   update: ApplicationUpdateWithoutContractDataInput;
   create: ApplicationCreateWithoutContractInput;
 }
@@ -2696,76 +2237,52 @@ export interface FeatureCreateInput {
   bathrooms: Int;
   bedrooms: Int;
   garages: Int;
-  property?: Maybe<PropertyCreateManyWithoutFeaturesInput>;
+  property: PropertyCreateOneWithoutFeaturesInput;
   rooms: Int;
   size: Int;
 }
 
-export interface PropertyCreateManyWithoutFeaturesInput {
-  create?: Maybe<
-    PropertyCreateWithoutFeaturesInput[] | PropertyCreateWithoutFeaturesInput
-  >;
-  connect?: Maybe<PropertyWhereUniqueInput[] | PropertyWhereUniqueInput>;
+export interface PropertyCreateOneWithoutFeaturesInput {
+  create?: Maybe<PropertyCreateWithoutFeaturesInput>;
+  connect?: Maybe<PropertyWhereUniqueInput>;
 }
 
 export interface PropertyCreateWithoutFeaturesInput {
   id?: Maybe<Int>;
-  address?: Maybe<AddressCreateManyWithoutPropertyInput>;
+  address: AddressCreateOneWithoutPropertyInput;
   application?: Maybe<ApplicationCreateManyWithoutPropertyInput>;
   description: String;
   media?: Maybe<MediaCreateManyWithoutPropertyInput>;
   title: String;
-  userRelated?: Maybe<AccountCreateManyWithoutPropertyInput>;
+  userRelated?: Maybe<AccountCreateOneWithoutPropertyInput>;
 }
 
 export interface FeatureUpdateInput {
   bathrooms?: Maybe<Int>;
   bedrooms?: Maybe<Int>;
   garages?: Maybe<Int>;
-  property?: Maybe<PropertyUpdateManyWithoutFeaturesInput>;
+  property?: Maybe<PropertyUpdateOneRequiredWithoutFeaturesInput>;
   rooms?: Maybe<Int>;
   size?: Maybe<Int>;
 }
 
-export interface PropertyUpdateManyWithoutFeaturesInput {
-  create?: Maybe<
-    PropertyCreateWithoutFeaturesInput[] | PropertyCreateWithoutFeaturesInput
-  >;
-  delete?: Maybe<PropertyWhereUniqueInput[] | PropertyWhereUniqueInput>;
-  connect?: Maybe<PropertyWhereUniqueInput[] | PropertyWhereUniqueInput>;
-  set?: Maybe<PropertyWhereUniqueInput[] | PropertyWhereUniqueInput>;
-  disconnect?: Maybe<PropertyWhereUniqueInput[] | PropertyWhereUniqueInput>;
-  update?: Maybe<
-    | PropertyUpdateWithWhereUniqueWithoutFeaturesInput[]
-    | PropertyUpdateWithWhereUniqueWithoutFeaturesInput
-  >;
-  upsert?: Maybe<
-    | PropertyUpsertWithWhereUniqueWithoutFeaturesInput[]
-    | PropertyUpsertWithWhereUniqueWithoutFeaturesInput
-  >;
-  deleteMany?: Maybe<PropertyScalarWhereInput[] | PropertyScalarWhereInput>;
-  updateMany?: Maybe<
-    | PropertyUpdateManyWithWhereNestedInput[]
-    | PropertyUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface PropertyUpdateWithWhereUniqueWithoutFeaturesInput {
-  where: PropertyWhereUniqueInput;
-  data: PropertyUpdateWithoutFeaturesDataInput;
+export interface PropertyUpdateOneRequiredWithoutFeaturesInput {
+  create?: Maybe<PropertyCreateWithoutFeaturesInput>;
+  update?: Maybe<PropertyUpdateWithoutFeaturesDataInput>;
+  upsert?: Maybe<PropertyUpsertWithoutFeaturesInput>;
+  connect?: Maybe<PropertyWhereUniqueInput>;
 }
 
 export interface PropertyUpdateWithoutFeaturesDataInput {
-  address?: Maybe<AddressUpdateManyWithoutPropertyInput>;
+  address?: Maybe<AddressUpdateOneRequiredWithoutPropertyInput>;
   application?: Maybe<ApplicationUpdateManyWithoutPropertyInput>;
   description?: Maybe<String>;
   media?: Maybe<MediaUpdateManyWithoutPropertyInput>;
   title?: Maybe<String>;
-  userRelated?: Maybe<AccountUpdateManyWithoutPropertyInput>;
+  userRelated?: Maybe<AccountUpdateOneWithoutPropertyInput>;
 }
 
-export interface PropertyUpsertWithWhereUniqueWithoutFeaturesInput {
-  where: PropertyWhereUniqueInput;
+export interface PropertyUpsertWithoutFeaturesInput {
   update: PropertyUpdateWithoutFeaturesDataInput;
   create: PropertyCreateWithoutFeaturesInput;
 }
@@ -2797,14 +2314,12 @@ export interface GuarantorCreateInput {
   lastName: String;
   relation: String;
   salary: Float;
-  userRelated?: Maybe<AccountCreateManyWithoutGuarantorInput>;
+  userRelated: AccountCreateOneWithoutGuarantorInput;
 }
 
-export interface AccountCreateManyWithoutGuarantorInput {
-  create?: Maybe<
-    AccountCreateWithoutGuarantorInput[] | AccountCreateWithoutGuarantorInput
-  >;
-  connect?: Maybe<AccountWhereUniqueInput[] | AccountWhereUniqueInput>;
+export interface AccountCreateOneWithoutGuarantorInput {
+  create?: Maybe<AccountCreateWithoutGuarantorInput>;
+  connect?: Maybe<AccountWhereUniqueInput>;
 }
 
 export interface AccountCreateWithoutGuarantorInput {
@@ -2828,35 +2343,14 @@ export interface GuarantorUpdateInput {
   lastName?: Maybe<String>;
   relation?: Maybe<String>;
   salary?: Maybe<Float>;
-  userRelated?: Maybe<AccountUpdateManyWithoutGuarantorInput>;
+  userRelated?: Maybe<AccountUpdateOneRequiredWithoutGuarantorInput>;
 }
 
-export interface AccountUpdateManyWithoutGuarantorInput {
-  create?: Maybe<
-    AccountCreateWithoutGuarantorInput[] | AccountCreateWithoutGuarantorInput
-  >;
-  delete?: Maybe<AccountWhereUniqueInput[] | AccountWhereUniqueInput>;
-  connect?: Maybe<AccountWhereUniqueInput[] | AccountWhereUniqueInput>;
-  set?: Maybe<AccountWhereUniqueInput[] | AccountWhereUniqueInput>;
-  disconnect?: Maybe<AccountWhereUniqueInput[] | AccountWhereUniqueInput>;
-  update?: Maybe<
-    | AccountUpdateWithWhereUniqueWithoutGuarantorInput[]
-    | AccountUpdateWithWhereUniqueWithoutGuarantorInput
-  >;
-  upsert?: Maybe<
-    | AccountUpsertWithWhereUniqueWithoutGuarantorInput[]
-    | AccountUpsertWithWhereUniqueWithoutGuarantorInput
-  >;
-  deleteMany?: Maybe<AccountScalarWhereInput[] | AccountScalarWhereInput>;
-  updateMany?: Maybe<
-    | AccountUpdateManyWithWhereNestedInput[]
-    | AccountUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface AccountUpdateWithWhereUniqueWithoutGuarantorInput {
-  where: AccountWhereUniqueInput;
-  data: AccountUpdateWithoutGuarantorDataInput;
+export interface AccountUpdateOneRequiredWithoutGuarantorInput {
+  create?: Maybe<AccountCreateWithoutGuarantorInput>;
+  update?: Maybe<AccountUpdateWithoutGuarantorDataInput>;
+  upsert?: Maybe<AccountUpsertWithoutGuarantorInput>;
+  connect?: Maybe<AccountWhereUniqueInput>;
 }
 
 export interface AccountUpdateWithoutGuarantorDataInput {
@@ -2874,8 +2368,7 @@ export interface AccountUpdateWithoutGuarantorDataInput {
   updated?: Maybe<DateTimeInput>;
 }
 
-export interface AccountUpsertWithWhereUniqueWithoutGuarantorInput {
-  where: AccountWhereUniqueInput;
+export interface AccountUpsertWithoutGuarantorInput {
   update: AccountUpdateWithoutGuarantorDataInput;
   create: AccountCreateWithoutGuarantorInput;
 }
@@ -2892,76 +2385,54 @@ export interface MediaCreateInput {
   created: DateTimeInput;
   extension: String;
   filename: String;
-  property?: Maybe<PropertyCreateManyWithoutMediaInput>;
+  property?: Maybe<PropertyCreateOneWithoutMediaInput>;
   updated: DateTimeInput;
   uri: String;
 }
 
-export interface PropertyCreateManyWithoutMediaInput {
-  create?: Maybe<
-    PropertyCreateWithoutMediaInput[] | PropertyCreateWithoutMediaInput
-  >;
-  connect?: Maybe<PropertyWhereUniqueInput[] | PropertyWhereUniqueInput>;
+export interface PropertyCreateOneWithoutMediaInput {
+  create?: Maybe<PropertyCreateWithoutMediaInput>;
+  connect?: Maybe<PropertyWhereUniqueInput>;
 }
 
 export interface PropertyCreateWithoutMediaInput {
   id?: Maybe<Int>;
-  address?: Maybe<AddressCreateManyWithoutPropertyInput>;
+  address: AddressCreateOneWithoutPropertyInput;
   application?: Maybe<ApplicationCreateManyWithoutPropertyInput>;
   description: String;
-  features?: Maybe<FeatureCreateManyWithoutPropertyInput>;
+  features: FeatureCreateOneWithoutPropertyInput;
   title: String;
-  userRelated?: Maybe<AccountCreateManyWithoutPropertyInput>;
+  userRelated?: Maybe<AccountCreateOneWithoutPropertyInput>;
 }
 
 export interface MediaUpdateInput {
   created?: Maybe<DateTimeInput>;
   extension?: Maybe<String>;
   filename?: Maybe<String>;
-  property?: Maybe<PropertyUpdateManyWithoutMediaInput>;
+  property?: Maybe<PropertyUpdateOneWithoutMediaInput>;
   updated?: Maybe<DateTimeInput>;
   uri?: Maybe<String>;
 }
 
-export interface PropertyUpdateManyWithoutMediaInput {
-  create?: Maybe<
-    PropertyCreateWithoutMediaInput[] | PropertyCreateWithoutMediaInput
-  >;
-  delete?: Maybe<PropertyWhereUniqueInput[] | PropertyWhereUniqueInput>;
-  connect?: Maybe<PropertyWhereUniqueInput[] | PropertyWhereUniqueInput>;
-  set?: Maybe<PropertyWhereUniqueInput[] | PropertyWhereUniqueInput>;
-  disconnect?: Maybe<PropertyWhereUniqueInput[] | PropertyWhereUniqueInput>;
-  update?: Maybe<
-    | PropertyUpdateWithWhereUniqueWithoutMediaInput[]
-    | PropertyUpdateWithWhereUniqueWithoutMediaInput
-  >;
-  upsert?: Maybe<
-    | PropertyUpsertWithWhereUniqueWithoutMediaInput[]
-    | PropertyUpsertWithWhereUniqueWithoutMediaInput
-  >;
-  deleteMany?: Maybe<PropertyScalarWhereInput[] | PropertyScalarWhereInput>;
-  updateMany?: Maybe<
-    | PropertyUpdateManyWithWhereNestedInput[]
-    | PropertyUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface PropertyUpdateWithWhereUniqueWithoutMediaInput {
-  where: PropertyWhereUniqueInput;
-  data: PropertyUpdateWithoutMediaDataInput;
+export interface PropertyUpdateOneWithoutMediaInput {
+  create?: Maybe<PropertyCreateWithoutMediaInput>;
+  update?: Maybe<PropertyUpdateWithoutMediaDataInput>;
+  upsert?: Maybe<PropertyUpsertWithoutMediaInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<PropertyWhereUniqueInput>;
 }
 
 export interface PropertyUpdateWithoutMediaDataInput {
-  address?: Maybe<AddressUpdateManyWithoutPropertyInput>;
+  address?: Maybe<AddressUpdateOneRequiredWithoutPropertyInput>;
   application?: Maybe<ApplicationUpdateManyWithoutPropertyInput>;
   description?: Maybe<String>;
-  features?: Maybe<FeatureUpdateManyWithoutPropertyInput>;
+  features?: Maybe<FeatureUpdateOneRequiredWithoutPropertyInput>;
   title?: Maybe<String>;
-  userRelated?: Maybe<AccountUpdateManyWithoutPropertyInput>;
+  userRelated?: Maybe<AccountUpdateOneWithoutPropertyInput>;
 }
 
-export interface PropertyUpsertWithWhereUniqueWithoutMediaInput {
-  where: PropertyWhereUniqueInput;
+export interface PropertyUpsertWithoutMediaInput {
   update: PropertyUpdateWithoutMediaDataInput;
   create: PropertyCreateWithoutMediaInput;
 }
@@ -2976,23 +2447,23 @@ export interface MediaUpdateManyMutationInput {
 
 export interface PropertyCreateInput {
   id?: Maybe<Int>;
-  address?: Maybe<AddressCreateManyWithoutPropertyInput>;
+  address: AddressCreateOneWithoutPropertyInput;
   application?: Maybe<ApplicationCreateManyWithoutPropertyInput>;
   description: String;
-  features?: Maybe<FeatureCreateManyWithoutPropertyInput>;
+  features: FeatureCreateOneWithoutPropertyInput;
   media?: Maybe<MediaCreateManyWithoutPropertyInput>;
   title: String;
-  userRelated?: Maybe<AccountCreateManyWithoutPropertyInput>;
+  userRelated?: Maybe<AccountCreateOneWithoutPropertyInput>;
 }
 
 export interface PropertyUpdateInput {
-  address?: Maybe<AddressUpdateManyWithoutPropertyInput>;
+  address?: Maybe<AddressUpdateOneRequiredWithoutPropertyInput>;
   application?: Maybe<ApplicationUpdateManyWithoutPropertyInput>;
   description?: Maybe<String>;
-  features?: Maybe<FeatureUpdateManyWithoutPropertyInput>;
+  features?: Maybe<FeatureUpdateOneRequiredWithoutPropertyInput>;
   media?: Maybe<MediaUpdateManyWithoutPropertyInput>;
   title?: Maybe<String>;
-  userRelated?: Maybe<AccountUpdateManyWithoutPropertyInput>;
+  userRelated?: Maybe<AccountUpdateOneWithoutPropertyInput>;
 }
 
 export interface PropertyUpdateManyMutationInput {
@@ -3297,27 +2768,11 @@ export interface Application {
 
 export interface ApplicationPromise extends Promise<Application>, Fragmentable {
   id: () => Promise<Int>;
-  buyer: <T = FragmentableArray<Account>>(args?: {
-    where?: AccountWhereInput;
-    orderBy?: AccountOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  buyer: <T = AccountPromise>() => T;
   contract: <T = ContractPromise>() => T;
   created: () => Promise<DateTimeOutput>;
   offer: () => Promise<Float>;
-  property: <T = FragmentableArray<Property>>(args?: {
-    where?: PropertyWhereInput;
-    orderBy?: PropertyOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  property: <T = PropertyPromise>() => T;
   updated: () => Promise<DateTimeOutput>;
 }
 
@@ -3325,27 +2780,11 @@ export interface ApplicationSubscription
   extends Promise<AsyncIterator<Application>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<Int>>;
-  buyer: <T = Promise<AsyncIterator<AccountSubscription>>>(args?: {
-    where?: AccountWhereInput;
-    orderBy?: AccountOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  buyer: <T = AccountSubscription>() => T;
   contract: <T = ContractSubscription>() => T;
   created: () => Promise<AsyncIterator<DateTimeOutput>>;
   offer: () => Promise<AsyncIterator<Float>>;
-  property: <T = Promise<AsyncIterator<PropertySubscription>>>(args?: {
-    where?: PropertyWhereInput;
-    orderBy?: PropertyOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  property: <T = PropertySubscription>() => T;
   updated: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
@@ -3353,27 +2792,11 @@ export interface ApplicationNullablePromise
   extends Promise<Application | null>,
     Fragmentable {
   id: () => Promise<Int>;
-  buyer: <T = FragmentableArray<Account>>(args?: {
-    where?: AccountWhereInput;
-    orderBy?: AccountOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  buyer: <T = AccountPromise>() => T;
   contract: <T = ContractPromise>() => T;
   created: () => Promise<DateTimeOutput>;
   offer: () => Promise<Float>;
-  property: <T = FragmentableArray<Property>>(args?: {
-    where?: PropertyWhereInput;
-    orderBy?: PropertyOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  property: <T = PropertyPromise>() => T;
   updated: () => Promise<DateTimeOutput>;
 }
 
@@ -3386,15 +2809,7 @@ export interface Contract {
 
 export interface ContractPromise extends Promise<Contract>, Fragmentable {
   id: () => Promise<Int>;
-  application: <T = FragmentableArray<Application>>(args?: {
-    where?: ApplicationWhereInput;
-    orderBy?: ApplicationOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  application: <T = ApplicationPromise>() => T;
   created: () => Promise<DateTimeOutput>;
   price: () => Promise<Float>;
   updated: () => Promise<DateTimeOutput>;
@@ -3404,15 +2819,7 @@ export interface ContractSubscription
   extends Promise<AsyncIterator<Contract>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<Int>>;
-  application: <T = Promise<AsyncIterator<ApplicationSubscription>>>(args?: {
-    where?: ApplicationWhereInput;
-    orderBy?: ApplicationOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  application: <T = ApplicationSubscription>() => T;
   created: () => Promise<AsyncIterator<DateTimeOutput>>;
   price: () => Promise<AsyncIterator<Float>>;
   updated: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -3422,15 +2829,7 @@ export interface ContractNullablePromise
   extends Promise<Contract | null>,
     Fragmentable {
   id: () => Promise<Int>;
-  application: <T = FragmentableArray<Application>>(args?: {
-    where?: ApplicationWhereInput;
-    orderBy?: ApplicationOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  application: <T = ApplicationPromise>() => T;
   created: () => Promise<DateTimeOutput>;
   price: () => Promise<Float>;
   updated: () => Promise<DateTimeOutput>;
@@ -3444,15 +2843,7 @@ export interface Property {
 
 export interface PropertyPromise extends Promise<Property>, Fragmentable {
   id: () => Promise<Int>;
-  address: <T = FragmentableArray<Address>>(args?: {
-    where?: AddressWhereInput;
-    orderBy?: AddressOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  address: <T = AddressPromise>() => T;
   application: <T = FragmentableArray<Application>>(args?: {
     where?: ApplicationWhereInput;
     orderBy?: ApplicationOrderByInput;
@@ -3463,15 +2854,7 @@ export interface PropertyPromise extends Promise<Property>, Fragmentable {
     last?: Int;
   }) => T;
   description: () => Promise<String>;
-  features: <T = FragmentableArray<Feature>>(args?: {
-    where?: FeatureWhereInput;
-    orderBy?: FeatureOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  features: <T = FeaturePromise>() => T;
   media: <T = FragmentableArray<Media>>(args?: {
     where?: MediaWhereInput;
     orderBy?: MediaOrderByInput;
@@ -3482,30 +2865,14 @@ export interface PropertyPromise extends Promise<Property>, Fragmentable {
     last?: Int;
   }) => T;
   title: () => Promise<String>;
-  userRelated: <T = FragmentableArray<Account>>(args?: {
-    where?: AccountWhereInput;
-    orderBy?: AccountOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  userRelated: <T = AccountPromise>() => T;
 }
 
 export interface PropertySubscription
   extends Promise<AsyncIterator<Property>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<Int>>;
-  address: <T = Promise<AsyncIterator<AddressSubscription>>>(args?: {
-    where?: AddressWhereInput;
-    orderBy?: AddressOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  address: <T = AddressSubscription>() => T;
   application: <T = Promise<AsyncIterator<ApplicationSubscription>>>(args?: {
     where?: ApplicationWhereInput;
     orderBy?: ApplicationOrderByInput;
@@ -3516,15 +2883,7 @@ export interface PropertySubscription
     last?: Int;
   }) => T;
   description: () => Promise<AsyncIterator<String>>;
-  features: <T = Promise<AsyncIterator<FeatureSubscription>>>(args?: {
-    where?: FeatureWhereInput;
-    orderBy?: FeatureOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  features: <T = FeatureSubscription>() => T;
   media: <T = Promise<AsyncIterator<MediaSubscription>>>(args?: {
     where?: MediaWhereInput;
     orderBy?: MediaOrderByInput;
@@ -3535,30 +2894,14 @@ export interface PropertySubscription
     last?: Int;
   }) => T;
   title: () => Promise<AsyncIterator<String>>;
-  userRelated: <T = Promise<AsyncIterator<AccountSubscription>>>(args?: {
-    where?: AccountWhereInput;
-    orderBy?: AccountOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  userRelated: <T = AccountSubscription>() => T;
 }
 
 export interface PropertyNullablePromise
   extends Promise<Property | null>,
     Fragmentable {
   id: () => Promise<Int>;
-  address: <T = FragmentableArray<Address>>(args?: {
-    where?: AddressWhereInput;
-    orderBy?: AddressOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  address: <T = AddressPromise>() => T;
   application: <T = FragmentableArray<Application>>(args?: {
     where?: ApplicationWhereInput;
     orderBy?: ApplicationOrderByInput;
@@ -3569,15 +2912,7 @@ export interface PropertyNullablePromise
     last?: Int;
   }) => T;
   description: () => Promise<String>;
-  features: <T = FragmentableArray<Feature>>(args?: {
-    where?: FeatureWhereInput;
-    orderBy?: FeatureOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  features: <T = FeaturePromise>() => T;
   media: <T = FragmentableArray<Media>>(args?: {
     where?: MediaWhereInput;
     orderBy?: MediaOrderByInput;
@@ -3588,15 +2923,7 @@ export interface PropertyNullablePromise
     last?: Int;
   }) => T;
   title: () => Promise<String>;
-  userRelated: <T = FragmentableArray<Account>>(args?: {
-    where?: AccountWhereInput;
-    orderBy?: AccountOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  userRelated: <T = AccountPromise>() => T;
 }
 
 export interface Address {
@@ -3660,15 +2987,7 @@ export interface FeaturePromise extends Promise<Feature>, Fragmentable {
   bathrooms: () => Promise<Int>;
   bedrooms: () => Promise<Int>;
   garages: () => Promise<Int>;
-  property: <T = FragmentableArray<Property>>(args?: {
-    where?: PropertyWhereInput;
-    orderBy?: PropertyOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  property: <T = PropertyPromise>() => T;
   rooms: () => Promise<Int>;
   size: () => Promise<Int>;
 }
@@ -3680,15 +2999,7 @@ export interface FeatureSubscription
   bathrooms: () => Promise<AsyncIterator<Int>>;
   bedrooms: () => Promise<AsyncIterator<Int>>;
   garages: () => Promise<AsyncIterator<Int>>;
-  property: <T = Promise<AsyncIterator<PropertySubscription>>>(args?: {
-    where?: PropertyWhereInput;
-    orderBy?: PropertyOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  property: <T = PropertySubscription>() => T;
   rooms: () => Promise<AsyncIterator<Int>>;
   size: () => Promise<AsyncIterator<Int>>;
 }
@@ -3700,15 +3011,7 @@ export interface FeatureNullablePromise
   bathrooms: () => Promise<Int>;
   bedrooms: () => Promise<Int>;
   garages: () => Promise<Int>;
-  property: <T = FragmentableArray<Property>>(args?: {
-    where?: PropertyWhereInput;
-    orderBy?: PropertyOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  property: <T = PropertyPromise>() => T;
   rooms: () => Promise<Int>;
   size: () => Promise<Int>;
 }
@@ -3727,15 +3030,7 @@ export interface MediaPromise extends Promise<Media>, Fragmentable {
   created: () => Promise<DateTimeOutput>;
   extension: () => Promise<String>;
   filename: () => Promise<String>;
-  property: <T = FragmentableArray<Property>>(args?: {
-    where?: PropertyWhereInput;
-    orderBy?: PropertyOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  property: <T = PropertyPromise>() => T;
   updated: () => Promise<DateTimeOutput>;
   uri: () => Promise<String>;
 }
@@ -3747,15 +3042,7 @@ export interface MediaSubscription
   created: () => Promise<AsyncIterator<DateTimeOutput>>;
   extension: () => Promise<AsyncIterator<String>>;
   filename: () => Promise<AsyncIterator<String>>;
-  property: <T = Promise<AsyncIterator<PropertySubscription>>>(args?: {
-    where?: PropertyWhereInput;
-    orderBy?: PropertyOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  property: <T = PropertySubscription>() => T;
   updated: () => Promise<AsyncIterator<DateTimeOutput>>;
   uri: () => Promise<AsyncIterator<String>>;
 }
@@ -3767,15 +3054,7 @@ export interface MediaNullablePromise
   created: () => Promise<DateTimeOutput>;
   extension: () => Promise<String>;
   filename: () => Promise<String>;
-  property: <T = FragmentableArray<Property>>(args?: {
-    where?: PropertyWhereInput;
-    orderBy?: PropertyOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  property: <T = PropertyPromise>() => T;
   updated: () => Promise<DateTimeOutput>;
   uri: () => Promise<String>;
 }
@@ -3794,15 +3073,7 @@ export interface GuarantorPromise extends Promise<Guarantor>, Fragmentable {
   lastName: () => Promise<String>;
   relation: () => Promise<String>;
   salary: () => Promise<Float>;
-  userRelated: <T = FragmentableArray<Account>>(args?: {
-    where?: AccountWhereInput;
-    orderBy?: AccountOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  userRelated: <T = AccountPromise>() => T;
 }
 
 export interface GuarantorSubscription
@@ -3813,15 +3084,7 @@ export interface GuarantorSubscription
   lastName: () => Promise<AsyncIterator<String>>;
   relation: () => Promise<AsyncIterator<String>>;
   salary: () => Promise<AsyncIterator<Float>>;
-  userRelated: <T = Promise<AsyncIterator<AccountSubscription>>>(args?: {
-    where?: AccountWhereInput;
-    orderBy?: AccountOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  userRelated: <T = AccountSubscription>() => T;
 }
 
 export interface GuarantorNullablePromise
@@ -3832,15 +3095,7 @@ export interface GuarantorNullablePromise
   lastName: () => Promise<String>;
   relation: () => Promise<String>;
   salary: () => Promise<Float>;
-  userRelated: <T = FragmentableArray<Account>>(args?: {
-    where?: AccountWhereInput;
-    orderBy?: AccountOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  userRelated: <T = AccountPromise>() => T;
 }
 
 export interface AccountConnection {

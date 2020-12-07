@@ -5,11 +5,15 @@ type Query {
 }
 
 type Mutation {
+    createFeature(data: FeatureCreateInput!): Feature!
+    createMedia(data: MediaCreateInput!): Media!
     signup(
-        name: String!
         email: String!
-        phone: String
+        isActive: Boolean!
         password: String!
+        created: DateTime!
+        updated: DateTime!
+        roles:Json!
     ): AuthPayload!
     login(email: String!, password: String!): AuthPayload!
 }
