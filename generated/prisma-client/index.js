@@ -9,10 +9,6 @@ var models = [
     embedded: false
   },
   {
-    name: "Address",
-    embedded: false
-  },
-  {
     name: "Application",
     embedded: false
   },
@@ -21,27 +17,15 @@ var models = [
     embedded: false
   },
   {
-    name: "DoctrineMigrationVersion",
+    name: "Event",
     embedded: false
   },
   {
-    name: "Feature",
+    name: "EventStatus",
     embedded: false
   },
   {
-    name: "Greeting",
-    embedded: false
-  },
-  {
-    name: "Guarantor",
-    embedded: false
-  },
-  {
-    name: "Media",
-    embedded: false
-  },
-  {
-    name: "Property",
+    name: "ApplicationStatus",
     embedded: false
   }
 ];

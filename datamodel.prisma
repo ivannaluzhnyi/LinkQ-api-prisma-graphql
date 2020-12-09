@@ -1,0 +1,55 @@
+type Account  {
+  id: Int! @id
+  application: [Application] 
+  birthdate: DateTime
+  created: DateTime! @createdAt
+  email: String! @unique
+  firstname: String
+  isActive: Boolean! @db(name: "is_active")
+  lastname: String
+  password: String!
+  roles: Json!
+  salary: Float
+  events: [Event!]!
+  updated: DateTime! @updatedAt
+}
+
+type Application {
+  id: Int! @id
+  buyer: Account! @db(name: "buyer_id")
+  contract: Contract!
+  created: DateTime! @createdAt
+  offer: Float!
+  property_id: String
+  updated: DateTime! @updatedAt
+  status: ApplicationStatus! @default(value: PENDING)
+}
+
+type Contract {
+  id: Int! @id
+  price: Float!
+  created: DateTime! @createdAt
+  updated: DateTime! @updatedAt
+  application: Application! @db(name: "application_id") @unique @relation(link: INLINE)
+}
+
+type Event {
+  id: Int! @id
+  title: String!
+  description: String
+  status: EventStatus! @default(value: RESIVE)
+  owener: Account @relation(link: INLINE)
+  created: DateTime! @createdAt
+  updated: DateTime! @updatedAt
+}
+
+enum EventStatus {
+  READ
+  RESIVE
+}
+
+enum ApplicationStatus {
+  ACCEPTED
+  REFUSED
+  PENDING
+}
