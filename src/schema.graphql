@@ -9,8 +9,6 @@ type Mutation {
         email: String!
         isActive: Boolean!
         password: String!
-        created: DateTime!
-        updated: DateTime!
         roles:Json!
     ): AuthPayload!
     login(email: String!, password: String!): AuthPayload!
