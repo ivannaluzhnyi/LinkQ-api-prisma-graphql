@@ -4,4 +4,10 @@ class AuthError extends Error {
     }
 }
 
-module.exports = { AuthError };
+class PermissionError extends Error {
+    constructor() {
+        super("Not permission");
+    }
+}
+
+module.exports = { AuthError, PermissionError };

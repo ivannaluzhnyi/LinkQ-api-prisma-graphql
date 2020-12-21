@@ -1,4 +1,4 @@
-# import Account, Mutation.createAccount, from "./generated/prisma.graphql"
+# import Account, Mutation.updateAccount, Mutation.deleteAccount, Query.account, Query.accounts from "./generated/prisma.graphql"
 
 type Query {
     me: Account
@@ -9,7 +9,7 @@ type Mutation {
         email: String!
         isActive: Boolean!
         password: String!
-        roles:Json!
+        roles: Json!
     ): AuthPayload!
     login(email: String!, password: String!): AuthPayload!
 }

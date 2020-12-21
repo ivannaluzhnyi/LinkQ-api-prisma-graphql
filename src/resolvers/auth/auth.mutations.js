@@ -1,6 +1,5 @@
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const { URL_DB_PRISMA } = require("../../utils/config");
+const { createToken } = require("../../utils/auth");
 
 async function signup(_, args, context, info) {
     const password = await bcrypt.hash(args.password, 10);
@@ -10,11 +9,13 @@ async function signup(_, args, context, info) {
             password: password,
             isActive: args.isActive,
             roles: args.roles,
-            },
+        },
     });
 
+    const token = await createToken({ userId: user.id, email: user.email });
+
     return {
-        token: jwt.sign({ userId: user.id }, URL_DB_PRISMA),
+        token,
         user,
     };
 }
@@ -24,6 +25,7 @@ async function login(parent, { email, password }, ctx, info) {
         { where: { email } },
         "{ id email password }"
     );
+
     if (!user) {
         throw new Error(`No such user found for email: ${email}`);
     }
@@ -33,8 +35,10 @@ async function login(parent, { email, password }, ctx, info) {
         throw new Error("Invalid password");
     }
 
+    const token = await createToken({ userId: user.id, email: user.email });
+
     return {
-        token: jwt.sign({ userId: user.id }, URL_DB_PRISMA),
+        token,
         user,
     };
 }
