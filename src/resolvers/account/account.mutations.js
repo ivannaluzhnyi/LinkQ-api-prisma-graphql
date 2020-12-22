@@ -1,6 +1,9 @@
 const { forwardTo } = require("prisma-binding");
 const { getUser } = require("../../utils/helpers.resolvers");
-const { permissionMiddleware } = require("../../utils/permission");
+const {
+    permissionMiddleware,
+    checkByWhere,
+} = require("../../utils/permission");
 
 async function updateAccount(parent, args, ctx, info) {
     const user = await getUser(ctx);

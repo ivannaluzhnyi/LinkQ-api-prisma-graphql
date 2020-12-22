@@ -13,10 +13,25 @@ const checkByWhere = (user, args) => {
     return true;
 };
 
+const checkByConnectId = (user, args) => {
+    const { roles } = user;
+
+    if (!isAdmin(roles)) {
+        return isUser(roles) ? user.id === args.data.owener.connect.id : false;
+    }
+
+    return true;
+};
+
 const permissionMiddleware = (check) => {
     if (!check) {
         throw new PermissionError();
     }
 };
 
-module.exports = { isAdmin, checkByWhere, permissionMiddleware };
+module.exports = {
+    isAdmin,
+    checkByWhere,
+    permissionMiddleware,
+    checkByConnectId,
+};
