@@ -17,7 +17,7 @@ const checkByConnectId = (user, args) => {
     const { roles } = user;
 
     if (!isAdmin(roles)) {
-        return isUser(roles) ? user.id === args.data.owener.connect.id : false;
+        return isUser(roles) ? user.id === args.data.buyer.connect.id : false;
     }
 
     return true;
