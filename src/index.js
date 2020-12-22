@@ -1,10 +1,12 @@
-const { GraphQLServer } = require("graphql-yoga");
+const { GraphQLServer, PubSub } = require("graphql-yoga");
 const { Prisma } = require("prisma-binding");
 const logger = require("morgan");
 
 const resolvers = require("./resolvers");
 
 require("dotenv").config();
+
+const pubsub = new PubSub();
 
 const server = new GraphQLServer({
     typeDefs: "src/schema.graphql",
@@ -15,6 +17,7 @@ const server = new GraphQLServer({
             typeDefs: "src/generated/prisma.graphql",
             endpoint: process.env.URL_DB_PRISMA,
         }),
+        pubsub,
     }),
 });
 

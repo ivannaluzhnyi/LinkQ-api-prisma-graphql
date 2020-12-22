@@ -19,3 +19,24 @@ type AuthPayload {
     token: String!
     user: Account!
 }
+
+type Subscription {
+    account: AccountSubscription
+    event: EventSubscription
+}
+
+type AccountSubscription {
+    actionType: ActionType
+    account: Account
+}
+
+enum ActionType {
+    CREATE
+    UPDATE
+    DELETE
+}
+
+type EventSubscription {
+    actionType: ActionType
+    event: Event
+}

@@ -1,0 +1,7 @@
+const PUPSUB_ACCOUNT = "PUPSUB_ACCOUNT";
+const PUPSUB_EVENT = "PUPSUB_EVENT";
+
+module.exports = {
+    PUPSUB_ACCOUNT,
+    PUPSUB_EVENT,
+};
