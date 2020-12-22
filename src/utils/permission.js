@@ -1,4 +1,4 @@
-const { ROLES } = require("./enums");
+const { ROLES } = require("../constants/enums");
 const { PermissionError } = require("./error");
 const isAdmin = (roles) => roles.includes(ROLES.ROLE_ADMIN);
 const isUser = (roles) => roles.includes(ROLES.ROLE_USER);

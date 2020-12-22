@@ -23,6 +23,7 @@ type AuthPayload {
 type Subscription {
     account: AccountSubscription
     event: EventSubscription
+    login: LoginSubscription
 }
 
 type AccountSubscription {
@@ -39,4 +40,9 @@ enum ActionType {
 type EventSubscription {
     actionType: ActionType
     event: Event
+}
+
+type LoginSubscription {
+    account: Account
+    time_connexion: DateTime
 }

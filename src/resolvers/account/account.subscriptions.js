@@ -1,5 +1,5 @@
 const { PUPSUB_ACCOUNT } = require("../../constants/subscriptions.types");
-const { SubscriptionActionTypes } = require("../../utils/enums");
+const { SubscriptionActionTypes } = require("../../constants/enums");
 
 const publishUpdate = async (ctx, args) => {
     const { prisma, pubsub } = ctx;

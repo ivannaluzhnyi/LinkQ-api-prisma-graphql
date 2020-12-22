@@ -1,6 +1,8 @@
 const bcrypt = require("bcryptjs");
 const { createToken } = require("../../utils/auth");
 
+const { publishLogin } = require("./auth.subscription");
+
 async function signup(_, args, context, info) {
     const password = await bcrypt.hash(args.password, 10);
     const user = await context.prisma.mutation.createAccount({
@@ -21,10 +23,7 @@ async function signup(_, args, context, info) {
 }
 
 async function login(parent, { email, password }, ctx, info) {
-    const user = await ctx.prisma.query.account(
-        { where: { email } },
-        "{ id email password }"
-    );
+    const user = await ctx.prisma.query.account({ where: { email } });
 
     if (!user) {
         throw new Error(`No such user found for email: ${email}`);
@@ -36,6 +35,8 @@ async function login(parent, { email, password }, ctx, info) {
     }
 
     const token = await createToken({ userId: user.id, email: user.email });
+
+    await publishLogin(ctx, user);
 
     return {
         token,

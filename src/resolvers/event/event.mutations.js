@@ -5,6 +5,8 @@ const {
     checkByConnectId,
 } = require("../../utils/permission");
 
+const { publishUpdate, publishDelete } = require("./event.subscription");
+
 async function createEvent(parent, args, ctx, info) {
     const user = await getUser(ctx);
     const canCreate = checkByConnectId(user, args);
@@ -18,7 +20,10 @@ async function updateEvent(parent, args, ctx, info) {
     const canUpdate = checkByWhere(user, args);
 
     permissionMiddleware(canUpdate);
-    return forwardTo("prisma")(parent, args, ctx, info);
+
+    const response = await forwardTo("prisma")(parent, args, ctx, info);
+    await publishUpdate(ctx, args);
+    return response;
 }
 
 async function deleteEvent(parent, args, ctx, info) {
@@ -26,6 +31,7 @@ async function deleteEvent(parent, args, ctx, info) {
     const canDelete = checkByWhere(user, args);
 
     permissionMiddleware(canDelete);
+    await publishDelete(ctx, args);
 
     return forwardTo("prisma")(parent, args, ctx, info);
 }
