@@ -345,7 +345,7 @@ type AggregateEvent {
 type Application {
   id: Int!
   buyer: Account!
-  contract: Contract!
+  contract: Contract
   created: DateTime!
   offer: Float!
   property_id: String
@@ -362,7 +362,7 @@ type ApplicationConnection {
 input ApplicationCreateInput {
   id: Int
   buyer: AccountCreateOneWithoutApplicationInput!
-  contract: ContractCreateOneWithoutApplicationInput!
+  contract: ContractCreateOneWithoutApplicationInput
   offer: Float!
   property_id: String
   status: ApplicationStatus
@@ -380,7 +380,7 @@ input ApplicationCreateOneWithoutContractInput {
 
 input ApplicationCreateWithoutBuyerInput {
   id: Int
-  contract: ContractCreateOneWithoutApplicationInput!
+  contract: ContractCreateOneWithoutApplicationInput
   offer: Float!
   property_id: String
   status: ApplicationStatus
@@ -505,7 +505,7 @@ input ApplicationSubscriptionWhereInput {
 
 input ApplicationUpdateInput {
   buyer: AccountUpdateOneRequiredWithoutApplicationInput
-  contract: ContractUpdateOneRequiredWithoutApplicationInput
+  contract: ContractUpdateOneWithoutApplicationInput
   offer: Float
   property_id: String
   status: ApplicationStatus
@@ -548,7 +548,7 @@ input ApplicationUpdateOneRequiredWithoutContractInput {
 }
 
 input ApplicationUpdateWithoutBuyerDataInput {
-  contract: ContractUpdateOneRequiredWithoutApplicationInput
+  contract: ContractUpdateOneWithoutApplicationInput
   offer: Float
   property_id: String
   status: ApplicationStatus
@@ -723,10 +723,12 @@ input ContractUpdateManyMutationInput {
   price: Float
 }
 
-input ContractUpdateOneRequiredWithoutApplicationInput {
+input ContractUpdateOneWithoutApplicationInput {
   create: ContractCreateWithoutApplicationInput
   update: ContractUpdateWithoutApplicationDataInput
   upsert: ContractUpsertWithoutApplicationInput
+  delete: Boolean
+  disconnect: Boolean
   connect: ContractWhereUniqueInput
 }
 

@@ -1,5 +1,5 @@
 # source: http://localhost:4467
-# timestamp: Sat Dec 19 2020 00:17:20 GMT+0100 (GMT+01:00)
+# timestamp: Wed Dec 23 2020 23:38:55 GMT+0100 (GMT+01:00)
 
 type Account {
   id: Int!
@@ -548,7 +548,7 @@ type AggregateEvent {
 type Application {
   id: Int!
   buyer: Account!
-  contract: Contract!
+  contract: Contract
   created: DateTime!
   offer: Float!
   property_id: String
@@ -571,7 +571,7 @@ input ApplicationCreateInput {
   property_id: String
   status: ApplicationStatus
   buyer: AccountCreateOneWithoutApplicationInput!
-  contract: ContractCreateOneWithoutApplicationInput!
+  contract: ContractCreateOneWithoutApplicationInput
 }
 
 input ApplicationCreateManyWithoutBuyerInput {
@@ -588,7 +588,7 @@ input ApplicationCreateWithoutBuyerInput {
   offer: Float!
   property_id: String
   status: ApplicationStatus
-  contract: ContractCreateOneWithoutApplicationInput!
+  contract: ContractCreateOneWithoutApplicationInput
 }
 
 input ApplicationCreateWithoutContractInput {
@@ -828,7 +828,7 @@ input ApplicationUpdateInput {
   property_id: String
   status: ApplicationStatus
   buyer: AccountUpdateOneRequiredWithoutApplicationInput
-  contract: ContractUpdateOneRequiredWithoutApplicationInput
+  contract: ContractUpdateOneWithoutApplicationInput
 }
 
 input ApplicationUpdateManyDataInput {
@@ -871,7 +871,7 @@ input ApplicationUpdateWithoutBuyerDataInput {
   offer: Float
   property_id: String
   status: ApplicationStatus
-  contract: ContractUpdateOneRequiredWithoutApplicationInput
+  contract: ContractUpdateOneWithoutApplicationInput
 }
 
 input ApplicationUpdateWithoutContractDataInput {
@@ -1162,9 +1162,11 @@ input ContractUpdateManyMutationInput {
   price: Float
 }
 
-input ContractUpdateOneRequiredWithoutApplicationInput {
+input ContractUpdateOneWithoutApplicationInput {
   create: ContractCreateWithoutApplicationInput
   connect: ContractWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
   update: ContractUpdateWithoutApplicationDataInput
   upsert: ContractUpsertWithoutApplicationInput
 }
