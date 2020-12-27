@@ -1,15 +1,21 @@
 const { ROLES } = require("../constants/enums");
 const { PermissionError } = require("./error");
+
 const isAdmin = (roles) => roles.includes(ROLES.ROLE_ADMIN);
 const isUser = (roles) => roles.includes(ROLES.ROLE_USER);
 
-const checkByWhere = (user, args) => {
-    const { roles } = user;
+// (user, args) => {
+//     const { roles } = user;
 
-    if (!isAdmin(roles)) {
-        return isUser(roles) ? user.id === args.where.id : false;
-    }
+//     if (!isAdmin(roles)) {
+//         return isUser(roles) ? user.id === args.where.id : false;
+//     }
 
+//     return true;
+// };
+
+const checkByWhere = async (parent, args, ctx, info) => {
+    console.log("ctx. user=checkByWhere> ", ctx.user);
     return true;
 };
 

@@ -4,21 +4,25 @@ const logger = require("morgan");
 
 const resolvers = require("./resolvers");
 
+const { permissions, getUser } = require("./middlewares/auth.middleware");
+
 require("dotenv").config();
 
 const pubsub = new PubSub();
+const prisma = new Prisma({
+    typeDefs: "src/generated/prisma.graphql",
+    endpoint: process.env.URL_DB_PRISMA,
+});
 
 const server = new GraphQLServer({
     typeDefs: "src/schema.graphql",
     resolvers,
-    context: (req) => ({
+    context:  (req) => ({
         req,
-        prisma: new Prisma({
-            typeDefs: "src/generated/prisma.graphql",
-            endpoint: process.env.URL_DB_PRISMA,
-        }),
+        prisma,
         pubsub,
     }),
+    middlewares: [permissions],
 });
 
 server.start(() =>

@@ -9,11 +9,6 @@ const {
 const { publishUpdate, publishDelete } = require("./account.subscriptions");
 
 async function updateAccount(parent, args, ctx, info) {
-    const user = await getUser(ctx);
-    const canUpdate = checkByWhere(user, args);
-
-    permissionMiddleware(canUpdate);
-
     const response = await forwardTo("prisma")(parent, args, ctx, info);
     await publishUpdate(ctx, args);
 
