@@ -1,11 +1,4 @@
 const { forwardTo } = require("prisma-binding");
-const { getUser } = require("../../utils/helpers.resolvers");
-
-const {
-    permissionMiddleware,
-    checkByWhere,
-} = require("../../utils/permission");
-
 const { publishUpdate, publishDelete } = require("./account.subscriptions");
 
 async function updateAccount(parent, args, ctx, info) {
@@ -16,12 +9,7 @@ async function updateAccount(parent, args, ctx, info) {
 }
 
 async function deleteAccount(parent, args, ctx, info) {
-    const user = await getUser(ctx);
-    const canDelete = checkByWhere(user, args);
-
-    permissionMiddleware(canDelete);
     await publishDelete(ctx, args);
-
     return forwardTo("prisma")(parent, args, ctx, info);
 }
 
