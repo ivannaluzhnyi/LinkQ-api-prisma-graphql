@@ -1,4 +1,4 @@
-const { isAuthenticated } = require("../utils/middleware");
+const { isAuthenticated } = require("../utils/auth");
 const { PermissionError } = require("../utils/error");
 const {
     checkByWhere,

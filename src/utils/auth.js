@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
 
+const { AuthError } = require("./error");
+
 const { APP_SECRET } = require("./config");
 
 const createToken = async (payload) => {
@@ -31,7 +33,34 @@ const verifyToken = async (token) => {
     });
 };
 
+const isAuthenticated = async (ctx) => {
+    if (ctx.user) {
+        return true;
+    }
+
+    try {
+        const authToken = ctx.req.request
+            ? ctx.req.request.get(AUTH_HEADER)
+            : ctx.req.request.connection.context.Authorization;
+
+        if (!authToken) return false;
+        const token = authToken.replace("Bearer ", "");
+        const { userId } = await verifyToken(token);
+
+        const currUser = await ctx.prisma.query.account({
+            where: { id: userId },
+        });
+
+        ctx.user = currUser;
+
+        return true;
+    } catch (error) {
+        throw new AuthError();
+    }
+};
+
 module.exports = {
     createToken,
     verifyToken,
+    isAuthenticated,
 };
