@@ -1,23 +1,13 @@
-const {
-    checkByWhereMiddleware,
-    checkByConnectIdMiddleware,
-    checkIsAdminMiddleware,
-} = require("./permission.middleware");
-
-const { AuthError } = require("../utils/auth");
-
-const AUTH_HEADER = "Authorization";
+const { AuthError } = require("../utils/error");
+const { verifyToken, getAuthToken } = require("../utils/auth");
 
 const isAuthenticatedMiddleware = async (resolve, parent, args, ctx, info) => {
     if (ctx.user) {
-        const result = await resolve(parent, args, ctx, info);
-        return result;
+        return await resolve(parent, args, ctx, info);
     }
 
     try {
-        const authToken = ctx.req.request
-            ? ctx.req.request.get(AUTH_HEADER)
-            : ctx.req.request.connection.context.Authorization;
+        const authToken = getAuthToken(ctx);
 
         if (!authToken) return false;
 
@@ -37,23 +27,6 @@ const isAuthenticatedMiddleware = async (resolve, parent, args, ctx, info) => {
     }
 };
 
-const permissions = {
-    Mutation: {
-        updateAccount: checkByWhereMiddleware,
-        deleteAccount: checkByWhereMiddleware,
-        createEvent: checkByConnectIdMiddleware,
-        updateEvent: checkByWhereMiddleware,
-        deleteEvent: checkByWhereMiddleware,
-    },
-    Query: {
-        accounts: checkIsAdminMiddleware,
-        account: checkByWhereMiddleware,
-        event: checkByWhereMiddleware,
-        events: checkIsAdminMiddleware,
-    },
-};
-
 module.exports = {
-    permissions,
     isAuthenticatedMiddleware,
 };

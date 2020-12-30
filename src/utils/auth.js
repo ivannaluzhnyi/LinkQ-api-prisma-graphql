@@ -39,9 +39,7 @@ const isAuthenticated = async (ctx) => {
     }
 
     try {
-        const authToken = ctx.req.request
-            ? ctx.req.request.get(AUTH_HEADER)
-            : ctx.req.request.connection.context.Authorization;
+        const authToken = getAuthToken(ctx);
 
         if (!authToken) return false;
         const token = authToken.replace("Bearer ", "");
@@ -59,8 +57,15 @@ const isAuthenticated = async (ctx) => {
     }
 };
 
+const AUTH_HEADER = "Authorization";
+const getAuthToken = (ctx) =>
+    ctx.req.request
+        ? ctx.req.request.get(AUTH_HEADER)
+        : ctx.req.connection.context.Authorization;
+
 module.exports = {
     createToken,
     verifyToken,
     isAuthenticated,
+    getAuthToken,
 };

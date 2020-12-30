@@ -3,8 +3,7 @@ const { Prisma } = require("prisma-binding");
 const logger = require("morgan");
 
 const resolvers = require("./resolvers");
-
-const { permissions } = require("./middlewares/auth.middleware");
+const { endpointsMiddleware } = require("./middlewares/index");
 
 require("dotenv").config();
 
@@ -22,7 +21,7 @@ const server = new GraphQLServer({
         prisma,
         pubsub,
     }),
-    middlewares: [permissions],
+    middlewares: [endpointsMiddleware],
 });
 
 server.start(() =>

@@ -3,6 +3,7 @@ const {
     PUPSUB_EVENT,
     PUPSUB_LOGIN,
 } = require("../constants/subscriptions.types");
+
 module.exports = {
     account: {
         subscribe: (_, __, { pubsub }) => {
