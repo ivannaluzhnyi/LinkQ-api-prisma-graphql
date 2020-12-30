@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
 
 const { AuthError } = require("./error");
-
 const { APP_SECRET } = require("./config");
 
 const createToken = async (payload) => {
