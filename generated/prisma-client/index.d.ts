@@ -600,7 +600,7 @@ export interface ApplicationCreateManyWithoutBuyerInput {
 
 export interface ApplicationCreateWithoutBuyerInput {
   id?: Maybe<Int>;
-  contract: ContractCreateOneWithoutApplicationInput;
+  contract?: Maybe<ContractCreateOneWithoutApplicationInput>;
   offer: Float;
   property_id?: Maybe<String>;
   status?: Maybe<ApplicationStatus>;
@@ -676,16 +676,18 @@ export interface ApplicationUpdateWithWhereUniqueWithoutBuyerInput {
 }
 
 export interface ApplicationUpdateWithoutBuyerDataInput {
-  contract?: Maybe<ContractUpdateOneRequiredWithoutApplicationInput>;
+  contract?: Maybe<ContractUpdateOneWithoutApplicationInput>;
   offer?: Maybe<Float>;
   property_id?: Maybe<String>;
   status?: Maybe<ApplicationStatus>;
 }
 
-export interface ContractUpdateOneRequiredWithoutApplicationInput {
+export interface ContractUpdateOneWithoutApplicationInput {
   create?: Maybe<ContractCreateWithoutApplicationInput>;
   update?: Maybe<ContractUpdateWithoutApplicationDataInput>;
   upsert?: Maybe<ContractUpsertWithoutApplicationInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
   connect?: Maybe<ContractWhereUniqueInput>;
 }
 
@@ -897,7 +899,7 @@ export interface AccountUpdateManyMutationInput {
 export interface ApplicationCreateInput {
   id?: Maybe<Int>;
   buyer: AccountCreateOneWithoutApplicationInput;
-  contract: ContractCreateOneWithoutApplicationInput;
+  contract?: Maybe<ContractCreateOneWithoutApplicationInput>;
   offer: Float;
   property_id?: Maybe<String>;
   status?: Maybe<ApplicationStatus>;
@@ -923,7 +925,7 @@ export interface AccountCreateWithoutApplicationInput {
 
 export interface ApplicationUpdateInput {
   buyer?: Maybe<AccountUpdateOneRequiredWithoutApplicationInput>;
-  contract?: Maybe<ContractUpdateOneRequiredWithoutApplicationInput>;
+  contract?: Maybe<ContractUpdateOneWithoutApplicationInput>;
   offer?: Maybe<Float>;
   property_id?: Maybe<String>;
   status?: Maybe<ApplicationStatus>;

@@ -17,7 +17,7 @@ type Account  {
 type Application {
   id: Int! @id
   buyer: Account! @db(name: "buyer_id")
-  contract: Contract!
+  contract: Contract
   created: DateTime! @createdAt
   offer: Float!
   property_id: String
