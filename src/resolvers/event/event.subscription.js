@@ -32,7 +32,7 @@ const publishDelete = async (ctx, args) => {
         where: { id: args.where.id },
     });
 
-    pubsub.publish(PUPSUB_ACCOUNT, {
+    pubsub.publish(PUPSUB_EVENT, {
         event: {
             actionType: SubscriptionActionTypes.DELETE,
             event: deletedEvent,

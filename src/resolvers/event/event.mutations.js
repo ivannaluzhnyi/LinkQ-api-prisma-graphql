@@ -13,6 +13,7 @@ async function createEvent(parent, args, ctx, info) {
 }
 
 async function updateEvent(parent, args, ctx, info) {
+    delete args.where.owenerId;
     const response = await forwardTo("prisma")(parent, args, ctx, info);
     await publishUpdate(ctx, args);
     return response;

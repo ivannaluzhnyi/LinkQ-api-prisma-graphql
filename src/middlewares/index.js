@@ -1,24 +1,27 @@
 const {
-    checkByWhereMiddleware,
     checkByConnectIdMiddleware,
     checkIsAdminMiddleware,
+    eventMiddleware,
+    accountMiddleware,
 } = require("./permission.middleware");
 
 const { isAuthenticatedMiddleware } = require("./auth.middleware");
 
 const endpointsMiddleware = {
     Mutation: {
-        updateAccount: checkByWhereMiddleware,
-        deleteAccount: checkByWhereMiddleware,
+        updateAccount: accountMiddleware,
+        deleteAccount: accountMiddleware,
+
         createEvent: checkByConnectIdMiddleware,
-        updateEvent: checkByWhereMiddleware,
-        deleteEvent: checkByWhereMiddleware,
+        updateEvent: eventMiddleware,
+        deleteEvent: eventMiddleware,
     },
     Query: {
         accounts: checkIsAdminMiddleware,
-        account: checkByWhereMiddleware,
-        event: checkByWhereMiddleware,
-        events: checkIsAdminMiddleware,
+        account: accountMiddleware,
+
+        event: eventMiddleware,
+        events: isAuthenticatedMiddleware,
     },
     Subscription: {
         login: isAuthenticatedMiddleware,

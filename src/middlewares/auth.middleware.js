@@ -8,7 +8,6 @@ const isAuthenticatedMiddleware = async (resolve, parent, args, ctx, info) => {
 
     try {
         const authToken = getAuthToken(ctx);
-
         if (!authToken) return false;
 
         const token = authToken.replace("Bearer ", "");
@@ -23,6 +22,7 @@ const isAuthenticatedMiddleware = async (resolve, parent, args, ctx, info) => {
         const result = await resolve(parent, args, ctx, info);
         return result;
     } catch (error) {
+        console.error("Error: ", error);
         throw new AuthError();
     }
 };
