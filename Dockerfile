@@ -1,11 +1,10 @@
-FROM node
+FROM node:12.2.0
 
-ENV APP_ROOT /src
+EXPOSE 4000
 
-RUN mkdir -p ${APP_ROOT}
-WORKDIR ${APP_ROOT}
-ADD . ${APP_ROOT}
+WORKDIR /app
+COPY package.json /app/package.json
+RUN npm install
+RUN npm install -g prisma
 
-RUN npm ci
-
-ENV HOST 0.0.0.0
+CMD ["npm", "run", "start"]
