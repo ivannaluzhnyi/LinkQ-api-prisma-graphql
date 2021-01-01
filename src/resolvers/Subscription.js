@@ -2,6 +2,7 @@ const {
     PUPSUB_ACCOUNT,
     PUPSUB_EVENT,
     PUPSUB_LOGIN,
+    PUPSUB_APPLICATION
 } = require("../constants/subscriptions.types");
 
 module.exports = {
@@ -18,6 +19,11 @@ module.exports = {
     login: {
         subscribe: (_, __, { pubsub }) => {
             return pubsub.asyncIterator(PUPSUB_LOGIN);
+        },
+    },
+    application: { 
+        subscribe: (_, __, { pubsub }) => {
+            return pubsub.asyncIterator(PUPSUB_APPLICATION);
         },
     },
 };

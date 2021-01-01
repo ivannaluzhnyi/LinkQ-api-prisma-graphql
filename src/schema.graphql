@@ -1,7 +1,6 @@
 # import Account, Mutation.updateAccount, Mutation.deleteAccount, Query.account, Query.accounts from "./generated/prisma.graphql"
 # import Event, EventCreateInput, Mutation.updateEvent, Mutation.deleteEvent, Query.event, Query.events from "./generated/prisma.graphql"
-# import Application, Mutation.createApplication, Mutation.updateApplication, Mutation.deleteApplication, Query.Application, Query.Applications from "./generated/prisma.graphql"
-
+# import Application, ApplicationCreateInput, Mutation.updateApplication, Mutation.deleteApplication, Query.application, Query.applications from "./generated/prisma.graphql"
 type Query {
     me: Account
 }
@@ -16,6 +15,7 @@ type Mutation {
     login(email: String!, password: String!): AuthPayload!
 
     createEvent(data: EventCreateInput!): Event!
+    createApplication(data: ApplicationCreateInput!): Application!
 }
 
 type AuthPayload {
@@ -27,6 +27,7 @@ type Subscription {
     account: AccountSubscription
     event: EventSubscription
     login: LoginSubscription
+    application: ApplicationSubscription
 }
 
 type AccountSubscription {
@@ -48,4 +49,9 @@ type EventSubscription {
 type LoginSubscription {
     account: Account
     time_connexion: DateTime
+}
+
+type ApplicationSubscription {
+    actionType: ActionType
+    application: Application
 }
