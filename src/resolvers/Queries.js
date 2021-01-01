@@ -7,4 +7,5 @@ module.exports = {
     ...userQueries,
     ...authQueries,
     ...eventQueries,
+    ...applicationQueries
 };

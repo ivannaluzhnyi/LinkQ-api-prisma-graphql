@@ -1,35 +1,48 @@
-const { forwardTo } = require("prisma-binding");
-const { getUser } = require("../../utils/helpers.resolvers");
-const {
-    permissionMiddleware,
-    checkByConnectId,
-} = require("../../utils/permission");
+const { publishApplicationByType } = require("./application.subscriptions");
+const { SubscriptionActionTypes } = require("../../constants/enums");
+
+const { isAdmin } = require("../../utils/permission");
 
 async function createApplication(parent, args, ctx, info) {
-    const user = await getUser(ctx);
-    console.log('user :>> ', user);
-    const canCreate = checkByConnectId(user, args);
-    console.log('canCreate :>> ', canCreate);
-    permissionMiddleware(canCreate);
+    const nextArgs = { ...args };
 
-    return forwardTo("prisma")(parent, args, ctx, info);
+    const { roles, id: userId } = ctx.user;
+
+    if (!isAdmin(roles)) {
+        nextArgs.data.buyer.connect.id = userId;
+    }
+
+    const createdApp = await ctx.prisma.mutation.createApplication(args);
+
+    console.log("createdApp => ", createdApp);
+    await publishApplicationByType(
+        ctx,
+        createdApp,
+        SubscriptionActionTypes.CREATE
+    );
+    return createdApp;
 }
 
 async function updateApplication(parent, args, ctx, info) {
-    const user = await getUser(ctx);
-    const canUpdate = checkByWhere(user, args);
+    const updatedApp = await ctx.prisma.mutation.updateApplication(args);
+    await publishApplicationByType(
+        ctx,
+        updatedApp,
+        SubscriptionActionTypes.UPDATE
+    );
 
-    permissionMiddleware(canUpdate);
-    return forwardTo("prisma")(parent, args, ctx, info);
+    return updatedApp;
 }
 
 async function deleteApplication(parent, args, ctx, info) {
-    const user = await getUser(ctx);
-    const canDelete = checkByWhere(user, args);
+    const deletedApp = await ctx.prisma.mutation.deleteApplication(args);
+    await publishApplicationByType(
+        ctx,
+        deletedApp,
+        SubscriptionActionTypes.DELETE
+    );
 
-    permissionMiddleware(canDelete);
-
-    return forwardTo("prisma")(parent, args, ctx, info);
+    return deletedApp;
 }
 
 module.exports = {

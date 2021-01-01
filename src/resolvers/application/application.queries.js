@@ -1,24 +1,20 @@
 const { forwardTo } = require("prisma-binding");
-
-const {
-    permissionMiddleware,
-    checkByWhere,
-    isAdmin,
-} = require("../../utils/permission");
-const { getUser } = require("../../utils/helpers.resolvers");
+const { isAdmin } = require("../../utils/permission");
 
 async function application(parent, args, ctx, info) {
-    const user = await getUser(ctx);
-
-    permissionMiddleware(checkByWhere(user, args));
-    return await ctx.prisma.query.account({ where: { id: user.id } });
-}
-
-async function applications(parent, args, ctx, info) {
-    const user = await getUser(ctx);
-
-    permissionMiddleware(isAdmin(user.roles));
     return forwardTo("prisma")(parent, args, ctx, info);
 }
 
+async function applications(parent, args, ctx, info) {
+    if (isAdmin(ctx.user.roles)) {
+        return forwardTo("prisma")(parent, args, ctx, info);
+    }
+    return await ctx.prisma.query.applications({
+        ...args,
+        where: {
+            ...args.where,
+            buyer: { id: ctx.user.id },
+        },
+    });
+}
 module.exports = { application, applications };
