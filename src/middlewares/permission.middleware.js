@@ -70,10 +70,31 @@ const applicationMiddleware = async (resolve, parent, args, ctx, info) => {
         : new PermissionError();
 };
 
+
+const contractMiddleware = async (resolve, parent, args, ctx, info) => {
+    await isAuthenticated(ctx);
+
+    const { id: userId, roles } = ctx.user;
+
+    if (isAdmin(roles)) {
+        return await resolve(parent, args, ctx, info);
+    }
+
+    const hasPermission = await ctx.prisma.exists.Contract({
+        id: args.where.id,
+        buyer: { id: userId },
+    });
+
+    return hasPermission
+        ? await resolve(parent, args, ctx, info)
+        : new PermissionError();
+};
+
 module.exports = {
     checkByConnectIdMiddleware,
     checkIsAdminMiddleware,
     eventMiddleware,
     accountMiddleware,
     applicationMiddleware,
+    contractMiddleware
 };
