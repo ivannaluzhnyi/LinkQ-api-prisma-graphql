@@ -3,7 +3,8 @@ const {
     checkIsAdminMiddleware,
     eventMiddleware,
     accountMiddleware,
-    applicationMiddleware
+    applicationMiddleware,
+    contractMiddleware
 } = require("./permission.middleware");
 
 const { isAuthenticatedMiddleware } = require("./auth.middleware");
@@ -19,6 +20,9 @@ const endpointsMiddleware = {
 
         createApplication: checkByConnectIdMiddleware,
         updateApplication: applicationMiddleware,
+
+        createContract: checkByConnectIdMiddleware,
+        updateContract: contractMiddleware
         
     },
     Query: {
@@ -30,12 +34,17 @@ const endpointsMiddleware = {
 
         application: applicationMiddleware,
         applications: isAuthenticatedMiddleware,
+
+        contract: contractMiddleware,
+        contracts: isAuthenticatedMiddleware,
     },
     Subscription: {
         login: isAuthenticatedMiddleware,
         account: isAuthenticatedMiddleware,
         event: isAuthenticatedMiddleware,
-        application: isAuthenticatedMiddleware
+        application: isAuthenticatedMiddleware,
+        contract: isAuthenticatedMiddleware
+
     },
 };
 
