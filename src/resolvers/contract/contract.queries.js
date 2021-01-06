@@ -13,7 +13,7 @@ async function contracts(parent, args, ctx, info) {
         ...args,
         where: {
             ...args.where,
-            buyer: { id: ctx.user.id },
+            application: { id: ctx.application.id },
         },
     });
 }
