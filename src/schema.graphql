@@ -1,6 +1,8 @@
 # import Account, Mutation.updateAccount, Mutation.deleteAccount, Query.account, Query.accounts from "./generated/prisma.graphql"
 # import Event, EventCreateInput, Mutation.updateEvent, Mutation.deleteEvent, Query.event, Query.events from "./generated/prisma.graphql"
 # import Application, ApplicationCreateInput, Mutation.updateApplication, Mutation.deleteApplication, Query.application, Query.applications from "./generated/prisma.graphql"
+# import Contract, ContractCreateInput, Mutation.updateContract, Mutation.deleteContract, Query.contract, Query.contracts from "./generated/prisma.graphql"
+
 type Query {
     me: Account
 }
