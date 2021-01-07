@@ -18,6 +18,7 @@ type Mutation {
 
     createEvent(data: EventCreateInput!): Event!
     createApplication(data: ApplicationCreateInput!): Application!
+    createContract(data: ContractCreateInput!): Contract!
 }
 
 type AuthPayload {
@@ -30,6 +31,7 @@ type Subscription {
     event: EventSubscription
     login: LoginSubscription
     application: ApplicationSubscription
+    contract: ContractSubscription
 }
 
 type AccountSubscription {
@@ -56,4 +58,9 @@ type LoginSubscription {
 type ApplicationSubscription {
     actionType: ActionType
     application: Application
+}
+
+type ContractSubscription {
+    actionType: ActionType
+    contract: Contract
 }
