@@ -1,4 +1,4 @@
-const { publishContractByType } = require("./Contract.subscriptions");
+const { publishContractByType } = require("./contract.subscriptions");
 const { SubscriptionActionTypes } = require("../../constants/enums");
 
 const { isAdmin } = require("../../utils/permission");
