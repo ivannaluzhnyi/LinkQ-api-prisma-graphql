@@ -53,3 +53,11 @@ enum ApplicationStatus {
   REFUSED
   PENDING
 }
+
+type Commentaire {
+  id: Int! @id
+  email: String!
+  message: String!
+  idProperty: Int!
+  created: DateTime! @createdAt
+}

@@ -334,6 +334,10 @@ type AggregateApplication {
   count: Int!
 }
 
+type AggregateCommentaire {
+  count: Int!
+}
+
 type AggregateContract {
   count: Int!
 }
@@ -641,6 +645,145 @@ input ApplicationWhereUniqueInput {
 
 type BatchPayload {
   count: Long!
+}
+
+type Commentaire {
+  id: Int!
+  email: String!
+  message: String!
+  idProperty: Int!
+  created: DateTime!
+}
+
+type CommentaireConnection {
+  pageInfo: PageInfo!
+  edges: [CommentaireEdge]!
+  aggregate: AggregateCommentaire!
+}
+
+input CommentaireCreateInput {
+  id: Int
+  email: String!
+  message: String!
+  idProperty: Int!
+}
+
+type CommentaireEdge {
+  node: Commentaire!
+  cursor: String!
+}
+
+enum CommentaireOrderByInput {
+  id_ASC
+  id_DESC
+  email_ASC
+  email_DESC
+  message_ASC
+  message_DESC
+  idProperty_ASC
+  idProperty_DESC
+  created_ASC
+  created_DESC
+}
+
+type CommentairePreviousValues {
+  id: Int!
+  email: String!
+  message: String!
+  idProperty: Int!
+  created: DateTime!
+}
+
+type CommentaireSubscriptionPayload {
+  mutation: MutationType!
+  node: Commentaire
+  updatedFields: [String!]
+  previousValues: CommentairePreviousValues
+}
+
+input CommentaireSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: CommentaireWhereInput
+  AND: [CommentaireSubscriptionWhereInput!]
+  OR: [CommentaireSubscriptionWhereInput!]
+  NOT: [CommentaireSubscriptionWhereInput!]
+}
+
+input CommentaireUpdateInput {
+  email: String
+  message: String
+  idProperty: Int
+}
+
+input CommentaireUpdateManyMutationInput {
+  email: String
+  message: String
+  idProperty: Int
+}
+
+input CommentaireWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  message: String
+  message_not: String
+  message_in: [String!]
+  message_not_in: [String!]
+  message_lt: String
+  message_lte: String
+  message_gt: String
+  message_gte: String
+  message_contains: String
+  message_not_contains: String
+  message_starts_with: String
+  message_not_starts_with: String
+  message_ends_with: String
+  message_not_ends_with: String
+  idProperty: Int
+  idProperty_not: Int
+  idProperty_in: [Int!]
+  idProperty_not_in: [Int!]
+  idProperty_lt: Int
+  idProperty_lte: Int
+  idProperty_gt: Int
+  idProperty_gte: Int
+  created: DateTime
+  created_not: DateTime
+  created_in: [DateTime!]
+  created_not_in: [DateTime!]
+  created_lt: DateTime
+  created_lte: DateTime
+  created_gt: DateTime
+  created_gte: DateTime
+  AND: [CommentaireWhereInput!]
+  OR: [CommentaireWhereInput!]
+  NOT: [CommentaireWhereInput!]
+}
+
+input CommentaireWhereUniqueInput {
+  id: Int
 }
 
 type Contract {
@@ -1073,6 +1216,12 @@ type Mutation {
   upsertApplication(where: ApplicationWhereUniqueInput!, create: ApplicationCreateInput!, update: ApplicationUpdateInput!): Application!
   deleteApplication(where: ApplicationWhereUniqueInput!): Application
   deleteManyApplications(where: ApplicationWhereInput): BatchPayload!
+  createCommentaire(data: CommentaireCreateInput!): Commentaire!
+  updateCommentaire(data: CommentaireUpdateInput!, where: CommentaireWhereUniqueInput!): Commentaire
+  updateManyCommentaires(data: CommentaireUpdateManyMutationInput!, where: CommentaireWhereInput): BatchPayload!
+  upsertCommentaire(where: CommentaireWhereUniqueInput!, create: CommentaireCreateInput!, update: CommentaireUpdateInput!): Commentaire!
+  deleteCommentaire(where: CommentaireWhereUniqueInput!): Commentaire
+  deleteManyCommentaires(where: CommentaireWhereInput): BatchPayload!
   createContract(data: ContractCreateInput!): Contract!
   updateContract(data: ContractUpdateInput!, where: ContractWhereUniqueInput!): Contract
   updateManyContracts(data: ContractUpdateManyMutationInput!, where: ContractWhereInput): BatchPayload!
@@ -1111,6 +1260,9 @@ type Query {
   application(where: ApplicationWhereUniqueInput!): Application
   applications(where: ApplicationWhereInput, orderBy: ApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Application]!
   applicationsConnection(where: ApplicationWhereInput, orderBy: ApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ApplicationConnection!
+  commentaire(where: CommentaireWhereUniqueInput!): Commentaire
+  commentaires(where: CommentaireWhereInput, orderBy: CommentaireOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Commentaire]!
+  commentairesConnection(where: CommentaireWhereInput, orderBy: CommentaireOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentaireConnection!
   contract(where: ContractWhereUniqueInput!): Contract
   contracts(where: ContractWhereInput, orderBy: ContractOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Contract]!
   contractsConnection(where: ContractWhereInput, orderBy: ContractOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContractConnection!
@@ -1123,6 +1275,7 @@ type Query {
 type Subscription {
   account(where: AccountSubscriptionWhereInput): AccountSubscriptionPayload
   application(where: ApplicationSubscriptionWhereInput): ApplicationSubscriptionPayload
+  commentaire(where: CommentaireSubscriptionWhereInput): CommentaireSubscriptionPayload
   contract(where: ContractSubscriptionWhereInput): ContractSubscriptionPayload
   event(where: EventSubscriptionWhereInput): EventSubscriptionPayload
 }

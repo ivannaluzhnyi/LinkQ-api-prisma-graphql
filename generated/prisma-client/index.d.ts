@@ -18,6 +18,7 @@ export type Maybe<T> = T | undefined | null;
 export interface Exists {
   account: (where?: AccountWhereInput) => Promise<boolean>;
   application: (where?: ApplicationWhereInput) => Promise<boolean>;
+  commentaire: (where?: CommentaireWhereInput) => Promise<boolean>;
   contract: (where?: ContractWhereInput) => Promise<boolean>;
   event: (where?: EventWhereInput) => Promise<boolean>;
 }
@@ -81,6 +82,27 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => ApplicationConnectionPromise;
+  commentaire: (
+    where: CommentaireWhereUniqueInput
+  ) => CommentaireNullablePromise;
+  commentaires: (args?: {
+    where?: CommentaireWhereInput;
+    orderBy?: CommentaireOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Commentaire>;
+  commentairesConnection: (args?: {
+    where?: CommentaireWhereInput;
+    orderBy?: CommentaireOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => CommentaireConnectionPromise;
   contract: (where: ContractWhereUniqueInput) => ContractNullablePromise;
   contracts: (args?: {
     where?: ContractWhereInput;
@@ -159,6 +181,24 @@ export interface Prisma {
   deleteManyApplications: (
     where?: ApplicationWhereInput
   ) => BatchPayloadPromise;
+  createCommentaire: (data: CommentaireCreateInput) => CommentairePromise;
+  updateCommentaire: (args: {
+    data: CommentaireUpdateInput;
+    where: CommentaireWhereUniqueInput;
+  }) => CommentairePromise;
+  updateManyCommentaires: (args: {
+    data: CommentaireUpdateManyMutationInput;
+    where?: CommentaireWhereInput;
+  }) => BatchPayloadPromise;
+  upsertCommentaire: (args: {
+    where: CommentaireWhereUniqueInput;
+    create: CommentaireCreateInput;
+    update: CommentaireUpdateInput;
+  }) => CommentairePromise;
+  deleteCommentaire: (where: CommentaireWhereUniqueInput) => CommentairePromise;
+  deleteManyCommentaires: (
+    where?: CommentaireWhereInput
+  ) => BatchPayloadPromise;
   createContract: (data: ContractCreateInput) => ContractPromise;
   updateContract: (args: {
     data: ContractUpdateInput;
@@ -206,6 +246,9 @@ export interface Subscription {
   application: (
     where?: ApplicationSubscriptionWhereInput
   ) => ApplicationSubscriptionPayloadSubscription;
+  commentaire: (
+    where?: CommentaireSubscriptionWhereInput
+  ) => CommentaireSubscriptionPayloadSubscription;
   contract: (
     where?: ContractSubscriptionWhereInput
   ) => ContractSubscriptionPayloadSubscription;
@@ -277,6 +320,18 @@ export type AccountOrderByInput =
   | "salary_DESC"
   | "updated_ASC"
   | "updated_DESC";
+
+export type CommentaireOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "email_ASC"
+  | "email_DESC"
+  | "message_ASC"
+  | "message_DESC"
+  | "idProperty_ASC"
+  | "idProperty_DESC"
+  | "created_ASC"
+  | "created_DESC";
 
 export type ContractOrderByInput =
   | "id_ASC"
@@ -568,6 +623,68 @@ export interface ContractWhereInput {
 export type ApplicationWhereUniqueInput = AtLeastOne<{
   id: Maybe<Int>;
 }>;
+
+export type CommentaireWhereUniqueInput = AtLeastOne<{
+  id: Maybe<Int>;
+}>;
+
+export interface CommentaireWhereInput {
+  id?: Maybe<Int>;
+  id_not?: Maybe<Int>;
+  id_in?: Maybe<Int[] | Int>;
+  id_not_in?: Maybe<Int[] | Int>;
+  id_lt?: Maybe<Int>;
+  id_lte?: Maybe<Int>;
+  id_gt?: Maybe<Int>;
+  id_gte?: Maybe<Int>;
+  email?: Maybe<String>;
+  email_not?: Maybe<String>;
+  email_in?: Maybe<String[] | String>;
+  email_not_in?: Maybe<String[] | String>;
+  email_lt?: Maybe<String>;
+  email_lte?: Maybe<String>;
+  email_gt?: Maybe<String>;
+  email_gte?: Maybe<String>;
+  email_contains?: Maybe<String>;
+  email_not_contains?: Maybe<String>;
+  email_starts_with?: Maybe<String>;
+  email_not_starts_with?: Maybe<String>;
+  email_ends_with?: Maybe<String>;
+  email_not_ends_with?: Maybe<String>;
+  message?: Maybe<String>;
+  message_not?: Maybe<String>;
+  message_in?: Maybe<String[] | String>;
+  message_not_in?: Maybe<String[] | String>;
+  message_lt?: Maybe<String>;
+  message_lte?: Maybe<String>;
+  message_gt?: Maybe<String>;
+  message_gte?: Maybe<String>;
+  message_contains?: Maybe<String>;
+  message_not_contains?: Maybe<String>;
+  message_starts_with?: Maybe<String>;
+  message_not_starts_with?: Maybe<String>;
+  message_ends_with?: Maybe<String>;
+  message_not_ends_with?: Maybe<String>;
+  idProperty?: Maybe<Int>;
+  idProperty_not?: Maybe<Int>;
+  idProperty_in?: Maybe<Int[] | Int>;
+  idProperty_not_in?: Maybe<Int[] | Int>;
+  idProperty_lt?: Maybe<Int>;
+  idProperty_lte?: Maybe<Int>;
+  idProperty_gt?: Maybe<Int>;
+  idProperty_gte?: Maybe<Int>;
+  created?: Maybe<DateTimeInput>;
+  created_not?: Maybe<DateTimeInput>;
+  created_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_lt?: Maybe<DateTimeInput>;
+  created_lte?: Maybe<DateTimeInput>;
+  created_gt?: Maybe<DateTimeInput>;
+  created_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<CommentaireWhereInput[] | CommentaireWhereInput>;
+  OR?: Maybe<CommentaireWhereInput[] | CommentaireWhereInput>;
+  NOT?: Maybe<CommentaireWhereInput[] | CommentaireWhereInput>;
+}
 
 export type ContractWhereUniqueInput = AtLeastOne<{
   id: Maybe<Int>;
@@ -961,6 +1078,25 @@ export interface ApplicationUpdateManyMutationInput {
   status?: Maybe<ApplicationStatus>;
 }
 
+export interface CommentaireCreateInput {
+  id?: Maybe<Int>;
+  email: String;
+  message: String;
+  idProperty: Int;
+}
+
+export interface CommentaireUpdateInput {
+  email?: Maybe<String>;
+  message?: Maybe<String>;
+  idProperty?: Maybe<Int>;
+}
+
+export interface CommentaireUpdateManyMutationInput {
+  email?: Maybe<String>;
+  message?: Maybe<String>;
+  idProperty?: Maybe<Int>;
+}
+
 export interface ContractCreateInput {
   id?: Maybe<Int>;
   price: Float;
@@ -1098,6 +1234,23 @@ export interface ApplicationSubscriptionWhereInput {
   >;
   NOT?: Maybe<
     ApplicationSubscriptionWhereInput[] | ApplicationSubscriptionWhereInput
+  >;
+}
+
+export interface CommentaireSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<CommentaireWhereInput>;
+  AND?: Maybe<
+    CommentaireSubscriptionWhereInput[] | CommentaireSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    CommentaireSubscriptionWhereInput[] | CommentaireSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    CommentaireSubscriptionWhereInput[] | CommentaireSubscriptionWhereInput
   >;
 }
 
@@ -1502,6 +1655,98 @@ export interface AggregateApplicationSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
+export interface Commentaire {
+  id: Int;
+  email: String;
+  message: String;
+  idProperty: Int;
+  created: DateTimeOutput;
+}
+
+export interface CommentairePromise extends Promise<Commentaire>, Fragmentable {
+  id: () => Promise<Int>;
+  email: () => Promise<String>;
+  message: () => Promise<String>;
+  idProperty: () => Promise<Int>;
+  created: () => Promise<DateTimeOutput>;
+}
+
+export interface CommentaireSubscription
+  extends Promise<AsyncIterator<Commentaire>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<Int>>;
+  email: () => Promise<AsyncIterator<String>>;
+  message: () => Promise<AsyncIterator<String>>;
+  idProperty: () => Promise<AsyncIterator<Int>>;
+  created: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface CommentaireNullablePromise
+  extends Promise<Commentaire | null>,
+    Fragmentable {
+  id: () => Promise<Int>;
+  email: () => Promise<String>;
+  message: () => Promise<String>;
+  idProperty: () => Promise<Int>;
+  created: () => Promise<DateTimeOutput>;
+}
+
+export interface CommentaireConnection {
+  pageInfo: PageInfo;
+  edges: CommentaireEdge[];
+}
+
+export interface CommentaireConnectionPromise
+  extends Promise<CommentaireConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<CommentaireEdge>>() => T;
+  aggregate: <T = AggregateCommentairePromise>() => T;
+}
+
+export interface CommentaireConnectionSubscription
+  extends Promise<AsyncIterator<CommentaireConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CommentaireEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCommentaireSubscription>() => T;
+}
+
+export interface CommentaireEdge {
+  node: Commentaire;
+  cursor: String;
+}
+
+export interface CommentaireEdgePromise
+  extends Promise<CommentaireEdge>,
+    Fragmentable {
+  node: <T = CommentairePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface CommentaireEdgeSubscription
+  extends Promise<AsyncIterator<CommentaireEdge>>,
+    Fragmentable {
+  node: <T = CommentaireSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateCommentaire {
+  count: Int;
+}
+
+export interface AggregateCommentairePromise
+  extends Promise<AggregateCommentaire>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateCommentaireSubscription
+  extends Promise<AsyncIterator<AggregateCommentaire>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
 export interface ContractConnection {
   pageInfo: PageInfo;
   edges: ContractEdge[];
@@ -1755,6 +2000,59 @@ export interface ApplicationPreviousValuesSubscription
   status: () => Promise<AsyncIterator<ApplicationStatus>>;
 }
 
+export interface CommentaireSubscriptionPayload {
+  mutation: MutationType;
+  node: Commentaire;
+  updatedFields: String[];
+  previousValues: CommentairePreviousValues;
+}
+
+export interface CommentaireSubscriptionPayloadPromise
+  extends Promise<CommentaireSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = CommentairePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = CommentairePreviousValuesPromise>() => T;
+}
+
+export interface CommentaireSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CommentaireSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = CommentaireSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = CommentairePreviousValuesSubscription>() => T;
+}
+
+export interface CommentairePreviousValues {
+  id: Int;
+  email: String;
+  message: String;
+  idProperty: Int;
+  created: DateTimeOutput;
+}
+
+export interface CommentairePreviousValuesPromise
+  extends Promise<CommentairePreviousValues>,
+    Fragmentable {
+  id: () => Promise<Int>;
+  email: () => Promise<String>;
+  message: () => Promise<String>;
+  idProperty: () => Promise<Int>;
+  created: () => Promise<DateTimeOutput>;
+}
+
+export interface CommentairePreviousValuesSubscription
+  extends Promise<AsyncIterator<CommentairePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<Int>>;
+  email: () => Promise<AsyncIterator<String>>;
+  message: () => Promise<AsyncIterator<String>>;
+  idProperty: () => Promise<AsyncIterator<Int>>;
+  created: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
 export interface ContractSubscriptionPayload {
   mutation: MutationType;
   node: Contract;
@@ -1928,6 +2226,10 @@ export const models: Model[] = [
   },
   {
     name: "ApplicationStatus",
+    embedded: false
+  },
+  {
+    name: "Commentaire",
     embedded: false
   }
 ];
