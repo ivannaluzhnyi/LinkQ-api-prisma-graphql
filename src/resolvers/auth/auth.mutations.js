@@ -12,7 +12,7 @@ async function signup(_, args, context, info) {
             isActive: args.isActive,
             roles: args.roles || ["ROLE_USER"],
             firstname: args.firstname,
-            firstname: args.firstname,
+            lastname: args.lastname,
             salary: args.salary,
         },
     });
