@@ -2,7 +2,6 @@
 # import Event, EventCreateInput, Mutation.updateEvent, Mutation.deleteEvent, Query.event, Query.events from "./generated/prisma.graphql"
 # import Application, ApplicationCreateInput, Mutation.updateApplication, Mutation.deleteApplication, Query.application, Query.applications from "./generated/prisma.graphql"
 # import Contract, ContractCreateInput, Mutation.updateContract, Mutation.deleteContract, Query.contract, Query.contracts from "./generated/prisma.graphql"
-# import Commentaire, CommentaireCreateInput, Mutation.deleteCommentaire, Query.commentaire, Query.commentaires from "./generated/prisma.graphql"
 
 type Query {
     me: Account
@@ -20,7 +19,6 @@ type Mutation {
     createEvent(data: EventCreateInput!): Event!
     createApplication(data: ApplicationCreateInput!): Application!
     createContract(data: ContractCreateInput!): Contract!
-    createCommentaire(data: CommentaireCreateInput!): Commentaire!
 }
 
 type AuthPayload {
