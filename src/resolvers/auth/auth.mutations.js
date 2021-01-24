@@ -10,7 +10,10 @@ async function signup(_, args, context, info) {
             email: args.email,
             password: password,
             isActive: args.isActive,
-            roles: args.roles,
+            roles: args.roles || ["ROLE_USER"],
+            firstname: args.firstname,
+            firstname: args.firstname,
+            salary: args.salary,
         },
     });
 
