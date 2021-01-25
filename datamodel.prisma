@@ -54,10 +54,11 @@ enum ApplicationStatus {
   PENDING
 }
 
-type Commentaire {
+type Comment {
   id: Int! @id
   email: String!
   message: String!
   idProperty: Int!
+  validate: Boolean @default(value: false)
   created: DateTime! @createdAt
 }

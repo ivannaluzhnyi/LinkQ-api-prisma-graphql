@@ -334,7 +334,7 @@ type AggregateApplication {
   count: Int!
 }
 
-type AggregateCommentaire {
+type AggregateComment {
   count: Int!
 }
 
@@ -647,33 +647,35 @@ type BatchPayload {
   count: Long!
 }
 
-type Commentaire {
+type Comment {
   id: Int!
   email: String!
   message: String!
   idProperty: Int!
+  validate: Boolean
   created: DateTime!
 }
 
-type CommentaireConnection {
+type CommentConnection {
   pageInfo: PageInfo!
-  edges: [CommentaireEdge]!
-  aggregate: AggregateCommentaire!
+  edges: [CommentEdge]!
+  aggregate: AggregateComment!
 }
 
-input CommentaireCreateInput {
+input CommentCreateInput {
   id: Int
   email: String!
   message: String!
   idProperty: Int!
+  validate: Boolean
 }
 
-type CommentaireEdge {
-  node: Commentaire!
+type CommentEdge {
+  node: Comment!
   cursor: String!
 }
 
-enum CommentaireOrderByInput {
+enum CommentOrderByInput {
   id_ASC
   id_DESC
   email_ASC
@@ -682,49 +684,54 @@ enum CommentaireOrderByInput {
   message_DESC
   idProperty_ASC
   idProperty_DESC
+  validate_ASC
+  validate_DESC
   created_ASC
   created_DESC
 }
 
-type CommentairePreviousValues {
+type CommentPreviousValues {
   id: Int!
   email: String!
   message: String!
   idProperty: Int!
+  validate: Boolean
   created: DateTime!
 }
 
-type CommentaireSubscriptionPayload {
+type CommentSubscriptionPayload {
   mutation: MutationType!
-  node: Commentaire
+  node: Comment
   updatedFields: [String!]
-  previousValues: CommentairePreviousValues
+  previousValues: CommentPreviousValues
 }
 
-input CommentaireSubscriptionWhereInput {
+input CommentSubscriptionWhereInput {
   mutation_in: [MutationType!]
   updatedFields_contains: String
   updatedFields_contains_every: [String!]
   updatedFields_contains_some: [String!]
-  node: CommentaireWhereInput
-  AND: [CommentaireSubscriptionWhereInput!]
-  OR: [CommentaireSubscriptionWhereInput!]
-  NOT: [CommentaireSubscriptionWhereInput!]
+  node: CommentWhereInput
+  AND: [CommentSubscriptionWhereInput!]
+  OR: [CommentSubscriptionWhereInput!]
+  NOT: [CommentSubscriptionWhereInput!]
 }
 
-input CommentaireUpdateInput {
+input CommentUpdateInput {
   email: String
   message: String
   idProperty: Int
+  validate: Boolean
 }
 
-input CommentaireUpdateManyMutationInput {
+input CommentUpdateManyMutationInput {
   email: String
   message: String
   idProperty: Int
+  validate: Boolean
 }
 
-input CommentaireWhereInput {
+input CommentWhereInput {
   id: Int
   id_not: Int
   id_in: [Int!]
@@ -769,6 +776,8 @@ input CommentaireWhereInput {
   idProperty_lte: Int
   idProperty_gt: Int
   idProperty_gte: Int
+  validate: Boolean
+  validate_not: Boolean
   created: DateTime
   created_not: DateTime
   created_in: [DateTime!]
@@ -777,12 +786,12 @@ input CommentaireWhereInput {
   created_lte: DateTime
   created_gt: DateTime
   created_gte: DateTime
-  AND: [CommentaireWhereInput!]
-  OR: [CommentaireWhereInput!]
-  NOT: [CommentaireWhereInput!]
+  AND: [CommentWhereInput!]
+  OR: [CommentWhereInput!]
+  NOT: [CommentWhereInput!]
 }
 
-input CommentaireWhereUniqueInput {
+input CommentWhereUniqueInput {
   id: Int
 }
 
@@ -1216,12 +1225,12 @@ type Mutation {
   upsertApplication(where: ApplicationWhereUniqueInput!, create: ApplicationCreateInput!, update: ApplicationUpdateInput!): Application!
   deleteApplication(where: ApplicationWhereUniqueInput!): Application
   deleteManyApplications(where: ApplicationWhereInput): BatchPayload!
-  createCommentaire(data: CommentaireCreateInput!): Commentaire!
-  updateCommentaire(data: CommentaireUpdateInput!, where: CommentaireWhereUniqueInput!): Commentaire
-  updateManyCommentaires(data: CommentaireUpdateManyMutationInput!, where: CommentaireWhereInput): BatchPayload!
-  upsertCommentaire(where: CommentaireWhereUniqueInput!, create: CommentaireCreateInput!, update: CommentaireUpdateInput!): Commentaire!
-  deleteCommentaire(where: CommentaireWhereUniqueInput!): Commentaire
-  deleteManyCommentaires(where: CommentaireWhereInput): BatchPayload!
+  createComment(data: CommentCreateInput!): Comment!
+  updateComment(data: CommentUpdateInput!, where: CommentWhereUniqueInput!): Comment
+  updateManyComments(data: CommentUpdateManyMutationInput!, where: CommentWhereInput): BatchPayload!
+  upsertComment(where: CommentWhereUniqueInput!, create: CommentCreateInput!, update: CommentUpdateInput!): Comment!
+  deleteComment(where: CommentWhereUniqueInput!): Comment
+  deleteManyComments(where: CommentWhereInput): BatchPayload!
   createContract(data: ContractCreateInput!): Contract!
   updateContract(data: ContractUpdateInput!, where: ContractWhereUniqueInput!): Contract
   updateManyContracts(data: ContractUpdateManyMutationInput!, where: ContractWhereInput): BatchPayload!
@@ -1260,9 +1269,9 @@ type Query {
   application(where: ApplicationWhereUniqueInput!): Application
   applications(where: ApplicationWhereInput, orderBy: ApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Application]!
   applicationsConnection(where: ApplicationWhereInput, orderBy: ApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ApplicationConnection!
-  commentaire(where: CommentaireWhereUniqueInput!): Commentaire
-  commentaires(where: CommentaireWhereInput, orderBy: CommentaireOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Commentaire]!
-  commentairesConnection(where: CommentaireWhereInput, orderBy: CommentaireOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentaireConnection!
+  comment(where: CommentWhereUniqueInput!): Comment
+  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment]!
+  commentsConnection(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentConnection!
   contract(where: ContractWhereUniqueInput!): Contract
   contracts(where: ContractWhereInput, orderBy: ContractOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Contract]!
   contractsConnection(where: ContractWhereInput, orderBy: ContractOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContractConnection!
@@ -1275,7 +1284,7 @@ type Query {
 type Subscription {
   account(where: AccountSubscriptionWhereInput): AccountSubscriptionPayload
   application(where: ApplicationSubscriptionWhereInput): ApplicationSubscriptionPayload
-  commentaire(where: CommentaireSubscriptionWhereInput): CommentaireSubscriptionPayload
+  comment(where: CommentSubscriptionWhereInput): CommentSubscriptionPayload
   contract(where: ContractSubscriptionWhereInput): ContractSubscriptionPayload
   event(where: EventSubscriptionWhereInput): EventSubscriptionPayload
 }

@@ -29,7 +29,7 @@ var models = [
     embedded: false
   },
   {
-    name: "Commentaire",
+    name: "Comment",
     embedded: false
   }
 ];
