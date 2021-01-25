@@ -7,7 +7,7 @@ const { SubscriptionActionTypes } = require("../../constants/enums");
  * @param {*} contract
  * @param {SubscriptionActionTypes} actionType
  */
-const publishcontractByType = async (ctx, contract, actionType) => {
+const publishContractByType = async (ctx, contract, actionType) => {
     const { pubsub } = ctx;
     pubsub.publish(PUPSUB_contract, {
         contract: {
@@ -18,5 +18,5 @@ const publishcontractByType = async (ctx, contract, actionType) => {
 };
 
 module.exports = {
-    publishcontractByType,
+    publishContractByType,
 };

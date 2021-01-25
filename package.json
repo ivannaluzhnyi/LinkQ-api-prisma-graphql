@@ -1,5 +1,5 @@
 {
-    "name": "prisma_course",
+    "name": "legeemo",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -7,7 +7,7 @@
         "start": "nodemon -e js,graphql  src/index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "RobinTHOREL",
+    "author": "LEGEEMO",
     "license": "ISC",
     "dependencies": {
         "bcryptjs": "^2.4.3",
