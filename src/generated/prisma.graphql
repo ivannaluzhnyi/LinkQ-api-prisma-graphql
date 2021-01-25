@@ -1,5 +1,5 @@
 # source: http://localhost:4467
-# timestamp: Wed Dec 23 2020 23:38:55 GMT+0100 (GMT+01:00)
+# timestamp: Mon Jan 25 2021 18:42:15 GMT+0100 (heure normale d’Europe centrale)
 
 type Account {
   id: Int!
@@ -537,6 +537,10 @@ type AggregateApplication {
   count: Int!
 }
 
+type AggregateComment {
+  count: Int!
+}
+
 type AggregateContract {
   count: Int!
 }
@@ -1055,6 +1059,281 @@ input ApplicationWhereUniqueInput {
 type BatchPayload {
   """The number of nodes that have been affected by the Batch operation."""
   count: Long!
+}
+
+type Comment {
+  id: Int!
+  email: String!
+  message: String!
+  idProperty: Int!
+  validate: Boolean
+  created: DateTime!
+}
+
+"""A connection to a list of items."""
+type CommentConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [CommentEdge]!
+  aggregate: AggregateComment!
+}
+
+input CommentCreateInput {
+  email: String!
+  message: String!
+  idProperty: Int!
+  validate: Boolean
+}
+
+"""An edge in a connection."""
+type CommentEdge {
+  """The item at the end of the edge."""
+  node: Comment!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum CommentOrderByInput {
+  id_ASC
+  id_DESC
+  email_ASC
+  email_DESC
+  message_ASC
+  message_DESC
+  idProperty_ASC
+  idProperty_DESC
+  validate_ASC
+  validate_DESC
+  created_ASC
+  created_DESC
+}
+
+type CommentPreviousValues {
+  id: Int!
+  email: String!
+  message: String!
+  idProperty: Int!
+  validate: Boolean
+  created: DateTime!
+}
+
+type CommentSubscriptionPayload {
+  mutation: MutationType!
+  node: Comment
+  updatedFields: [String!]
+  previousValues: CommentPreviousValues
+}
+
+input CommentSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [CommentSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [CommentSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [CommentSubscriptionWhereInput!]
+
+  """The subscription event gets dispatched when it's listed in mutation_in"""
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: CommentWhereInput
+}
+
+input CommentUpdateInput {
+  email: String
+  message: String
+  idProperty: Int
+  validate: Boolean
+}
+
+input CommentUpdateManyMutationInput {
+  email: String
+  message: String
+  idProperty: Int
+  validate: Boolean
+}
+
+input CommentWhereInput {
+  """Logical AND on all given filters."""
+  AND: [CommentWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [CommentWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [CommentWhereInput!]
+  id: Int
+
+  """All values that are not equal to given value."""
+  id_not: Int
+
+  """All values that are contained in given list."""
+  id_in: [Int!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [Int!]
+
+  """All values less than the given value."""
+  id_lt: Int
+
+  """All values less than or equal the given value."""
+  id_lte: Int
+
+  """All values greater than the given value."""
+  id_gt: Int
+
+  """All values greater than or equal the given value."""
+  id_gte: Int
+  email: String
+
+  """All values that are not equal to given value."""
+  email_not: String
+
+  """All values that are contained in given list."""
+  email_in: [String!]
+
+  """All values that are not contained in given list."""
+  email_not_in: [String!]
+
+  """All values less than the given value."""
+  email_lt: String
+
+  """All values less than or equal the given value."""
+  email_lte: String
+
+  """All values greater than the given value."""
+  email_gt: String
+
+  """All values greater than or equal the given value."""
+  email_gte: String
+
+  """All values containing the given string."""
+  email_contains: String
+
+  """All values not containing the given string."""
+  email_not_contains: String
+
+  """All values starting with the given string."""
+  email_starts_with: String
+
+  """All values not starting with the given string."""
+  email_not_starts_with: String
+
+  """All values ending with the given string."""
+  email_ends_with: String
+
+  """All values not ending with the given string."""
+  email_not_ends_with: String
+  message: String
+
+  """All values that are not equal to given value."""
+  message_not: String
+
+  """All values that are contained in given list."""
+  message_in: [String!]
+
+  """All values that are not contained in given list."""
+  message_not_in: [String!]
+
+  """All values less than the given value."""
+  message_lt: String
+
+  """All values less than or equal the given value."""
+  message_lte: String
+
+  """All values greater than the given value."""
+  message_gt: String
+
+  """All values greater than or equal the given value."""
+  message_gte: String
+
+  """All values containing the given string."""
+  message_contains: String
+
+  """All values not containing the given string."""
+  message_not_contains: String
+
+  """All values starting with the given string."""
+  message_starts_with: String
+
+  """All values not starting with the given string."""
+  message_not_starts_with: String
+
+  """All values ending with the given string."""
+  message_ends_with: String
+
+  """All values not ending with the given string."""
+  message_not_ends_with: String
+  idProperty: Int
+
+  """All values that are not equal to given value."""
+  idProperty_not: Int
+
+  """All values that are contained in given list."""
+  idProperty_in: [Int!]
+
+  """All values that are not contained in given list."""
+  idProperty_not_in: [Int!]
+
+  """All values less than the given value."""
+  idProperty_lt: Int
+
+  """All values less than or equal the given value."""
+  idProperty_lte: Int
+
+  """All values greater than the given value."""
+  idProperty_gt: Int
+
+  """All values greater than or equal the given value."""
+  idProperty_gte: Int
+  validate: Boolean
+
+  """All values that are not equal to given value."""
+  validate_not: Boolean
+  created: DateTime
+
+  """All values that are not equal to given value."""
+  created_not: DateTime
+
+  """All values that are contained in given list."""
+  created_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  created_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  created_lt: DateTime
+
+  """All values less than or equal the given value."""
+  created_lte: DateTime
+
+  """All values greater than the given value."""
+  created_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  created_gte: DateTime
+}
+
+input CommentWhereUniqueInput {
+  id: Int
 }
 
 type Contract {
@@ -1805,26 +2084,32 @@ type Mutation {
   createApplication(data: ApplicationCreateInput!): Application!
   createContract(data: ContractCreateInput!): Contract!
   createEvent(data: EventCreateInput!): Event!
+  createComment(data: CommentCreateInput!): Comment!
   updateAccount(data: AccountUpdateInput!, where: AccountWhereUniqueInput!): Account
   updateApplication(data: ApplicationUpdateInput!, where: ApplicationWhereUniqueInput!): Application
   updateContract(data: ContractUpdateInput!, where: ContractWhereUniqueInput!): Contract
   updateEvent(data: EventUpdateInput!, where: EventWhereUniqueInput!): Event
+  updateComment(data: CommentUpdateInput!, where: CommentWhereUniqueInput!): Comment
   deleteAccount(where: AccountWhereUniqueInput!): Account
   deleteApplication(where: ApplicationWhereUniqueInput!): Application
   deleteContract(where: ContractWhereUniqueInput!): Contract
   deleteEvent(where: EventWhereUniqueInput!): Event
+  deleteComment(where: CommentWhereUniqueInput!): Comment
   upsertAccount(where: AccountWhereUniqueInput!, create: AccountCreateInput!, update: AccountUpdateInput!): Account!
   upsertApplication(where: ApplicationWhereUniqueInput!, create: ApplicationCreateInput!, update: ApplicationUpdateInput!): Application!
   upsertContract(where: ContractWhereUniqueInput!, create: ContractCreateInput!, update: ContractUpdateInput!): Contract!
   upsertEvent(where: EventWhereUniqueInput!, create: EventCreateInput!, update: EventUpdateInput!): Event!
+  upsertComment(where: CommentWhereUniqueInput!, create: CommentCreateInput!, update: CommentUpdateInput!): Comment!
   updateManyAccounts(data: AccountUpdateManyMutationInput!, where: AccountWhereInput): BatchPayload!
   updateManyApplications(data: ApplicationUpdateManyMutationInput!, where: ApplicationWhereInput): BatchPayload!
   updateManyContracts(data: ContractUpdateManyMutationInput!, where: ContractWhereInput): BatchPayload!
   updateManyEvents(data: EventUpdateManyMutationInput!, where: EventWhereInput): BatchPayload!
+  updateManyComments(data: CommentUpdateManyMutationInput!, where: CommentWhereInput): BatchPayload!
   deleteManyAccounts(where: AccountWhereInput): BatchPayload!
   deleteManyApplications(where: ApplicationWhereInput): BatchPayload!
   deleteManyContracts(where: ContractWhereInput): BatchPayload!
   deleteManyEvents(where: EventWhereInput): BatchPayload!
+  deleteManyComments(where: CommentWhereInput): BatchPayload!
   executeRaw(database: PrismaDatabase, query: String!): Json!
 }
 
@@ -1864,14 +2149,17 @@ type Query {
   applications(where: ApplicationWhereInput, orderBy: ApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Application]!
   contracts(where: ContractWhereInput, orderBy: ContractOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Contract]!
   events(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Event]!
+  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment]!
   account(where: AccountWhereUniqueInput!): Account
   application(where: ApplicationWhereUniqueInput!): Application
   contract(where: ContractWhereUniqueInput!): Contract
   event(where: EventWhereUniqueInput!): Event
+  comment(where: CommentWhereUniqueInput!): Comment
   accountsConnection(where: AccountWhereInput, orderBy: AccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AccountConnection!
   applicationsConnection(where: ApplicationWhereInput, orderBy: ApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ApplicationConnection!
   contractsConnection(where: ContractWhereInput, orderBy: ContractOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContractConnection!
   eventsConnection(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EventConnection!
+  commentsConnection(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -1885,4 +2173,5 @@ type Subscription {
   application(where: ApplicationSubscriptionWhereInput): ApplicationSubscriptionPayload
   contract(where: ContractSubscriptionWhereInput): ContractSubscriptionPayload
   event(where: EventSubscriptionWhereInput): EventSubscriptionPayload
+  comment(where: CommentSubscriptionWhereInput): CommentSubscriptionPayload
 }
