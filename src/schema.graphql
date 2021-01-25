@@ -37,6 +37,7 @@ type Subscription {
     login: LoginSubscription
     application: ApplicationSubscription
     contract: ContractSubscription
+    comment: CommentSubscription
 }
 
 type AccountSubscription {
@@ -68,4 +69,9 @@ type ApplicationSubscription {
 type ContractSubscription {
     actionType: ActionType
     contract: Contract
+}
+
+type CommentSubscription {
+    actionType: ActionType
+    comment: Comment
 }
