@@ -6,15 +6,15 @@ async function comment(parent, args, ctx, info) {
 }
 
 async function comments(parent, args, ctx, info) {
-    if (isAdmin(ctx.user.roles)) {
+    if (ctx.user && isAdmin(ctx.user.roles)) {
         return forwardTo("prisma")(parent, args, ctx, info);
     }
-    return await ctx.prisma.query.Comments({
-        ...args,
-        where: {
-            ...args.where,
-            email: { id: ctx.user.email },
-        },
-    });
+
+    if(args.where.idProperty){
+        return forwardTo("prisma")(parent, args, ctx, info);
+    }
+
+    throw new Error('missing: idProperty')
+   
 }
 module.exports = { comment, comments };
