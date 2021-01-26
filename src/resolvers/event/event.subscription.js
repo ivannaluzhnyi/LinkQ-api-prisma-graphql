@@ -18,6 +18,9 @@ const publishEventByType = async (ctx, event, actionType) => {
     });
 };
 
+/**
+ * @type {{publishEventByType: (function(*, *, SubscriptionActionTypes): Promise<void>)}}
+ */
 module.exports = {
     publishEventByType,
 };
