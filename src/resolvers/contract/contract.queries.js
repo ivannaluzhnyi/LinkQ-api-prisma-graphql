@@ -11,16 +11,22 @@ async function contracts(parent, args, ctx, info) {
     if (isAdmin(roles)) {
         return forwardTo("prisma")(parent, args, ctx, info);
     }
-    return await ctx.prisma.query.contracts({
-        ...args,
-        where: {
-            ...args.where,
-            application: {
-                buyer: {
-                    id: userId,
+
+    return forwardTo("prisma")(
+        parent,
+        {
+            ...args,
+            where: {
+                ...args.where,
+                application: {
+                    buyer: {
+                        id: userId,
+                    },
                 },
             },
         },
-    });
+        ctx,
+        info
+    );
 }
 module.exports = { contract, contracts };
