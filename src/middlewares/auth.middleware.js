@@ -1,6 +1,14 @@
 const { AuthError } = require("../utils/error");
 const { verifyToken, getAuthToken } = require("../utils/auth");
 
+/**
+ * @param resolve
+ * @param parent
+ * @param args
+ * @param ctx
+ * @param info
+ * @returns {Promise<*|boolean>}
+ */
 const isAuthenticatedMiddleware = async (resolve, parent, args, ctx, info) => {
     if (ctx.user) {
         return await resolve(parent, args, ctx, info);
@@ -27,6 +35,9 @@ const isAuthenticatedMiddleware = async (resolve, parent, args, ctx, info) => {
     }
 };
 
+/**
+ * @type {{isAuthenticatedMiddleware: (function(*, *=, *=, *=, *=): Promise<*|boolean>)}}
+ */
 module.exports = {
     isAuthenticatedMiddleware,
 };

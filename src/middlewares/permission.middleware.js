@@ -2,6 +2,14 @@ const { isAuthenticated } = require("../utils/auth");
 const { PermissionError } = require("../utils/error");
 const { checkByConnectId, isAdmin } = require("../utils/permission");
 
+/**
+ * @param resolve
+ * @param parent
+ * @param args
+ * @param ctx
+ * @param info
+ * @returns {Promise<*|PermissionError>}
+ */
 const checkByConnectIdMiddleware = async (resolve, parent, args, ctx, info) => {
     await isAuthenticated(ctx);
 
@@ -10,6 +18,14 @@ const checkByConnectIdMiddleware = async (resolve, parent, args, ctx, info) => {
         : new PermissionError();
 };
 
+/**
+ * @param resolve
+ * @param parent
+ * @param args
+ * @param ctx
+ * @param info
+ * @returns {Promise<*|PermissionError>}
+ */
 const checkIsAdminMiddleware = async (resolve, parent, args, ctx, info) => {
     await isAuthenticated(ctx);
 
@@ -18,6 +34,14 @@ const checkIsAdminMiddleware = async (resolve, parent, args, ctx, info) => {
         : new PermissionError();
 };
 
+/**
+ * @param resolve
+ * @param parent
+ * @param args
+ * @param ctx
+ * @param info
+ * @returns {Promise<*|PermissionError|*>}
+ */
 const accountMiddleware = async (resolve, parent, args, ctx, info) => {
     await isAuthenticated(ctx);
 
@@ -32,6 +56,14 @@ const accountMiddleware = async (resolve, parent, args, ctx, info) => {
     return await resolve(parent, args, ctx, info);
 };
 
+/**
+ * @param resolve
+ * @param parent
+ * @param args
+ * @param ctx
+ * @param info
+ * @returns {Promise<*|*|PermissionError>}
+ */
 const eventMiddleware = async (resolve, parent, args, ctx, info) => {
     await isAuthenticated(ctx);
 
@@ -51,6 +83,14 @@ const eventMiddleware = async (resolve, parent, args, ctx, info) => {
         : new PermissionError();
 };
 
+/**
+ * @param resolve
+ * @param parent
+ * @param args
+ * @param ctx
+ * @param info
+ * @returns {Promise<*|*|PermissionError>}
+ */
 const applicationMiddleware = async (resolve, parent, args, ctx, info) => {
     await isAuthenticated(ctx);
 
@@ -70,6 +110,14 @@ const applicationMiddleware = async (resolve, parent, args, ctx, info) => {
         : new PermissionError();
 };
 
+/**
+ * @param resolve
+ * @param parent
+ * @param args
+ * @param ctx
+ * @param info
+ * @returns {Promise<*|*|PermissionError>}
+ */
 const contractMiddleware = async (resolve, parent, args, ctx, info) => {
     await isAuthenticated(ctx);
 
@@ -88,6 +136,9 @@ const contractMiddleware = async (resolve, parent, args, ctx, info) => {
         : new PermissionError();
 };
 
+/**
+ * @type {{checkIsAdminMiddleware: (function(*, *=, *=, *=, *=): *|PermissionError), contractMiddleware: (function(*, *=, *=, *=, *=): Promise<*|PermissionError>), checkByConnectIdMiddleware: (function(*, *=, *=, *=, *=): *|PermissionError), applicationMiddleware: (function(*, *=, *=, *=, *=): Promise<*|PermissionError>), eventMiddleware: (function(*, *=, *=, *=, *=): Promise<*|PermissionError>), accountMiddleware: (function(*, *=, *=, *=, *=): Promise<*|PermissionError>)}}
+ */
 module.exports = {
     checkByConnectIdMiddleware,
     checkIsAdminMiddleware,
